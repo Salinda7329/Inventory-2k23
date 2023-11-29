@@ -26,3 +26,16 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+//--------------store manager routes-----------------
+
+//home route
+Route::get('/home' , function(){
+    return view('storeManager.store-manager-home');
+});
+
+//view requested items route
+Route::get('/view-requested-items' , function(){
+    return view('storeManager.view-rquest-item');
+});
