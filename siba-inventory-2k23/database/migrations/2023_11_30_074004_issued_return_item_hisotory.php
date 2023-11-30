@@ -15,14 +15,12 @@ return new class extends Migration
             $table->id('irih_id');
             $table->foreignId('request_id')->references('request_id')->on('requests');
             $table->unsignedInteger('issue_or_return')->nullable()->default(null);
+            $table->string('issue_remark');
             $table->string('issued_by');
-            $table->string('issue_remark');
-            $table->string('issue_remark');
-
-
-            $table->string('dept_name');
-            $table->timestamps();
-            $table->unsignedInteger('status')->nullable()->default(null);
+            $table->timestamps('issued_time_stamp');
+            $table->string('return_remark');
+            $table->string('received_by');
+            $table->timestamps('returned_time_stamp');
             $table->unsignedInteger('isactive')->nullable()->default(null);
             });
     }
