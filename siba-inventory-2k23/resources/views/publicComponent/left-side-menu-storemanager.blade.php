@@ -28,20 +28,20 @@
         <span class="menu-header-text">Store</span>
       </li>
       <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link">
+        <a href="/visit-store" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">Visit Store </div>
         </a>
       </li>
 
       <!-- Components -->
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Request</span></li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Return</span></li>
       <!-- Cards -->
       <!-- User interface -->
       <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link">
           <i class="menu-icon tf-icons bx bx-box"></i>
-          <div data-i18n="User interface">Make a Request</div>
+          <div data-i18n="User interface">View Returned Item</div>
         </a>
       </li>
 

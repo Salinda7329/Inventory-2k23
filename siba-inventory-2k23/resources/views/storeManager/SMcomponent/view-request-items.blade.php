@@ -91,7 +91,7 @@
                               <td>Table cell</td>
                               <td>Table cell</td>
                               <td>Table cell</td>
-                              <td><button type="button" class="btn btn-outline-primary">Issue</button>
+                              <td> @include('storeManager.SMcomponent.issue-item-buttonModal-requestedtable')
                                 @include('storeManager.SMcomponent.cancel-button-modal-request-table')
                               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <a class="dropdown-item" href="/edit-customer-details">Edit</a>
@@ -106,8 +106,8 @@
                               <td>Table cell</td>
                               <td>Table cell</td>
                               <td>Table cell</td>
-                              <td><button type="button" class="btn btn-outline-primary">Issue</button>
-                                <button type="button" class="btn btn-outline-danger">Cancel</button>
+                              <td> @include('storeManager.SMcomponent.issue-item-buttonModal-requestedtable')
+                                @include('storeManager.SMcomponent.cancel-button-modal-request-table')
                               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <a class="dropdown-item" href="/edit-customer-details">Edit</a>
                                 <a class="dropdown-item" href="javascript:void(0);">Delet</a>
