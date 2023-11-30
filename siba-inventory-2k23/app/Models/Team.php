@@ -11,6 +11,13 @@ use Laravel\Jetstream\Team as JetstreamTeam;
 class Team extends JetstreamTeam
 {
     use HasFactory;
+	protected $fillable = [
+        'user_id',
+        'name',
+        'personal_team',
+        'created_at',
+        'updated_at',
+    ];
 
     /**
      * The attributes that should be cast.
