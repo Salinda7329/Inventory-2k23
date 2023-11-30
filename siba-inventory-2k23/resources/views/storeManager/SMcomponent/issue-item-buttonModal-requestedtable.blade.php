@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modalissue" data-bs-target="#modalissue">
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalissue">
     Issue
 </button>
 
@@ -7,7 +7,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">Issue an Item</h5>
+                <h5 class="modal-title" id="modalissueTitle">Issue an Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
