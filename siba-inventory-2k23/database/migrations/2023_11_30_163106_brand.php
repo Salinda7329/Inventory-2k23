@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->id('category_id');
-            $table->string('category_name')->nullable()->default(null);
+        Schema::create('brand', function (Blueprint $table) {
+            $table->id('brand_id');
+            $table->string('brand_name')->nullable()->default(null);
             $table->string('created_by')->nullable()->default(null);
             $table->timestamps();
             $table->unsignedInteger('isactive')->nullable()->default(null);
             });
-    }
+        }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('brand');
     }
 };
