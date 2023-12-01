@@ -5,29 +5,24 @@
                 <h5 class="card-header">System Users</h5>
                 <div class="card-body">
                     <div class="row">
-                        <!-- Left side -->
-                        <div class="col-md-6">
+                        <div class="col-md-3 mb-1">
+                            @include('systemAdmin.SysAdmincomponent.create-new-user')
+                        </div>
+                    </div>
 
-                        </div>
-                        <!-- Right side -->
-                        <div class="col-md-6">
-                        </div>
+                    <div class="row">
 
                         <table id="example" class="hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Catagory ID</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name</th>
-                                    <th>Catagory Name last</th>
-                                    <th>Catagory Name last</th>
-                                    <th>Catagory Name last</th>
+                                    <th>User_ID</th>
+                                    <th>EPF</th>
+                                    <th>Role</th>
+                                    <th>First_Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,25 +35,28 @@
                                     <td>System Architect</td>
                                     <td>System Architect</td>
                                     <td>System Architect</td>
-                                    <td>System Architect</td>
-                                    <td>System Architect last</td>
-                                    <td>System Architect last</td>
-                                    <td>System Architect last</td>
                                 </tr>
                                 <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant</td>
-                                    <td>Accountant last</td>
-                                    <td>Accountant last</td>
-                                    <td>Accountant last</td>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
                                 </tr>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                    <td>System Architect</td>
+                                </tr>
+
 
 
                         </table>
