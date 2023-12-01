@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 10:33 PM
+-- Generation Time: Dec 01, 2023 at 11:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -262,6 +262,14 @@ CREATE TABLE `sessions` (
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('0kBNFnoyykol9HBCMFCxeBPU3fOtqrJZF0urOWWc', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMGhMeEg5dTRDU0dUSjhraVRKcEh2M1U0OW82NFRJTTJTcmxQczRpdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1701424857),
+('p8lqqkJW5FkLboKVSfQhQPUgKjf1ekqe97fkMGZA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY0czZmJiVGhwejFuVk12bFk1TjUzaHFXU250RXVCbU52ejlROTA1ViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWdpc3RlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1701381096);
+
 -- --------------------------------------------------------
 
 --
@@ -276,6 +284,14 @@ CREATE TABLE `teams` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `teams`
+--
+
+INSERT INTO `teams` (`id`, `user_id`, `name`, `personal_team`, `created_at`, `updated_at`) VALUES
+(1, 2, 'storemanager@mail.com\'s Team', 1, '2023-12-01 04:18:39', '2023-12-01 04:18:39'),
+(2, 3, 'storemanager@mail.com\'s Team', 1, '2023-12-01 04:20:28', '2023-12-01 04:20:28');
 
 -- --------------------------------------------------------
 
@@ -319,7 +335,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `epf` varchar(255) DEFAULT NULL,
-  `dept_id` bigint(20) UNSIGNED NOT NULL,
+  `dept_id` bigint(20) UNSIGNED DEFAULT NULL,
   `role` int(10) UNSIGNED DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `last_name` varchar(255) DEFAULT NULL,
@@ -335,6 +351,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_name`, `email`, `email_verified_at`, `epf`, `dept_id`, `role`, `name`, `last_name`, `phone`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `isactive`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
+(3, NULL, 'storemanager@mail.com', '2023-12-01 04:20:50', NULL, NULL, NULL, 'storemanager@mail.com', NULL, NULL, '$2y$12$u0obom54lpwmRZDMgokPReiTcoM/6MrnzZ1rQZu03UkPNAzlOP95m', NULL, NULL, NULL, NULL, NULL, 2, NULL, '2023-12-01 04:20:28', '2023-12-01 04:20:53');
 
 -- --------------------------------------------------------
 
@@ -571,7 +594,7 @@ ALTER TABLE `purchasing_list`
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `team_invitations`
@@ -589,7 +612,7 @@ ALTER TABLE `team_user`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_request`
