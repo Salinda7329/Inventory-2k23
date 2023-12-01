@@ -34,9 +34,13 @@
             </table>
                 <script>
                     $(document).ready( function () {
-                        $('#example').DataTable();
+                        $('#example').DataTable({
+
+                            "scrollX": true, // Enable horizontal scrolling
+                        });
                     });
                 </script>
         </div>
     </div>
 </div>
+

@@ -44,3 +44,9 @@ Route::get('/view-requested-items' , function(){
 Route::get('/visit-store' , function(){
     return view('storeManager.store');
 });
+
+//--------------system admin routes-----------------
+//home route
+Route::get('/systemadmin/home' , function(){
+    return view('systemAdmin.system-admin-home');
+});
