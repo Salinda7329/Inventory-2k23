@@ -58,3 +58,24 @@ Route::get('/siba-store-item-by-catagory-table' , function(){
 Route::get('/update-profile' , function(){
     return view('update-profiles');
 });;
+
+
+
+//-------------------------------------------------Departmenyt user------------------------------------------------
+
+//home view route
+
+Route::get('/home/department-users' , function(){
+    return view('DepartmentUser.user-home');
+});;
+
+
+//user update profile
+// Route::get('user/update-profile' , function(){
+//     return view('DepartmentUser.user-update-profile');
+// });;
+
+//view store
+Route::get('/user/view-store' , function(){
+    return view('DepartmentUser.visit-store-user');
+});;

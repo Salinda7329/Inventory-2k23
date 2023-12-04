@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>View return Items | Inventory | SIBA Campus</title>
+    <title>Store | Inventory | SIBA Dynamics</title>
 
     <meta name="description" content="" />
 
@@ -25,7 +25,6 @@
     <!-- Then include DataTables CSS and JavaScript -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,7 +55,7 @@
   </head>
 <body>
 
-   @include('publicComponent.left-side-menu-storemanager')
+   @include('DepartmentUser.DUComponent.user-side-menu')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -74,7 +73,9 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-@include('publicComponent.profile')
+
+                @include('publicComponent.store')
+
 
 {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
 <script src="../assets/vendor/libs/popper/popper.js"></script>

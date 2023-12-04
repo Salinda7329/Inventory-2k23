@@ -187,7 +187,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h6 class="card-title font-weight-bold">Support</h6>
-                                            <p class="card-text">Is any problem ?.</p>
+                                            <p class="card-text">Is any problem .</p>
                                             <button type="button" class="btn btn-primary">Contact Us</button>
                                         </div>
                                     </div>

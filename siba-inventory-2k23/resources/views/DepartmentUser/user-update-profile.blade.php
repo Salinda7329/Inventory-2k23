@@ -14,17 +14,12 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>View return Items | Inventory | SIBA Campus</title>
+    <title>Update profile | Inventory | SIBA Campus</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-    <!-- Then include DataTables CSS and JavaScript -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,7 +51,7 @@
   </head>
 <body>
 
-   @include('publicComponent.left-side-menu-storemanager')
+@include('DepartmentUser.DUComponent.user-side-menu')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -74,9 +69,11 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-@include('publicComponent.profile')
 
-{{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
+            @include('publicComponent.update-profile')
+
+
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../assets/vendor/libs/popper/popper.js"></script>
 <script src="../assets/vendor/js/bootstrap.js"></script>
 <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
