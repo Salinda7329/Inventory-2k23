@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCancel">
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalaccept">
     Accept
 </button>
 
 <!-- Your existing modal -->
-<div class="modal fade" id="modalCancel" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modalaccept" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
