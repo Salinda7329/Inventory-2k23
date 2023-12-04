@@ -44,3 +44,13 @@ Route::get('/view-requested-items' , function(){
 Route::get('/visit-store' , function(){
     return view('storeManager.store');
 });
+
+//view return items
+Route::get('/siba-store-view-return-items' , function(){
+    return view('storeManager.view-return-item');
+});
+
+//route to store page catagory table Item table catagory --> sub catagory
+Route::get('/siba-store-item-by-catagory-table' , function(){
+    return view('storeManager.Item-by-catargory-page');
+});
