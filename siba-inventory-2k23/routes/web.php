@@ -54,3 +54,7 @@ Route::get('/siba-store-view-return-items' , function(){
 Route::get('/siba-store-item-by-catagory-table' , function(){
     return view('storeManager.Item-by-catargory-page');
 });
+
+Route::get('/update-profile' , function(){
+    return view('update-profiles');
+});;
