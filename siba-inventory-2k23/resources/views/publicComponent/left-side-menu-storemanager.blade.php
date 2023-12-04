@@ -39,7 +39,7 @@
       <!-- Cards -->
       <!-- User interface -->
       <li class="menu-item">
-        <a href="javascript:void(0)" class="menu-link">
+        <a href="/siba-store-view-return-items" class="menu-link">
           <i class="menu-icon tf-icons bx bx-box"></i>
           <div data-i18n="User interface">View Returned Item</div>
         </a>

@@ -48,38 +48,6 @@
                     </script>
                 </div>
             </div>
-<<<<<<< HEAD
-
-            <table id="example" class="hover" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Catagory ID</th>
-                        <th>Catagory Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                    </tr>
-
-
-            </table>
-                <script>
-                    $(document).ready( function () {
-                        $('#example').DataTable({
-
-                            "scrollX": true, // Enable horizontal scrolling
-                        });
-                    });
-                </script>
-=======
->>>>>>> 8fcb18e3db2e5ae2a0a65fea9f4524b5f5ec8682
         </div>
     </div>
 </div>
-

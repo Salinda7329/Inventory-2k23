@@ -6,13 +6,8 @@ id="layout-navbar"
   <!-- Search -->
   <div class="navbar-nav align-items-center">
     <div class="nav-item d-flex align-items-center">
-      <i class="bx bx-search fs-4 lh-0"></i>
-      <input
-        type="text"
-        class="form-control border-0 shadow-none"
-        placeholder="Search..."
-        aria-label="Search..."
-      />
+
+
     </div>
   </div>
   <!-- /Search -->
@@ -29,7 +24,7 @@ id="layout-navbar"
       </a>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="/update-profile">
             <div class="d-flex">
               <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">

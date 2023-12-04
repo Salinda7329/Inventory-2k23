@@ -45,8 +45,45 @@ Route::get('/visit-store' , function(){
     return view('storeManager.store');
 });
 
+<<<<<<< HEAD
 //--------------system admin routes-----------------
 //home route
 Route::get('/systemadmin/home' , function(){
     return view('systemAdmin.system-admin-home');
 });
+=======
+//view return items
+Route::get('/siba-store-view-return-items' , function(){
+    return view('storeManager.view-return-item');
+});
+
+//route to store page catagory table Item table catagory --> sub catagory
+Route::get('/siba-store-item-by-catagory-table' , function(){
+    return view('storeManager.Item-by-catargory-page');
+});
+
+Route::get('/update-profile' , function(){
+    return view('update-profiles');
+});;
+
+
+
+//-------------------------------------------------Departmenyt user------------------------------------------------
+
+//home view route
+
+Route::get('/home/department-users' , function(){
+    return view('DepartmentUser.user-home');
+});;
+
+
+//user update profile
+// Route::get('user/update-profile' , function(){
+//     return view('DepartmentUser.user-update-profile');
+// });;
+
+//view store
+Route::get('/user/view-store' , function(){
+    return view('DepartmentUser.visit-store-user');
+});;
+>>>>>>> 8fcb18e3db2e5ae2a0a65fea9f4524b5f5ec8682

@@ -17,7 +17,7 @@
     <title>404 error ! | Siba Campus</title>
 
     <meta name="description" content="" />
-    {{-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> --}}
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
