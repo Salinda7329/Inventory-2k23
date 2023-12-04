@@ -5,7 +5,7 @@
                 <h5 class="card-header">System Users</h5>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3 mb-1">
+                        <div class="col-md-3 mb-2">
                             @include('systemAdmin.SysAdmincomponent.create-new-user')
                         </div>
                     </div>
