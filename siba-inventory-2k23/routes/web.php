@@ -45,13 +45,13 @@ Route::get('/visit-store' , function(){
     return view('storeManager.store');
 });
 
-<<<<<<< HEAD
+
 //--------------system admin routes-----------------
 //home route
 Route::get('/systemadmin/home' , function(){
     return view('systemAdmin.system-admin-home');
 });
-=======
+
 //view return items
 Route::get('/siba-store-view-return-items' , function(){
     return view('storeManager.view-return-item');
@@ -86,4 +86,4 @@ Route::get('/home/department-users' , function(){
 Route::get('/user/view-store' , function(){
     return view('DepartmentUser.visit-store-user');
 });;
->>>>>>> 8fcb18e3db2e5ae2a0a65fea9f4524b5f5ec8682
+
