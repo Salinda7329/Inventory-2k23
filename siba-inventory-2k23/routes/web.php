@@ -66,6 +66,10 @@ Route::get('/update-profile' , function(){
     return view('update-profiles');
 });;
 
+//low quentity product route
+Route::get('/store/low-quentity' , function(){
+    return view('storeManager.low-quentity-product');
+});;
 
 
 //-------------------------------------------------Departmenyt user------------------------------------------------
