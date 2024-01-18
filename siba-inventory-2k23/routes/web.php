@@ -63,7 +63,7 @@ Route::get('/siba-store-item-by-catagory-table' , function(){
 });
 
 Route::get('/update-profile' , function(){
-    return view('update-profiles');
+    return view('publicComponent.profile');
 });;
 
 //low quentity product route
@@ -85,6 +85,10 @@ Route::get('/home/department-users' , function(){
 // Route::get('user/update-profile' , function(){
 //     return view('DepartmentUser.user-update-profile');
 // });;
+
+Route::get('user-update-profile' , function(){
+    return view('publicComponent.update-profile');
+});
 
 //view store
 Route::get('/user/view-store' , function(){

@@ -29,10 +29,11 @@
                                                             <div class="text-muted">
                                                             </div>
                                                             <div class="mt-2">
-                                                                <button class="btn btn-primary" type="button">
+                                                                <button class="btn btn-primary" type="button" onclick="document.getElementById('fileInput').click();">
                                                                     <i class="fa fa-fw fa-camera"></i>
                                                                     <span>Change Photo</span>
                                                                 </button>
+                                                                <input type="file" id="fileInput" style="display:none;" accept="image/*" onchange="displayImagePreview(this)">
                                                             </div>
                                                         </div>
                                                         <div class="text-center text-sm-right">
