@@ -45,6 +45,13 @@ Route::get('/visit-store' , function(){
     return view('storeManager.store');
 });
 
+
+//--------------system admin routes-----------------
+//home route
+Route::get('/systemadmin/home' , function(){
+    return view('systemAdmin.system-admin-home');
+});
+
 //view return items
 Route::get('/siba-store-view-return-items' , function(){
     return view('storeManager.view-return-item');
@@ -56,5 +63,36 @@ Route::get('/siba-store-item-by-catagory-table' , function(){
 });
 
 Route::get('/update-profile' , function(){
-    return view('update-profiles');
+    return view('publicComponent.profile');
 });;
+
+//low quentity product route
+Route::get('/store/low-quentity' , function(){
+    return view('storeManager.low-quentity-product');
+});;
+
+
+//-------------------------------------------------Departmenyt user------------------------------------------------
+
+//home view route
+
+Route::get('/home/department-users' , function(){
+    return view('DepartmentUser.user-home');
+});;
+
+
+//user update profile
+// Route::get('user/update-profile' , function(){
+//     return view('DepartmentUser.user-update-profile');
+// });;
+
+Route::get('user-update-profile' , function(){
+    return view('publicComponent.update-profile');
+});
+
+//view store
+Route::get('/user/view-store' , function(){
+    return view('DepartmentUser.visit-store-user');
+});;
+
+//------------------------------------------------------------------------------------------------------------------

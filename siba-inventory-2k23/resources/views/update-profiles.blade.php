@@ -74,7 +74,7 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-@include('publicComponent.update-profile')
+@include('publicComponent.profile')
 
 {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
 <script src="../assets/vendor/libs/popper/popper.js"></script>
