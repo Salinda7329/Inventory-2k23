@@ -25,6 +25,8 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'epf' => ['required', 'string', 'max:255', 'unique:users'],
+            'dept_id' => ['required'],
+            'role' => ['required'],
             'password' => $this->passwordRules(),
         ])->validate();
 

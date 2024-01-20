@@ -24,6 +24,8 @@
                         </a>
                     </div>
 
+                    <x-validation-errors class="mb-4" />
+
                     <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="mb-3">
@@ -36,19 +38,18 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Enter your email" :value="old('email')" required
-                                autocomplete="username" />
+                                placeholder="Enter your EPF Number" :value="old('email')" autofocus required />
                         </div>
 
                         <div class="mb-3">
                             <label for="epf" class="form-label">EPF No :</label>
                             <input type="text" class="form-control" id="epf" name="epf"
-                                placeholder="Enter your EPF Number" autofocus />
+                            placeholder="Enter your EPF Number" :value="old('epf')" autofocus required/>
                         </div>
 
                         <div class="mb-3">
                             <label for="department" class="form-label">Choose Departmnt</label>
-                            <select class="form-control" id="department" name="dept_id">
+                            <select class="form-control" id="department" name="dept_id" required>
                                 <option value="">Select a Department</option>
                                 <option value="1">Information Technology</option>
                                 <option value="2">Buddhist & Pali Studies</option>
@@ -63,7 +64,7 @@
 
                         <div class="mb-3">
                             <label for="role" class="form-label">Select Role</label>
-                            <select class="form-control" id="role" name="role">
+                            <select class="form-control" id="role" name="role" required>
                                 <option value="">Select a Role</option>
                                 <option value="1">User</option>
                                 <option value="2">Store Manager</option>
