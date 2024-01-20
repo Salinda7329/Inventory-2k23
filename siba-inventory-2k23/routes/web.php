@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// login page 
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,7 +23,7 @@ Route::get('/Register' , function(){
     return view('Registration');
 });
 
-// create new user route 
+// create new user route
 Route::get('/userregister' , function(){
     return view('Registration');
 });
