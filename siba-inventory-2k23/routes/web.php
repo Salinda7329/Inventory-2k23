@@ -22,6 +22,11 @@ Route::get('/Register' , function(){
     return view('Registration');
 });
 
+// create new user route 
+Route::get('/userregister' , function(){
+    return view('Registration');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
