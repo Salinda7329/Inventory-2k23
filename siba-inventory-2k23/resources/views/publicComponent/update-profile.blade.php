@@ -1,3 +1,6 @@
+
+{{-- meka uses lage profile update karana aka mekedi onim user knkt methanat awith profile aka edit karagann plwn wenn hadann  --}}
+
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">

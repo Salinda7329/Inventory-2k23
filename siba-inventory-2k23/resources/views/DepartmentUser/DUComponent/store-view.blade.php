@@ -1,6 +1,4 @@
-
-{{-- meka store managerge store view aka. mekedi store manager mkk hri raw akk uda click krama aka issue item modal aka open wenn hadann oni  --}}
-
+{{-- meke department userge store view aka vtharai hadann thiyne  --}}
 
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
@@ -56,4 +54,5 @@
         </div>
     </div>
 </div>
+
 
