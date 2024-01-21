@@ -62,10 +62,6 @@ hadan oni --}}
                                     <td>Table cell</td>
                                     <td>
                                         Not Received {{-- methana status akk update krapn me baduwa genall deelad nadd kyala balagnn --}}
-                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                            <a class="dropdown-item" href="/edit-customer-details">Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delet</a>
-                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
