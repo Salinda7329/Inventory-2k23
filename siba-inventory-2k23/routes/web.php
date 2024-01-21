@@ -51,6 +51,16 @@ Route::get('/visit-store' , function(){
     return view('storeManager.store');
 });
 
+// Not returned items
+Route::get('/Store/Not-Returned_Items' , function(){
+    return view('storeManager.Not-Returned-items');
+});
+
+// store history view
+Route::get('/store/History' , function(){
+    return view('storeManager.history-store');
+});
+
 
 //--------------system admin routes-----------------
 //home route
