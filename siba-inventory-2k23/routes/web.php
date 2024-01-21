@@ -39,7 +39,7 @@ Route::middleware([
 //--------------store manager routes-----------------
 
 //home route
-Route::get('/storeManager/home',[StoreManagerDashboardController::class,'index'])->name('storeManager.home');
+Route::get('/storeManager/home',[StoreManagerDashboardController::class,'index'])->name('storeManager.home')->middleware('CheckStoreManagerRole');
 
 //view requested items route
 Route::get('/view-requested-items' , function(){
@@ -54,7 +54,7 @@ Route::get('/visit-store' , function(){
 
 //--------------system admin routes-----------------
 //home route
-Route::get('/systemAdmin/home',[AdminDashboardController::class, 'index'])->name('systemAdmin.home');
+Route::get('/systemAdmin/home',[AdminDashboardController::class, 'index'])->name('systemAdmin.home')->middleware('CheckAdminRole');
 
 //view return items
 Route::get('/siba-store-view-return-items' , function(){
