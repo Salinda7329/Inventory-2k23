@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\StoreManagerDashboardController;
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// login page
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Registration route
-Route::get('/Register' , function(){
-    return view('Registration');
-});
 
 Route::middleware([
     'auth:sanctum',
@@ -33,12 +33,13 @@ Route::middleware([
 });
 
 
+
+
+
 //--------------store manager routes-----------------
 
 //home route
-Route::get('/home' , function(){
-    return view('storeManager.store-manager-home');
-});
+Route::get('/storeManager/home',[StoreManagerDashboardController::class,'index'])->name('storeManager.home')->middleware('CheckStoreManagerRole');
 
 //view requested items route
 Route::get('/view-requested-items' , function(){
@@ -63,9 +64,7 @@ Route::get('/store/History' , function(){
 
 //--------------system admin routes-----------------
 //home route
-Route::get('/systemadmin/home' , function(){
-    return view('systemAdmin.system-admin-home');
-});
+Route::get('/systemAdmin/home',[AdminDashboardController::class, 'index'])->name('systemAdmin.home')->middleware('CheckAdminRole');
 
 //view return items
 Route::get('/siba-store-view-return-items' , function(){
@@ -91,9 +90,7 @@ Route::get('/store/low-quentity' , function(){
 
 //home view route
 
-Route::get('/home/department-users' , function(){
-    return view('DepartmentUser.user-home');
-});;
+Route::get('/user/home' ,[UserDashboardController::class , 'index'])->name('user.home');
 
 
 //user update profile

@@ -1,13 +1,13 @@
 {{-- meka thama user registration main view aka --}}
 
 <style>
-    .register-logo{
+    .register-logo {
         max-width: 200px;
 
     }
 
-    .card{
-        box-shadow:rgba(8, 1, 1, 0.727) ;
+    .card {
+        box-shadow: rgba(8, 1, 1, 0.727);
     }
 </style>
 
@@ -23,77 +23,82 @@
                             </span>
                         </a>
                     </div>
-                    <h4 class="mb-2">Adventure starts here 🚀</h4>
-                    <p class="mb-4">Make your app management easy and fun!</p>
-                    <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+
+                    <x-validation-errors class="mb-4" />
+
+                    <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
+                        @csrf
                         <div class="mb-3">
-                            <label for="firstname" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname"
-                                placeholder="Enter your First Name" autofocus />
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Enter your Name" :value="old('name')" required autofocus
+                                autocomplete="name" />
                         </div>
-                        <div class="mb-3">
-                            <label for="lastname" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
-                                placeholder="Enter your Last Name" autofocus />
-                        </div>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username"
-                                placeholder="Enter your username" autofocus />
-                        </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Enter your email" />
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Enter your EPF Number" :value="old('email')" autofocus required />
                         </div>
+
                         <div class="mb-3">
                             <label for="epf" class="form-label">EPF No :</label>
                             <input type="text" class="form-control" id="epf" name="epf"
-                                placeholder="Enter your EPF Number" autofocus />
+                            placeholder="Enter your EPF Number" :value="old('epf')" autofocus required/>
                         </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="int" class="form-control" id="phone" name="phone"
-                                placeholder="Enter your phone number" autofocus />
-                        </div>
+
                         <div class="mb-3">
                             <label for="department" class="form-label">Choose Departmnt</label>
-                            <select class="form-control" id="department" name="department">
-                              <option value="option1">Information Technology</option>
-                              <option value="option2">Buddhist & Pali Studies</option>
-                              <option value="option3">Counselling Psycology</option>
-                              <option value="option4">English & Modern Language</option>
-                              <option value="option5">Global Studies</option>
-                              <option value="option6">Aesthetic Department</option>
-                              <option value="option7">management Studies</option>
+                            <select class="form-control" id="department" name="dept_id" required>
+                                <option value="">Select a Department</option>
+                                <option value="1">Information Technology</option>
+                                <option value="2">Buddhist & Pali Studies</option>
+                                <option value="3">Counselling Psycology</option>
+                                <option value="4">English & Modern Language</option>
+                                <option value="5">Global Studies</option>
+                                <option value="6">Aesthetic Department</option>
+                                <option value="7">management Studies</option>
+                                <option value="8">Admin Department</option>
                             </select>
-                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Select Role</label>
+                            <select class="form-control" id="role" name="role" required>
+                                <option value="">Select a Role</option>
+                                <option value="1">User</option>
+                                <option value="2">Store Manager</option>
+                                <option value="3">Purchase Manager</option>
+                                <option value="4">Head of Administration</option>
+                                {{-- value="5" Admin --}}
+                            </select>
+                        </div>
+
                         <div class="mb-3 form-password-toggle">
                             <label class="form-label" for="password">Password</label>
                             <div class="input-group input-group-merge">
                                 <input type="password" id="password" class="form-control" name="password"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    aria-describedby="password" />
+                                    aria-describedby="password" required autocomplete="new-password" />
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                                <label class="form-check-label" for="terms-conditions">
-                                    I agree to
-                                    <a href="">privacy policy & terms</a>
-                                </label>
+
+                        <div class="mb-3 form-password-toggle">
+                            <label class="form-label" for="password_confirmation">Confirm Password</label>
+                            <div class="input-group input-group-merge">
+                                <input type="password" id="password_confirmation" class="form-control"
+                                    name="password_confirmation"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="password" required autocomplete="new-password" />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
-                        <button class="btn btn-primary d-grid w-100">Sign up</button>
+
+
+                        <button class="btn btn-primary d-grid w-100">Create New User</button>
                     </form>
-                    <p class="text-center">
-                        <span>Already have an account?</span>
-                        <a href="/>
-                            <span>Sign in instead</span>
-                        </a>
-                    </p>
+
                 </div>
             </div>
         </div>
