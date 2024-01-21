@@ -20,6 +20,6 @@ class CheckAdminRole
         }
 
         // Redirect or abort if the user doesn't have the required role
-        return redirect('/dashboard');
+        return redirect()->back();
     }
 }

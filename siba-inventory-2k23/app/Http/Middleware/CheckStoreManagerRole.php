@@ -20,6 +20,10 @@ class CheckStoreManagerRole
         }
 
         // Redirect or abort if the user doesn't have the required role
+<<<<<<< HEAD
+        return redirect()->back();
+=======
         return redirect('/dashboard');
+>>>>>>> b785b362ee8562ea8427f90595bfce4898bbea27
     }
 }
