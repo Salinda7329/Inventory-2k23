@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('redirects',[HomeController::class, 'index'])->name('redirects');
 
 Route::middleware([
     'auth:sanctum',
@@ -36,8 +38,8 @@ Route::middleware([
 //--------------store manager routes-----------------
 
 //home route
-Route::get('/home' , function(){
-    return view('storeManager.store-manager-home');
+Route::get('/storeManager/home' , function(){
+    return view('storeManager.store-manager-home')->name('storeManager.home');
 });
 
 //view requested items route
@@ -53,8 +55,8 @@ Route::get('/visit-store' , function(){
 
 //--------------system admin routes-----------------
 //home route
-Route::get('/systemadmin/home' , function(){
-    return view('systemAdmin.system-admin-home');
+Route::get('/systemAdmin/home' , function(){
+    return view('systemAdmin.system-admin-home')->name('systemAdmin.home');
 });
 
 //view return items
@@ -81,8 +83,8 @@ Route::get('/store/low-quentity' , function(){
 
 //home view route
 
-Route::get('/home/department-users' , function(){
-    return view('DepartmentUser.user-home');
+Route::get('/user/home' , function(){
+    return view('DepartmentUser.user-home')->name('user.home');
 });;
 
 

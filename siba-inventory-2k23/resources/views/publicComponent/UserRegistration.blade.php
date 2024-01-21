@@ -70,6 +70,7 @@
                                 <option value="2">Store Manager</option>
                                 <option value="3">Purchase Manager</option>
                                 <option value="4">Head of Administration</option>
+                                {{-- value="5" Admin --}}
                             </select>
                         </div>
 
