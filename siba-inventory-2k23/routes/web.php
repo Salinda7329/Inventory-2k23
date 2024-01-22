@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\StoreManagerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,6 @@ Route::middleware([
 
 
 
-
 //--------------store manager routes-----------------
 
 //home route
@@ -65,6 +65,11 @@ Route::get('/store/History', function () {
 //--------------system admin routes-----------------
 //home route
 Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home')->middleware('CheckAdminRole');
+//create new user
+Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser')->middleware('CheckAdminRole');;
+//route to fetch all user data
+Route::get('/systemAdmin/home/fetchAllUserData',[AdminDashboardController::class,'fetchAllUserData'])->name('fetchAllUserData');
+
 
 //view return items
 Route::get('/siba-store-view-return-items', function () {
