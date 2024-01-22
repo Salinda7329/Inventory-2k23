@@ -36,7 +36,6 @@ Route::middleware([
 
 
 
-
 //--------------store manager routes-----------------
 
 //home route
@@ -68,6 +67,8 @@ Route::get('/store/History', function () {
 Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home')->middleware('CheckAdminRole');
 //create new user
 Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser')->middleware('CheckAdminRole');;
+//route to fetch all user data
+Route::get('/systemAdmin/home/fetchAllUserData',[AdminDashboardController::class,'fetchAllUserData'])->name('fetchAllUserData');
 
 
 //view return items
