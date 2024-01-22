@@ -2,16 +2,14 @@
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
             <div class="card">
-                <h5 class="card-header">System Users</h5>
-                <div class="card-body">
+                <div class="card-header">System Users
                     <div class="row">
                         <div class="col-md-3 mb-2">
                             @include('systemAdmin.SysAdmincomponent.create-new-user')
                         </div>
                     </div>
-
-                    <div class="row">
-
+                </div>
+                <div class="card-body">
                         <table id="example" class="hover" style="width:100%">
                             <thead>
                                 <tr>
@@ -67,6 +65,8 @@
                                 });
                             });
                         </script>
-                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
