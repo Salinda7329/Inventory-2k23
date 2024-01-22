@@ -184,6 +184,8 @@
                                                             $('#newUserData').modal('hide');
                                                             // Example: Display a success message or update the UI
                                                             alert('User created successfully!');
+                                                            // reset form
+                                                            $('#userCreationForm')[0].reset();
                                                             // You can update the UI or perform other actions here
                                                         } else if (response.status === 422) {
                                                             // Handle validation errors
@@ -202,12 +204,21 @@
                                                             // Handle other status codes if needed
                                                             // For example, display an error message
                                                             alert('Failed to create user. Please try again.');
+                                                            // reset form
+                                                            $('#userCreationForm')[0].reset();
                                                         }
                                                     },
 
 
                                                 });
                                             });
+
+                                            // Add an event listener to the modal close button
+                                            $('.btn-close').on('click', function() {
+                                                // Reset the form when the close button is clicked
+                                                $('#userCreationForm')[0].reset();
+                                            });
+
                                         });
                                     </script>
 
