@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Features;
 
 return [
@@ -74,7 +75,26 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    // 'home' => RouteServiceProvider::HOME,
+    'home' => function(){
+        // if you want to go to a specific route
+        // return route('dashboard');
+
+        // or if you have a bunch of redirection options
+        if (Auth::user()->role == '5') {
+            return route('systemAdmin.home');
+        }
+        elseif(Auth::user()->role == '2') {
+            return route('storeManager.home');
+        }
+        elseif(Auth::user()->role == '1') {
+            return route('user.home');
+        }
+        else{
+            return route('dashboard');
+        }
+    },
+
 
     /*
     |--------------------------------------------------------------------------
@@ -149,12 +169,12 @@ return [
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::updateProfileInformation(),
-        Features::updatePasswords(),
-        Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
+        // Features::updatePasswords(),
+        // Features::twoFactorAuthentication([
+            // 'confirm' => true,
+            // 'confirmPassword' => true,
             // 'window' => 0,
-        ]),
+        // ]),
     ],
 
 ];
