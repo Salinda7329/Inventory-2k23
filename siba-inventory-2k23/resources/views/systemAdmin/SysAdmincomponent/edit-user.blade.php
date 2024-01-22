@@ -23,7 +23,6 @@
                         <input type="text" class="form-control" id="name1" name="name"
                             placeholder="Enter your Name" :value="old('name')" required autofocus autocomplete="name"
                             readonly disabled />
-                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -31,7 +30,6 @@
                         <input type="email" class="form-control" id="email1" name="email"
                             placeholder="Enter your Email" :value="old('email')" autofocus required readonly
                             disabled />
-                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -39,7 +37,6 @@
                         <input type="text" class="form-control" id="epf1" name="epf"
                             placeholder="Enter your EPF Number" :value="old('epf')" autofocus required readonly
                             disabled />
-                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
 
@@ -56,7 +53,6 @@
                             <option value="7">management Studies</option>
                             <option value="8">Admin Department</option>
                         </select>
-                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -69,7 +65,6 @@
                             <option value="4">Head of Administration</option>
                             {{-- value="5" Admin --}}
                         </select>
-                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -80,7 +75,6 @@
                             <option value="2">Deactive</option>
                             <option value="3">Delete</option>
                         </select>
-                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
 

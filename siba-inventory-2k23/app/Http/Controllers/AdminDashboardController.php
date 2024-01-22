@@ -49,9 +49,9 @@ class AdminDashboardController extends Controller
                             <td>" . $student->email . "</td>
                             <td>" . $student->epf . "</td>
                             <td>" . $student->name . "</td>
-                            <td>" . $student->role . "</td>
-                            <td>" . $student->dept_id . "</td>
-                            <td>" . $student->isActive . "</td>
+                            <td>" . $student->getRoleNameAttribute() . "</td>
+                            <td>" . $student->getDepartmentNameAttribute() . "</td>
+                            <td>" . $student->getIsActiveNameAttribute() . "</td>
                             <td><a href='#' id='" . $student->id . "'  data-bs-toggle='modal'
                             data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
                             </td>

@@ -194,6 +194,8 @@
                             $('#userCreationForm')[0].reset();
                             $('#password-error').hide();
                             $('.input-error').hide();
+                            //change submit button to adding
+                            $('#createNewUser').text('Create New User');
                         });
 
 
