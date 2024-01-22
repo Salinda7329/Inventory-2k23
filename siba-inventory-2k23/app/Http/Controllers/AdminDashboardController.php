@@ -53,7 +53,7 @@ class AdminDashboardController extends Controller
                             <td>" . $student->dept_id . "</td>
                             <td>" . $student->isActive . "</td>
                             <td><a href='#' id='" . $student->id . "'  data-bs-toggle='modal'
-                            data-bs-target='#EditUserModal' class='editUserButton'>Edit</a>
+                            data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
                             </td>
                         </tr>";
             }
@@ -66,5 +66,28 @@ class AdminDashboardController extends Controller
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
         }
+    }
+
+    public function edit(Request $request){
+        $user_Id = $request->user_Id;
+        //find data of id using Student model
+        $user = User::find($user_Id);
+        return response()->json($user);
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::find($request->user_Id_hidden);
+        //   return response()->json($student);
+
+        $user->update([
+            'dept_id' => $request->dept_id,
+            'role' => $request->role,
+            'isActive' => $request->status,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+        ]);
     }
 }

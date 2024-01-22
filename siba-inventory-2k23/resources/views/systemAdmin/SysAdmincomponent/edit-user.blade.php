@@ -1,48 +1,51 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserData" id="createNewUser">
-    Create New User
-</button>
 
 <!-- Modal -->
-<div class="modal fade" id="newUserData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="editUserDataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Enter New User Details</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
 
-                <form id="userCreationForm" class="mb-3" method="POST" action="#">
+                <form id="UpdateUserDetailsForm" class="mb-3" method="POST" action="#">
                     @csrf
+
+                    {{-- hidden id input field --}}
+                    <input type="hidden" id="user_Id" name="user_Id_hidden">
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name"
-                            placeholder="Enter your Name" :value="old('name')" required autofocus
-                            autocomplete="name" />
+                        <input type="text" class="form-control" id="name1" name="name"
+                            placeholder="Enter your Name" :value="old('name')" required autofocus autocomplete="name"
+                            readonly disabled />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email"
-                            placeholder="Enter your Email" :value="old('email')" autofocus required />
+                        <input type="email" class="form-control" id="email1" name="email"
+                            placeholder="Enter your Email" :value="old('email')" autofocus required readonly
+                            disabled />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="epf" class="form-label">EPF No :</label>
-                        <input type="text" class="form-control" id="epf" name="epf"
-                            placeholder="Enter your EPF Number" :value="old('epf')" autofocus required />
+                        <input type="text" class="form-control" id="epf1" name="epf"
+                            placeholder="Enter your EPF Number" :value="old('epf')" autofocus required readonly
+                            disabled />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
 
                     <div class="mb-3">
                         <label for="department" class="form-label">Choose Departmnt</label>
-                        <select class="form-control" id="dept_id" name="dept_id" required>
+                        <select class="form-control" id="dept_id1" name="dept_id" required>
                             <option disabled selected hidden>Select a Department</option>
                             <option value="1">Information Technology</option>
                             <option value="2">Buddhist & Pali Studies</option>
@@ -58,7 +61,7 @@
 
                     <div class="mb-3">
                         <label for="role" class="form-label">Select Role</label>
-                        <select class="form-control" id="role" name="role" required>
+                        <select class="form-control" id="role1" name="role" required>
                             <option disabled selected hidden>Select a Role</option>
                             <option value="1">User</option>
                             <option value="2">Store Manager</option>
@@ -69,31 +72,19 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <div class="mb-3 form-password-toggle">
-                        <label class="form-label" for="password">Password</label>
-                        <div class="input-group input-group-merge" id="password">
-                            <input type="password" class="form-control" name="password"
-                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                aria-describedby="password" required autocomplete="new-password" />
-                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                        </div>
-                        <div class="input-error text-danger" id="password-error" style="display: none"></div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Select Status</label>
+                        <select class="form-control" id="status1" name="status" required>
+                            <option disabled selected hidden>Select a Status</option>
+                            <option value="1">Active</option>
+                            <option value="2">Deactive</option>
+                            <option value="3">Delete</option>
+                        </select>
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <div class="mb-3 form-password-toggle">
-                        <label class="form-label" for="password_confirmation">Confirm
-                            Password</label>
-                        <div class="input-group input-group-merge">
-                            <input type="password" id="password_confirmation" class="form-control"
-                                name="password_confirmation"
-                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                aria-describedby="password" required autocomplete="new-password" />
-                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                        </div>
 
-                    </div>
-
-                    <button class="btn btn-primary d-grid w-100">Create New User</button>
+                    <button class="btn btn-primary d-grid w-100" id="Update_user_button">Update</button>
                 </form>
 
                 <script>
@@ -132,8 +123,6 @@
 
                             // Serialize the form data into a URL-encoded string
                             var formData = new FormData(form[0]);
-                             //change submit button to adding
-                             $('#createNewUser').text('Creating..');
 
                             // Use jQuery Ajax to send a POST request with the form data
                             $.ajax({
@@ -151,7 +140,6 @@
                                     if (response.status === 200) {
                                         // Handle the successful response
                                         console.log(response);
-                                        $('#createNewUser').text('Create New User');
                                         // Close the modal directly
                                         $('#newUserData').modal('hide');
                                         // Example: Display a success message or update the UI
@@ -214,6 +202,70 @@
 
                             });
                         }
+
+                        //edit user button ( role,department,isActive)
+                        $(document).on('click', '.editUserButton', function(e) {
+                            e.preventDefault();
+                            let user_Id = $(this).attr('id');
+                            // alert(id);
+
+                            $.ajax({
+                                url: '{{ route('user.edit') }}',
+                                method: 'get',
+                                data: {
+                                    user_Id: user_Id,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success: function(response) {
+
+                                    // console.log(response.name);
+                                    // Set id value to the hidden field
+                                    $('#user_Id').val(response.id);
+                                    $('#name1').val(response.name);
+                                    $('#email1').val(response.email);
+                                    $('#epf1').val(response.epf);
+                                    $('#dept_id1').val(response.dept_id);
+                                    $('#role1').val(response.role);
+                                    $('#status1').val(response.isActive);
+
+                                }
+
+
+                            });
+
+
+                        })
+
+                        //Update form
+                        $('#UpdateUserDetailsForm').submit(function(e) {
+                            e.preventDefault();
+                            //save form data to fd constant
+                            const fd = new FormData(this);
+                            //change submit button to adding
+                            $('#Update_user_button').text('Updating..');
+
+                            $.ajax({
+                                url: '{{ route('user.update') }}',
+                                method: 'post',
+                                data: fd,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                dataType: 'json',
+                                success: function(response) {
+                                    // console.log(response);
+                                    if (response.status == 200) {
+                                        $('#Update_user_button').text(' Update Student');
+                                        $('#UpdateUserDetailsForm')[0].reset();
+                                        $('#editUserDataModal').modal('hide');
+
+                                        fetchAllUserData();
+                                    }
+                                }
+                            });
+
+
+                        });
 
                     });
                 </script>

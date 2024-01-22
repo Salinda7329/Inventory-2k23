@@ -69,7 +69,10 @@ Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->nam
 Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser')->middleware('CheckAdminRole');;
 //route to fetch all user data
 Route::get('/systemAdmin/home/fetchAllUserData',[AdminDashboardController::class,'fetchAllUserData'])->name('fetchAllUserData');
-
+//route to edit user data
+Route::get('/systemAdmin/User/edit',[AdminDashboardController::class,'edit'])->name('user.edit');
+//route to update student data
+Route::post('/systemAdmin/User/update',[AdminDashboardController::class,'update'])->name('user.update');
 
 //view return items
 Route::get('/siba-store-view-return-items', function () {
