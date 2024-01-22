@@ -156,6 +156,9 @@
                                                 }
                                             })
 
+                                            //fetch user data from database function
+                                            fetchAllUserData();
+
                                             // Add a submit event listener to the form
                                             form.submit(function(event) {
                                                 // Prevent the default form submission behavior
@@ -187,6 +190,9 @@
                                                             // reset form
                                                             $('#userCreationForm')[0].reset();
                                                             // You can update the UI or perform other actions here
+
+                                                            //fetch user data from database function
+                                                            fetchAllUserData();
                                                         } else if (response.status === 422) {
                                                             // Handle validation errors
                                                             var errors = response.errors;
@@ -218,6 +224,25 @@
                                                 // Reset the form when the close button is clicked
                                                 $('#userCreationForm')[0].reset();
                                             });
+
+
+                                            function fetchAllUserData() {
+                                                $.ajax({
+                                                    url: '{{ route('fetchAllUserData') }}',
+                                                    method: 'get',
+                                                    success: function(response) {
+                                                        // console.log(response);
+                                                        $('#show_all_user_data').html(response);
+                                                        // //Make table a data table
+                                                        $('#all_user_data').DataTable({
+
+                                                            // Enable horizontal scrolling
+                                                        });
+                                                    }
+
+
+                                                });
+                                            }
 
                                         });
                                     </script>
