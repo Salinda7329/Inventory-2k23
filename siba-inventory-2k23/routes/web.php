@@ -21,10 +21,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+});
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
 
 
 //--------------system admin routes-----------------
@@ -35,6 +35,7 @@ Route::middleware([
     'CheckAdminRole'
 ])->group(function () {
 
+});
     //home route
     Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home');
     //create new user
@@ -45,7 +46,6 @@ Route::middleware([
     Route::get('/systemAdmin/User/edit', [AdminDashboardController::class, 'edit'])->name('user.edit');
     //route to update student data
     Route::post('/systemAdmin/User/update', [AdminDashboardController::class, 'update'])->name('user.update');
-});
 //--------------End system admin routes-----------------
 
 
@@ -71,6 +71,8 @@ Route::middleware([
     // 'verified',
     'CheckStoreManagerRole'
 ])->group(function () {
+
+});
 
     //home route
     Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
@@ -113,7 +115,7 @@ Route::get('/update-profile', function () {
 Route::get('/store/low-quentity', function () {
     return view('storeManager.low-quentity-product');
 });;
-});
+
 //--------------End store manager routes-----------------
 
 //-------------------------------------------------Department user------------------------------------------------
