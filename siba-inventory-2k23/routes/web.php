@@ -67,9 +67,9 @@ Route::middleware([
 
 });
 
-Route::get('/pm/addNewProduct' , function(){
-    return view('PurchasingManager.Add-new-product');
-});
+Route::get('/pm/home' , function(){
+    return view('PurchasingManager.PM-home');
+})->name('pm.home');
 
 //--------------End purchasing manager routes-----------------
 

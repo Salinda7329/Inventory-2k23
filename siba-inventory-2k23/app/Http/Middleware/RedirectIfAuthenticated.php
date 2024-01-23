@@ -34,16 +34,18 @@ class RedirectIfAuthenticated
             $role = Auth::user()->role;
 
             switch ($role) {
+                // System admin
                 case 5:
                     return 'systemAdmin.home';
+                // head of administration
                 case 4:
-                    // head of administration
-                    break;
+                // purchasing manager
                 case 3:
-                    // purchasing manager
-                    break;
+                    return 'pm.home';
+                // store manager
                 case 2:
                     return 'storeManager.home';
+                // user
                 case 1:
                     return 'user.home';
             }

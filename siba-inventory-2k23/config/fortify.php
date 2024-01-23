@@ -91,7 +91,7 @@ return [
         }
         // Purchase Manager
         elseif(Auth::user()->role == '3' ) {
-            // return route('storeManager.home');
+            return route('pm.home');
         }
         // Store Manager
         elseif(Auth::user()->role == '2' ) {
