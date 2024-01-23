@@ -1,14 +1,14 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalAddnewproduct">
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalupdateproduct">
     Update
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modalAddnewproduct" tabindex="-1" aria-labelledby="modalAddnewproductLabel" aria-hidden="true">
+<div class="modal fade" id="modalupdateproduct" tabindex="-1" aria-labelledby="modalupdateproduct" aria-hidden="true">
     <div class="modal-dialog modal-lg"> <!-- Adjust the modal size as needed -->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddnewproductLabel">Add New Product</h5>
+                <h5 class="modal-title" id="modalupdateproduct">Update Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -17,17 +17,17 @@
                     <div class="col-md-6">
                         <!-- Input field on the left side -->
                         <div class="mb-3">
-                            <label class="form-label" for="po-number">Enter PO Number</label>
+                            <label class="form-label" for="po-number">PO Number</label>
                             <input type="text" class="form-control" id="po-number" placeholder="" />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="productnamer">Enter Product Name</label>
+                            <label class="form-label" for="productnamer">Product Name</label>
                             <input type="text" class="form-control" id="productname" placeholder="" />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="quentity">Enter quentity</label>
+                            <label class="form-label" for="quentity">quentity</label>
                             <input type="text" class="form-control" id="quentity" placeholder="" />
                         </div>
 
@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>
