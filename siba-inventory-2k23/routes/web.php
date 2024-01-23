@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreManagerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -70,7 +71,8 @@ Route::middleware([
 Route::get('/pm/home' , function(){
     return view('PurchasingManager.PM-home');
 })->name('pm.home');
-
+// create new product
+Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
 //--------------End purchasing manager routes-----------------
 
 
