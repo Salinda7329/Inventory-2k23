@@ -34,7 +34,7 @@
 <body>
     <div class="container-xxl container-p-y">
         <div class="misc-wrapper">
-            <h2 class="mb-2 mx-2">Only Admin can Register Your Account</h2>
+            <h2 class="mb-2 mx-2">Your account has been Deactivated :(</h2>
             <p class="mb-4 mx-2">Please contact the admin.</p>
             <a href="/login" class="btn btn-primary">Back to login</a>
             <div class="mt-3">

@@ -1,11 +1,9 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="/home" class="app-brand-link">
+      <a href="index.html" class="app-brand-link">
         <span class="app-brand-logo demo">
 
         <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
-        <br>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">{{ Auth::user()->getRoleNameAttribute()}}</span>
       </a>
 
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -27,28 +25,31 @@
       <!-- Layouts -->
 
       <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Store</span>
+        <span class="menu-header-text">Inventory</span>
       </li>
       <li class="menu-item">
-        <a href="/visit-store" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-dock-top"></i>
-          <div data-i18n="Account Settings">Visit Store </div>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">View Request</div>
         </a>
-      </li>
 
-      <!-- Components -->
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Return</span></li>
-      <!-- Cards -->
-      <!-- User interface -->
-      <li class="menu-item">
-        <a href="/siba-store-view-return-items" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-box"></i>
-          <div data-i18n="User interface">View Returned Item</div>
-        </a>
-        <a href="/Store/Not-Returned_Items" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-box"></i>
-            <div data-i18n="User interface">View Not Returned Item</div>
-          </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="layouts-without-menu.html" class="menu-link">
+              <div data-i18n="Without menu">View User Request</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="layouts-without-navbar.html" class="menu-link">
+              <div data-i18n="Without navbar">View My Request</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="layouts-container.html" class="menu-link">
+              <div data-i18n="Container">View Request History</div>
+            </a>
+          </li>
+        </ul>
       </li>
 
 
@@ -58,7 +59,7 @@
 
 
       <!-- Forms & Tables -->
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Store Quentity</span></li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Human Resource</span></li>
       <!-- Forms -->
       <li class="menu-item">
         <a href="/store/low-quentity" class="menu-link">
@@ -69,7 +70,7 @@
 
       <!-- Forms -->
 
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Requested Item</span></li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Finance</span></li>
       <!-- Forms -->
       <li class="menu-item">
         <a href="/view-requested-items" class="menu-link">
@@ -77,7 +78,7 @@
           <div data-i18n="Form Elements">View Request</div>
         </a>
 
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Examination</span></li>
         <!-- Forms -->
         <li class="menu-item">
           <a href="/store/History" class="menu-link">

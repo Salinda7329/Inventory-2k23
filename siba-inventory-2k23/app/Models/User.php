@@ -62,4 +62,50 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Function will return role names
+    public function getRoleNameAttribute()
+    {
+        $roles = [
+            1 =>'User',
+            2 => 'Store Manager',
+            3 => 'Purchase Manager',
+            4 => 'Head of Administration',
+            5 => 'Admin',
+            // Add more roles as needed
+        ];
+
+        return $roles[$this->attributes['role']] ?? 'Unknown Role';
+    }
+
+    // Function will return department name
+    public function getDepartmentNameAttribute()
+    {
+        $departments = [
+            1 => 'Information Technology',
+            2 => 'Buddhist & Pali Studies',
+            3 => 'Counselling Psycology',
+            4 => 'English & Modern Language',
+            5 => 'Global Studies',
+            6 => 'Aesthetic Department',
+            7 => 'management Studies',
+            8 => 'Admin Department',
+            // Add more departments as needed
+        ];
+
+        return $departments[$this->attributes['dept_id']] ?? 'Unknown Department';
+    }
+
+    public function getIsActiveNameAttribute()
+    {
+        $status = [
+            1 =>'Active',
+            2 => 'Deactivated',
+            3 => 'Deleted',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['isActive']] ?? 'Unknown Status';
+    }
+
 }

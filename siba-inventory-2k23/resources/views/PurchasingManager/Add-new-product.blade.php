@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>System Admin | Inventory | SIBA Dynamics</title>
+    <title>Add New Product | Inventory | SIBA Campus</title>
 
     <meta name="description" content="" />
 
@@ -16,8 +16,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
 
-    <!-- Then include DataTables CSS-->
+    <!-- Then include DataTables CSS and JavaScript -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,16 +41,16 @@
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    {{-- <script src="../assets/vendor/js/helpers.js"></script> --}}
+    <script src="../assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    {{-- <script src="../assets/js/config.js"></script> --}}
+    <script src="../assets/js/config.js"></script>
 </head>
 
 <body>
 
-    @include('systemAdmin.SysAdmincomponent.left-side-menu')
+@include('PurchasingManager.PMComponents.PM-SideMenu')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -66,9 +68,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-
-                    @include('systemAdmin.users-table')
-
+                    @include('PurchasingManager.PMComponents.addNewProduct')
 
                     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
@@ -88,10 +88,6 @@
 
                     <!-- Place this tag in your head or just before your close body tag. -->
                     <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-                    {{-- Then include DataTables JavaScript  --}}
-                    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-
 </body>
 
 </html>
