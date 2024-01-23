@@ -103,6 +103,7 @@ return [
         }
         else{
             return route('accountDeactivated');
+            return route('dashboard');
         }
     },
 
