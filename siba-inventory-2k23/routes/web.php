@@ -58,6 +58,9 @@ Route::middleware([
 
 
 //--------------purchasing manager routes-----------------
+Route::get('/pm/addNewProduct' , function(){
+    return view('PurchasingManager.Add-new-product');
+});
 
 //--------------End purchasing manager routes-----------------
 
@@ -147,13 +150,3 @@ Route::get('/accountDeactivated', function () {
     return view('errors.accountDeactivated');
 })->name('accountDeactivated');
 //-------------------------------------------------End Error pages------------------------------------------------
-
-//-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
-
-Route::get('/pm/addNewProduct' , function(){
-    return view('PurchasingManager.Add-new-product');
-});
-
-
-
-
