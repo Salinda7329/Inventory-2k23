@@ -34,45 +34,58 @@ Route::middleware([
 });
 
 
-
-
 //--------------store manager routes-----------------
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    // 'verified',
+    'CheckStoreManagerRole'
+])->group(function () {
 
-//home route
-Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home')->middleware('CheckStoreManagerRole');
+    //home route
+    Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-//view requested items route
-Route::get('/view-requested-items', function () {
-    return view('storeManager.view-rquest-item');
-});
+    //view requested items route
+    Route::get('/view-requested-items', function () {
+        return view('storeManager.view-rquest-item');
+    });
 
-//store visit route
-Route::get('/visit-store', function () {
-    return view('storeManager.store');
-});
+    //store visit route
+    Route::get('/visit-store', function () {
+        return view('storeManager.store');
+    });
 
-// Not returned items
-Route::get('/Store/Not-Returned_Items', function () {
-    return view('storeManager.Not-Returned-items');
-});
+    // Not returned items
+    Route::get('/Store/Not-Returned_Items', function () {
+        return view('storeManager.Not-Returned-items');
+    });
 
-// store history view
-Route::get('/store/History', function () {
-    return view('storeManager.history-store');
+    // store history view
+    Route::get('/store/History', function () {
+        return view('storeManager.history-store');
+    });
 });
 
 
 //--------------system admin routes-----------------
-//home route
-Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home')->middleware('CheckAdminRole');
-//create new user
-Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser')->middleware('CheckAdminRole');;
-//route to fetch all user data
-Route::get('/systemAdmin/home/fetchAllUserData',[AdminDashboardController::class,'fetchAllUserData'])->name('fetchAllUserData');
-//route to edit user data
-Route::get('/systemAdmin/User/edit',[AdminDashboardController::class,'edit'])->name('user.edit');
-//route to update student data
-Route::post('/systemAdmin/User/update',[AdminDashboardController::class,'update'])->name('user.update');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    // 'verified',
+    'CheckAdminRole'
+])->group(function () {
+
+    //home route
+    Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home');
+    //create new user
+    Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser');
+    //route to fetch all user data
+    Route::get('/systemAdmin/home/fetchAllUserData', [AdminDashboardController::class, 'fetchAllUserData'])->name('fetchAllUserData');
+    //route to edit user data
+    Route::get('/systemAdmin/User/edit', [AdminDashboardController::class, 'edit'])->name('user.edit');
+    //route to update student data
+    Route::post('/systemAdmin/User/update', [AdminDashboardController::class, 'update'])->name('user.update');
+});
 
 //view return items
 Route::get('/siba-store-view-return-items', function () {
@@ -113,6 +126,12 @@ Route::get('user-update-profile', function () {
 //view store
 Route::get('/user/view-store', function () {
     return view('DepartmentUser.visit-store-user');
-});;
+});
 
 //------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------Error pages------------------------------------------------
+
+Route::get('/accountDeactivated', function () {
+    return view('errors.accountDeactivated');
+})->name('accountDeactivated');

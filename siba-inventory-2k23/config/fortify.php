@@ -81,18 +81,28 @@ return [
         // return route('dashboard');
 
         // or if you have a bunch of redirection options
+        // Admin
         if (Auth::user()->role == '5') {
             return route('systemAdmin.home');
         }
-        elseif(Auth::user()->role == '2') {
+        // Head of Administration
+        elseif(Auth::user()->role == '4' && Auth::user()->isActive == '1') {
+            // return route('storeManager.home');
+        }
+        // Purchase Manager
+        elseif(Auth::user()->role == '3'  && Auth::user()->isActive == '1') {
+            // return route('storeManager.home');
+        }
+        // Store Manager
+        elseif(Auth::user()->role == '2'  && Auth::user()->isActive == '1') {
             return route('storeManager.home');
         }
-        elseif(Auth::user()->role == '1') {
+        // User
+        elseif(Auth::user()->role == '1'  && Auth::user()->isActive == '1') {
             return route('user.home');
         }
         else{
-            return route('dashboard');
-           
+            return route('accountDeactivated');
         }
     },
 
