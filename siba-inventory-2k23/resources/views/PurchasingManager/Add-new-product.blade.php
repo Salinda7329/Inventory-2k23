@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>View return Items | Inventory | SIBA Campus</title>
+    <title>Add New Product | Inventory | SIBA Campus</title>
 
     <meta name="description" content="" />
 
@@ -50,7 +50,7 @@
 
 <body>
 
-    @include('publicComponent.left-side-menu-storemanager')
+@include('PurchasingManager.PMComponents.PM-SideMenu')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -68,9 +68,9 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    @include('publicComponent.profile')
+                    @include('PurchasingManager.PMComponents.addNewProduct')
 
-                    {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
+                    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
                     <script src="../assets/vendor/js/bootstrap.js"></script>
                     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>

@@ -8,12 +8,22 @@ use Illuminate\Support\Facades\Route;
 
 // login page
 Route::get('/', function () {
+<<<<<<< Updated upstream
     return view('welcome');
 });
 // home page
 Route::get('/home', function () {
     return view('welcome');
 })->middleware('RedirectToHomeBasedOnRole');
+=======
+    return view('auth.login');
+});
+
+Route::get('/Register' , function(){
+    return view('auth.register');
+});
+
+>>>>>>> Stashed changes
 
 //default dashboard by Jetstream
 Route::middleware([
@@ -138,6 +148,7 @@ Route::get('/user/view-store', function () {
     return view('DepartmentUser.visit-store-user');
 });
 
+<<<<<<< Updated upstream
 //-------------------------------------------------End Department user------------------------------------------------
 
 
@@ -147,3 +158,10 @@ Route::get('/accountDeactivated', function () {
     return view('errors.accountDeactivated');
 })->name('accountDeactivated');
 //-------------------------------------------------End Error pages------------------------------------------------
+=======
+//-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
+
+Route::get('/pm/addNewProduct' , function(){
+    return view('PurchasingManager.Add-new-product');
+});
+>>>>>>> Stashed changes
