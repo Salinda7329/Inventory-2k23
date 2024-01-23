@@ -14,6 +14,12 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('welcome');
 })->middleware('RedirectToHomeBasedOnRole');
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 8691dc6db557b858e907eccf66a7500cfd56bd60
 
 //default dashboard by Jetstream
 Route::middleware([
@@ -138,6 +144,10 @@ Route::get('/user/view-store', function () {
     return view('DepartmentUser.visit-store-user');
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8691dc6db557b858e907eccf66a7500cfd56bd60
 //-------------------------------------------------End Department user------------------------------------------------
 
 
@@ -147,3 +157,14 @@ Route::get('/accountDeactivated', function () {
     return view('errors.accountDeactivated');
 })->name('accountDeactivated');
 //-------------------------------------------------End Error pages------------------------------------------------
+<<<<<<< HEAD
+=======
+
+//-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
+
+Route::get('/pm/addNewProduct' , function(){
+    return view('PurchasingManager.Add-new-product');
+});
+
+
+>>>>>>> 8691dc6db557b858e907eccf66a7500cfd56bd60
