@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class CheckUserActivity
 {
@@ -16,6 +17,7 @@ class CheckUserActivity
             return $next($request);
         }
 
-        return false;
+        // return Redirect::back()->withErrors(['error' => 'Your account is currently inactive.']);
+        return view('errors.accountDeactivated');
     }
 }
