@@ -58,6 +58,15 @@ Route::middleware([
 
 
 //--------------purchasing manager routes-----------------
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    // 'verified',
+    'CheckPmRole'
+])->group(function () {
+
+});
+
 Route::get('/pm/addNewProduct' , function(){
     return view('PurchasingManager.Add-new-product');
 });
