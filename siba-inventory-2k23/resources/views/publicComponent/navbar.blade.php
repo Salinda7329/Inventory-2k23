@@ -32,8 +32,8 @@ id="layout-navbar"
                 </div>
               </div>
               <div class="flex-grow-1">
-                <span class="fw-semibold d-block">Mr.Sadeera</span>
-                <small class="text-muted">Store Manager</small>
+                <span class="fw-semibold d-block">{{ Auth::user()->getRoleNameAttribute() }}</span>
+                <small class="text-muted">{{ Auth::user()->name }}</small>
               </div>
             </div>
           </a>
