@@ -154,6 +154,9 @@ Route::get('/pm/addNewProduct' , function(){
     return view('PurchasingManager.Add-new-product');
 });
 
+Route::get('/pm/ViewRequestedItems' , function(){
+    return view('PurchasingManager.Requested-Items');
+});
 
 
 

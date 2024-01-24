@@ -35,8 +35,8 @@
 
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="layouts-without-menu.html" class="menu-link">
-              <div data-i18n="Without menu">View User Request</div>
+            <a href="/pm/ViewRequestedItems" class="menu-link">
+              <div data-i18n="Without menu">View Inventory Request</div>
             </a>
           </li>
           <li class="menu-item">
@@ -47,6 +47,21 @@
           <li class="menu-item">
             <a href="layouts-container.html" class="menu-link">
               <div data-i18n="Container">View Request History</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">New Products</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/addNewProduct" class="menu-link">
+              <div data-i18n="Without menu">Add New Product</div>
             </a>
           </li>
         </ul>
