@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'CheckAdminRole' => \App\Http\Middleware\CheckAdminRole::class,
         'CheckStoreManagerRole' => \App\Http\Middleware\CheckStoreManagerRole::class,
         'RedirectToHomeBasedOnRole' => \App\Http\Middleware\RedirectToHomeBasedOnRole::class,
+        'CheckPmRole' => \App\Http\Middleware\CheckPmRole::class,
     ];
 }

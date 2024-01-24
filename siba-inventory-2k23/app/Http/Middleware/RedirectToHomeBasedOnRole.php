@@ -23,7 +23,7 @@ class RedirectToHomeBasedOnRole
                 case '4':
                     return redirect('/headOfAdministration/home');
                 case '3':
-                    return redirect('/purchaseManager/home');
+                    return redirect('/pm/home');
                 case '2':
                     return redirect('/storeManager/home');
                 case '1':

@@ -17,7 +17,7 @@
 
     <!-- Then include DataTables CSS and JavaScript -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,6 +86,8 @@
 
                     <!-- Place this tag in your head or just before your close body tag. -->
                     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+                    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 </body>
 
 </html>
