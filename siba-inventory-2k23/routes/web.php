@@ -172,5 +172,8 @@ Route::get('/pm/ViewRequestedItems' , function(){
     return view('PurchasingManager.Requested-Items');
 });
 
+Route::get('/pm/viewProducts' , function(){
+    return view('PurchasingManager.View-products');
+});
 
 

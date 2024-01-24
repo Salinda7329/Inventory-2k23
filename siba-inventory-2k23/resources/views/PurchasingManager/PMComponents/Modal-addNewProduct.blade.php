@@ -23,8 +23,8 @@
                     </div>
 
                     {{-- hiiden field to store user_id --}}
-                    <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
-                        hidden>
+                    {{-- <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
+                        hidden> --}}
                     <!-- Dropdown menu on the left side -->
                     <div class="mb-3">
                         <label class="form-label" for="catagory">Catagory</label>

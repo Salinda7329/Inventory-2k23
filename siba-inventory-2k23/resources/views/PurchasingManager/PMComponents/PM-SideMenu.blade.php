@@ -67,6 +67,22 @@
         </ul>
       </li>
 
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Store</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/viewProducts" class="menu-link">
+              <div data-i18n="Without menu">View Store</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
 
 
 
