@@ -44,4 +44,100 @@ class ProductController extends Controller
             return response()->json(['error' => 'Failed to create product.', 'status' => 500]);
         }
     }
+
+    public function fetchAllProductData2()
+    {
+
+        $products = Product::all();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($products->count() > 0) {
+
+            $response .=
+                "<table id='all_user_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Product ID</th>
+                        <th>Category</th>
+                        <th>Product Name</th>
+                        <th>PO Number</th>
+                        <th>Created By</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($products as $product) {
+                $response .=
+                    "<tr>
+                            <td>" . $products->id . "</td>
+                            <td>" . $products->category_id . "</td>
+                            <td>" . $products->product_name . "</td>
+                            <td>" . $products->po_no . "</td>
+                            <td>" . $products->created_by . "</td>
+                            <td>" . $products->created_by . "</td>
+                            <td>" . $user->getDepartmentNameAttribute() . "</td>
+                            <td>" . $user->getIsActiveNameAttribute() . "</td>
+                            <td><a href='#' id='" . $user->id . "'  data-bs-toggle='modal'
+                            data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
+                            </td>
+                        </tr>";
+            }
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
+    public function fetchAllProductData()
+    {
+
+        $products = Product::all();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($products->count() > 0) {
+
+            $response .=
+                "<table id='all_user_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Product ID</th>
+                        <th>Category</th>
+                        <th>Product Name</th>
+                        <th>PO Number</th>
+                        <th>Created By</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($products as $product) {
+                $response .=
+                    "<tr>
+                            <td>" . $product->id . "</td>
+                            <td>" . $product->category_id . "</td>
+                            <td>" . $product->product_name . "</td>
+                            <td>" . $product->po_no . "</td>
+                            <td>" . $product->created_by . "</td>
+                            <td>" . $product->created_by . "</td>
+                        </tr>";
+            }
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 }
