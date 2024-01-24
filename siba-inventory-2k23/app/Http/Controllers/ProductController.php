@@ -63,6 +63,7 @@ class ProductController extends Controller
                         <th>Category</th>
                         <th>Product Name</th>
                         <th>PO Number</th>
+                        <th>Input Date</th>
                         <th>Created By</th>
                         <th>Action</th>
                         </tr>
@@ -76,8 +77,11 @@ class ProductController extends Controller
                             <td>" . $product->category_id . "</td>
                             <td>" . $product->product_name . "</td>
                             <td>" . $product->po_no . "</td>
+                            <td>" . $product->created_at . "</td>
                             <td>" . $product->created_by . "</td>
-                            <td>" . $product->created_by . "</td>
+                            <td><a href='#' id='" . $product->id . "'  data-bs-toggle='modal'
+                            data-bs-target='#modaleditproduct' class='editUserButton'>Edit</a>
+                            </td>
                         </tr>";
             }
 

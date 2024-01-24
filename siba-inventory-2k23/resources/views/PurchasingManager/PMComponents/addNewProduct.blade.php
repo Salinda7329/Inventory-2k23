@@ -15,5 +15,6 @@
 
 
         </div>
+        @include('PurchasingManager.PMComponents.Modal-EditProduct')
     </div>
 </div>

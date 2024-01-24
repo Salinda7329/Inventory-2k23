@@ -1,7 +1,4 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modaleditproduct">
-    Edit
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modaleditproduct" tabindex="-1" aria-labelledby="modaleditproductLabel" aria-hidden="true">
