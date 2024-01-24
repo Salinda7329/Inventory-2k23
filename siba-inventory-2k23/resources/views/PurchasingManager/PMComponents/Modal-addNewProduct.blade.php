@@ -15,12 +15,6 @@
 
                 <form id="createProductsForm" class="mb-3" method="POST" action="#">
                     @csrf
-                    <div class="mb-3">
-                        <label class="form-label" for="po-number">Enter PO Number</label>
-                        <input type="text" class="form-control" id="po_no" name="po_no"
-                            placeholder="Enter PO Number" />
-                        <div class="input-error text-danger" style="display: none"></div>
-                    </div>
 
                     {{-- hiidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"

@@ -19,21 +19,19 @@ class ProductController extends Controller
     {
         try {
             $input = $request->validate([
-                'po_no' => ['required'],
                 'category_id' => ['required'],
                 'product_name' => ['required', 'string', 'max:255', 'unique:products'],
                 'user_id_hidden' => ['required'],
             ]);
             return DB::transaction(function () use ($input) {
                 Product::create([
-                    'po_no' => $input['po_no'],
                     'category_id' => $input['category_id'],
                     'product_name' => $input['product_name'],
                     'created_by' => $input['user_id_hidden'],
                 ]);
 
                 // Return the success response after the user is created
-                return response()->json(['message' => 'New product created successfully.','pono' => $input['po_no'], 'status' => 200]);
+                return response()->json(['message' => 'New product created successfully.','status' => 200]);
             });
         } catch (ValidationException $e) {
             // Handle validation errors
@@ -62,7 +60,6 @@ class ProductController extends Controller
                         <th>Product ID</th>
                         <th>Category</th>
                         <th>Product Name</th>
-                        <th>PO Number</th>
                         <th>Input Date</th>
                         <th>Created By</th>
                         <th>Action</th>
@@ -76,7 +73,6 @@ class ProductController extends Controller
                             <td>" . $product->id . "</td>
                             <td>" . $product->categoryData->category_name . "</td>
                             <td>" . $product->product_name . "</td>
-                            <td>" . $product->po_no . "</td>
                             <td>" . $product->created_at . "</td>
                             <td>" . $product->createdByUser->name . "</td>
                             <td><a href='#' id='" . $product->id . "'  data-bs-toggle='modal'
