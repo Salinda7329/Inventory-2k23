@@ -74,11 +74,11 @@ class ProductController extends Controller
                 $response .=
                     "<tr>
                             <td>" . $product->id . "</td>
-                            <td>" . $product->category_id . "</td>
+                            <td>" . $product->categoryData->category_name . "</td>
                             <td>" . $product->product_name . "</td>
                             <td>" . $product->po_no . "</td>
                             <td>" . $product->created_at . "</td>
-                            <td>" . $product->created_by . "</td>
+                            <td>" . $product->createdByUser->name . "</td>
                             <td><a href='#' id='" . $product->id . "'  data-bs-toggle='modal'
                             data-bs-target='#modaleditproduct' class='editUserButton'>Edit</a>
                             </td>
