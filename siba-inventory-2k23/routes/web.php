@@ -23,9 +23,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
 });
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 
 //--------------system admin routes-----------------
@@ -35,18 +35,17 @@ Route::middleware([
     // 'verified',
     'CheckAdminRole'
 ])->group(function () {
-
 });
-    //home route
-    Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home');
-    //create new user
-    Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser');
-    //route to fetch all user data
-    Route::get('/systemAdmin/home/fetchAllUserData', [AdminDashboardController::class, 'fetchAllUserData'])->name('fetchAllUserData');
-    //route to edit user data
-    Route::get('/systemAdmin/User/edit', [AdminDashboardController::class, 'edit'])->name('user.edit');
-    //route to update student data
-    Route::post('/systemAdmin/User/update', [AdminDashboardController::class, 'update'])->name('user.update');
+//home route
+Route::get('/systemAdmin/home', [AdminDashboardController::class, 'index'])->name('systemAdmin.home');
+//create new user
+Route::post('/systemAdmin/newUser', [AdminUserController::class, 'create'])->name('systemAdmin.newUser');
+//route to fetch all user data
+Route::get('/systemAdmin/home/fetchAllUserData', [AdminDashboardController::class, 'fetchAllUserData'])->name('fetchAllUserData');
+//route to edit user data
+Route::get('/systemAdmin/User/edit', [AdminDashboardController::class, 'edit'])->name('user.edit');
+//route to update student data
+Route::post('/systemAdmin/User/update', [AdminDashboardController::class, 'update'])->name('user.update');
 //--------------End system admin routes-----------------
 
 
@@ -65,14 +64,15 @@ Route::middleware([
     // 'verified',
     'CheckPmRole'
 ])->group(function () {
-
 });
 
-Route::get('/pm/home' , function(){
+Route::get('/pm/home', function () {
     return view('PurchasingManager.PM-home');
 })->name('pm.home');
 // create new product
 Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
+//route to fetch all product data
+Route::get('/systemAdmin/home/fetchAllProductData', [ProductController::class, 'fetchAllProductData'])->name('fetchAllProductData');
 //--------------End purchasing manager routes-----------------
 
 
@@ -85,34 +85,33 @@ Route::middleware([
     // 'verified',
     'CheckStoreManagerRole'
 ])->group(function () {
-
 });
 
-    //home route
-    Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
+//home route
+Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-    //view requested items route
-    Route::get('/view-requested-items', function () {
-        return view('storeManager.view-rquest-item');
-    });
+//view requested items route
+Route::get('/view-requested-items', function () {
+    return view('storeManager.view-rquest-item');
+});
 
-    //store visit route
-    Route::get('/visit-store', function () {
-        return view('storeManager.store');
-    });
+//store visit route
+Route::get('/visit-store', function () {
+    return view('storeManager.store');
+});
 
-    // Not returned items
-    Route::get('/Store/Not-Returned_Items', function () {
-        return view('storeManager.Not-Returned-items');
-    });
+// Not returned items
+Route::get('/Store/Not-Returned_Items', function () {
+    return view('storeManager.Not-Returned-items');
+});
 
-    // store history view
-    Route::get('/store/History', function () {
-        return view('storeManager.history-store');
-    });
+// store history view
+Route::get('/store/History', function () {
+    return view('storeManager.history-store');
+});
 
-    //view return items
-    Route::get('/siba-store-view-return-items', function () {
+//view return items
+Route::get('/siba-store-view-return-items', function () {
     return view('storeManager.view-return-item');
 });
 
@@ -164,19 +163,18 @@ Route::get('/accountDeactivated', function () {
 
 //-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
 
-Route::get('/pm/addNewProduct' , function(){
+Route::get('/pm/addNewProduct', function () {
     return view('PurchasingManager.add-new-product');
 });
 
-Route::get('/pm/ViewRequestedItems' , function(){
+Route::get('/pm/ViewRequestedItems', function () {
     return view('PurchasingManager.Requested-Items');
 });
 
-Route::get('/pm/viewProducts' , function(){
+Route::get('/pm/viewProducts', function () {
     return view('PurchasingManager.View-products');
 });
 
-Route::get('/pm/chech/storeRecords' , function(){
+Route::get('/pm/chech/storeRecords', function () {
     return view('PurchasingManager.Store-Check-Record');
 });
-
