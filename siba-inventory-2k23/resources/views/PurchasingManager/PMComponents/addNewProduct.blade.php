@@ -6,15 +6,15 @@
         <div class="authentication-inner">
 
             <div class="card">
-
-
+                <div class="card-header">
+                    Products
+                </div>
                 <div class="card-body">
                     <div id="show_all_product_data"></div>
                 </div>
             </div>
 
-
         </div>
-        @include('PurchasingManager.PMComponents.Modal-EditProduct')
     </div>
 </div>
+@include('PurchasingManager.PMComponents.Modal-EditProduct')
