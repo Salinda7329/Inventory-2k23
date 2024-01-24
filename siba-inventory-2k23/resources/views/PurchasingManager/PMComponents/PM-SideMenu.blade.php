@@ -80,6 +80,13 @@
             </a>
           </li>
         </ul>
+        <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="/pm/chech/storeRecords" class="menu-link">
+                <div data-i18n="Without menu">Check Records</div>
+              </a>
+            </li>
+          </ul>
       </li>
 
 

@@ -176,4 +176,7 @@ Route::get('/pm/viewProducts' , function(){
     return view('PurchasingManager.View-products');
 });
 
+Route::get('/pm/chech/storeRecords' , function(){
+    return view('PurchasingManager.Store-Check-Record');
+});
 
