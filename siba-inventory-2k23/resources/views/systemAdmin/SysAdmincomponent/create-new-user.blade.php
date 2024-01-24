@@ -93,14 +93,9 @@
 
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
+                            <div class="mb-3">
                                 <button class="btn btn-primary">Create New User</button>
                             </div>
-                            <div class="col-sm-12 col-md-6 text-md-end">
-                                <button class="btn btn-danger">Create New User</button>
-                            </div>
-                        </div>
 
 
 
