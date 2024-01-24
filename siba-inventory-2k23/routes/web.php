@@ -165,7 +165,7 @@ Route::get('/accountDeactivated', function () {
 //-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
 
 Route::get('/pm/addNewProduct' , function(){
-    return view('PurchasingManager.Add-new-product');
+    return view('PurchasingManager.add-new-product');
 });
 
 Route::get('/pm/ViewRequestedItems' , function(){
