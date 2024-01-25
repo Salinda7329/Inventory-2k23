@@ -58,10 +58,11 @@ class ProductController extends Controller
                     <thead>
                         <tr>
                         <th>Product ID</th>
-                        <th>Category</th>
                         <th>Product Name</th>
+                        <th>Category</th>
                         <th>Input Date</th>
                         <th>Created By</th>
+                        <th>Status</th>
                         <th>Action</th>
                         </tr>
                     </thead>
@@ -71,12 +72,13 @@ class ProductController extends Controller
                 $response .=
                     "<tr>
                             <td>" . $product->id . "</td>
-                            <td>" . $product->categoryData->category_name . "</td>
                             <td>" . $product->product_name . "</td>
+                            <td>" . $product->categoryData->category_name . "</td>
                             <td>" . $product->created_at . "</td>
                             <td>" . $product->createdByUser->name . "</td>
+                            <td>" . $product->getIsActiveProductAttribute() . "</td>
                             <td><a href='#' id='" . $product->id . "'  data-bs-toggle='modal'
-                            data-bs-target='#modaleditproduct' class='editUserButton'>Edit</a>
+                            data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a>
                             </td>
                         </tr>";
             }
@@ -90,4 +92,28 @@ class ProductController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
+
+    public function edit(Request $request){
+        $product_Id = $request->product_Id;
+        //find data of id using Student model
+        $product = Product::find($product_Id);
+        return response()->json($product);
+    }
+
+    public function update(Request $request)
+    {
+        $product = Product::find($request->product_Id_hidden);
+
+        $product->update([
+            'product_name' => $request->product_name,
+            'category_id' => $request->category_id,
+            'isActive' => $request->isActive,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'no' => $request->isActive,
+        ]);
+    }
+
 }

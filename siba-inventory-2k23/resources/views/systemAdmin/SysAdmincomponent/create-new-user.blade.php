@@ -93,9 +93,7 @@
 
                         </div>
 
-                            <div class="mb-3">
-                                <button class="btn btn-primary">Create New User</button>
-                            </div>
+                                <button class="btn btn-primary w-100">Create New User</button>
 
 
 

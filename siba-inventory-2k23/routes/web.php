@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreManagerDashboardController;
 use App\Http\Controllers\UserDashboardController;
@@ -73,6 +74,12 @@ Route::get('/pm/home', function () {
 Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
 //route to fetch all product data
 Route::get('/systemAdmin/home/fetchAllProductData', [ProductController::class, 'fetchAllProductData'])->name('fetchAllProductData');
+//route to edit user data
+Route::get('/pm/Product/edit', [ProductController::class, 'edit'])->name('product.edit');
+//route to update student data
+Route::post('/pm/Product/update', [ProductController::class, 'update'])->name('product.update');
+// route to get all category details
+Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
 //--------------End purchasing manager routes-----------------
 
 
