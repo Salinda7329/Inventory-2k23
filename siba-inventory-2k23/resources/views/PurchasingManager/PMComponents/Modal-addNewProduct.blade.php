@@ -15,16 +15,10 @@
 
                 <form id="createProductsForm" class="mb-3" method="POST" action="#">
                     @csrf
-                    <div class="mb-3">
-                        <label class="form-label" for="po-number">Enter PO Number</label>
-                        <input type="text" class="form-control" id="po_no" name="po_no"
-                            placeholder="Enter PO Number" />
-                        <div class="input-error text-danger" style="display: none"></div>
-                    </div>
 
-                    {{-- hiiden field to store user_id --}}
-                    {{-- <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
-                        hidden> --}}
+                    {{-- hiidden field to store user_id --}}
+                    <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
+                        hidden>
                     <!-- Dropdown menu on the left side -->
                     <div class="mb-3">
                         <label class="form-label" for="catagory">Catagory</label>
@@ -80,7 +74,7 @@
 
 
                 // fetch product data from database
-                // fetchAllProductData();
+                fetchAllProductData();
 
                 // Add a submit event listener to the form
                 form.submit(function(event) {
@@ -88,8 +82,6 @@
                     event.preventDefault();
                     // Serialize the form data into a URL-encoded string
                     var formData = new FormData(form[0]);
-                    //change submit button to adding
-                    $('#createNewProduct').text('Creating..');
 
                     // Use jQuery Ajax to send a POST request with the form data
                     $.ajax({
@@ -106,8 +98,6 @@
                             // Check if the response status is 200
                             if (response.status === 200) {
                                 // Handle the successful response
-                                console.log(response);
-                                $('#createNewProduct').text('Add New Product');
                                 // Close the modal directly
                                 $('#modalAddnewproduct').modal('hide');
                                 // Example: Display a success message or update the UI
@@ -117,7 +107,7 @@
                                 // You can update the UI or perform other actions here
 
                                 //fetch product data from database function
-                                // fetchAllProductData();
+                                fetchAllProductData();
                             } else if (response.status === 422) {
                                 // Handle validation errors
                                 var errors = response.errors;
@@ -155,11 +145,11 @@
 
                 function fetchAllProductData() {
                     $.ajax({
-                        url: '{{ route('fetchAllUserData') }}',
+                        url: '{{ route('fetchAllProductData') }}',
                         method: 'get',
                         success: function(response) {
                             // console.log(response);
-                            $('#show_all_user_data').html(response);
+                            $('#show_all_product_data').html(response);
                             // //Make table a data table
                             $('#all_user_data').DataTable({
 

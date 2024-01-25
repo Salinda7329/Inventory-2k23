@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('product_name')->nullable();
             $table->foreignId('category_id')->constrained('categories');
-            $table->string('po_no')->nullable();
             $table->foreignId('created_by')->constrained('users');
             $table->boolean('isActive')->default(1);
             $table->timestamps();
