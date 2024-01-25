@@ -86,6 +86,10 @@ Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])-
 Route::get('/pm/addNewItem', function () {
     return view('PurchasingManager.add-new-item');
 })->name('pm.item');
+//view to add new brand
+Route::get('/pm/addNewBrand', function () {
+    return view('PurchasingManager.add-new-brand');
+})->name('pm.brand');
 
 //--------------End purchasing manager routes-----------------
 
