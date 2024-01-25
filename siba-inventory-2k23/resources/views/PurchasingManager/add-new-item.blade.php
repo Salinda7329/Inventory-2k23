@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Add new Product Items | Inventory | SIBA Campus</title>
+    <title>Add new Items | Inventory | SIBA Campus</title>
 
     <meta name="description" content="" />
 
@@ -67,7 +67,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    @include('PurchasingManager.PMComponents.addNewProduct')
+                    @include('PurchasingManager.PMComponents.addNewItem')
 
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
                     <script src="../assets/vendor/js/bootstrap.js"></script>

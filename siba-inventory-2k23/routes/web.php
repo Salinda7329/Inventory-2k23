@@ -67,9 +67,10 @@ Route::middleware([
 ])->group(function () {
 });
 
-Route::get('/pm/home', function () {
+Route::get('/pm/addNewProduct', function () {
     return view('PurchasingManager.PM-home');
-})->name('pm.home');
+})->name('pm.addNewProduct');
+
 // create new product
 Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
 //route to fetch all product data
@@ -80,6 +81,12 @@ Route::get('/pm/Product/edit', [ProductController::class, 'edit'])->name('produc
 Route::post('/pm/Product/update', [ProductController::class, 'update'])->name('product.update');
 // route to get all category details
 Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
+
+//view to add new item
+Route::get('/pm/addNewItem', function () {
+    return view('PurchasingManager.add-new-item');
+})->name('pm.item');
+
 //--------------End purchasing manager routes-----------------
 
 
@@ -170,9 +177,9 @@ Route::get('/accountDeactivated', function () {
 
 //-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
 
-Route::get('/pm/addNewProduct', function () {
-    return view('PurchasingManager.add-new-product');
-});
+// Route::get('/pm/addNewProduct', function () {
+//     return view('PurchasingManager.add-new-product');
+// });
 
 Route::get('/pm/ViewRequestedItems', function () {
     return view('PurchasingManager.Requested-Items');

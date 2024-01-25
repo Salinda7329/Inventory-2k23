@@ -70,6 +70,36 @@
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">New Items</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/addNewItem" class="menu-link">
+              <div data-i18n="Without menu">Add New Item</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Brands</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/addNewBrand" class="menu-link">
+              <div data-i18n="Without menu">Add New Brand</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Store</div>
         </a>
 
