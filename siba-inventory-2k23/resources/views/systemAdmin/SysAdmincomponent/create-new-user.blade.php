@@ -98,7 +98,7 @@
                                 <button class="btn btn-primary">Create New User</button>
                             </div>
                             <div class="col-sm-12 col-md-6 text-md-end">
-                                <button class="btn btn-danger">Create New User</button>
+                                <button class="btn btn-danger" id="clear-btn">Clear</button>
                             </div>
                         </div>
 
@@ -207,6 +207,10 @@
                             $('.input-error').hide();
                             //change submit button to adding
                             $('#createNewUser').text('Create New User');
+                        });
+
+                        $('#clear-btn').on('click', function(){
+                            $('#userCreationForm')[0].reset();
                         });
 
 
