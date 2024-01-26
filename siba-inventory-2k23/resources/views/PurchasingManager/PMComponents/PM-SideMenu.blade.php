@@ -60,7 +60,7 @@
 
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="/pm/addNewProduct" class="menu-link">
+            <a href="/pm/home" class="menu-link">
               <div data-i18n="Without menu">Add New Product</div>
             </a>
           </li>
