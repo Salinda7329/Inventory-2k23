@@ -206,7 +206,9 @@ Route::get('/HR-Home' , function(){
     return view('HumanResource.HR-Cleark.HRC-Home');
 });
 
-
+Route::get('/HR-AddNewUser' , function(){
+    return view('HumanResource.HR-Cleark.HRC-Employees');
+});
 
 
 
