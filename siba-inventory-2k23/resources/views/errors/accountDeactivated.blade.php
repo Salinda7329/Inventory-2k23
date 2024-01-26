@@ -12,7 +12,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>404 error ! | Siba Campus</title>
+    <title>Account Deactivated | SIBA Dynamics</title>
 
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -38,9 +38,9 @@
             <p class="mb-4 mx-2">Please contact the admin.</p>
             <a href="/login" class="btn btn-primary">Back to login</a>
             <div class="mt-3">
-                <img src="../assets/img/illustrations/page-misc-error-light.png" alt="page-misc-error-light"
-                    width="500" class="img-fluid" data-app-dark-img="illustrations/page-misc-error-dark.png"
-                    data-app-light-img="illustrations/page-misc-error-light.png" />
+                <img src="../assets/img/illustrations/deactivated.png" alt="t"
+                    width="500" class="img-fluid" data-app-dark-img=""
+                    data-app-light-img="" />
             </div>
         </div>
     </div>

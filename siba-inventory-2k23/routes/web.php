@@ -199,3 +199,19 @@ Route::get('/pm/viewProducts', function () {
 Route::get('/pm/chech/storeRecords', function () {
     return view('PurchasingManager.Store-Check-Record');
 });
+
+
+
+// -------------------------------------------human resource---------------------------------------------------------
+// meka athle route hadann epaaa---------------------
+
+Route::get('/HR-Home' , function(){
+    return view('HumanResource.HR-Cleark.HRC-Home');
+});
+
+
+
+
+
+
+// ---------------------------------------------------------------end of human resource---------------------------------------------------/
