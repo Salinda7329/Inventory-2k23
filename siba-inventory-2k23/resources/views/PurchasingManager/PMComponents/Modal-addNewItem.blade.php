@@ -4,25 +4,33 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modalAddnewproduct" tabindex="-1" aria-labelledby="modalAddnewproduct" aria-hidden="true">
+<div class="modal fade" id="modalAddnewitem" tabindex="-1" aria-labelledby="modalAddnewitem" aria-hidden="true">
     <div class="modal-dialog"> <!-- Adjust the modal size as needed -->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddnewproductLabel">Add New Item</h5>
+                <h5 class="modal-title" id="modalAddnewitemLabel">Add New Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <form id="createProductsForm" class="mb-3" method="POST" action="#">
+                <form id="createItemsForm" class="mb-3" method="POST" action="#">
                     @csrf
 
                     {{-- hiidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
                         hidden>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="catagory">PO Number</label>
+                            <input type="text" class="form-control" id="po_no" name="po_no"
+                                placeholder="Enter PO Number" />
+                            <div class="input-error text-danger" style="display: none"></div>
+                        </div>
+
                     <!-- Dropdown menu on the left side -->
                     <div class="mb-3">
-                        <label class="form-label" for="catagory">Catagory</label>
-                        <select class="form-select" id="category_id" name="category_id" aria-label="catagory">
+                        <label class="form-label" for="product_name">Product Name</label>
+                        <select class="form-select" id="product_name" name="product_name" aria-label="product_name">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
@@ -31,17 +39,52 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-
                     <div class="mb-3">
-                        <label class="form-label" for="catagory">Product Name</label>
-                        <input type="text" class="form-control" id="product_name" name="product_name"
-                            placeholder="Enter Product Name" />
+                        <label class="form-label" for="brand_name">Brand Name</label>
+                        <select class="form-select" id="brand_name" name="brand_name" aria-label="brand_name">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Electronic</option>
+                            <option value="2">Stationary</option>
+                            <option value="3">Cleaning</option>
+                        </select>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="catagory">Item Name</label>
+                        <input type="text" class="form-control" id="item_name" name="item_name"
+                            placeholder="Enter Item Name" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="condition">Condition</label>
+                        <select class="form-select" id="condition" name="condition" aria-label="condition">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Working</option>
+                            <option value="2">Damaged</option>
+                        </select>
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="items_remaining">Item Count</label>
+                        <input type="text" class="form-control" id="items_remaining" name="items_remaining"
+                            placeholder="Enter Item Count" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="lower_limit">Lower Limit</label>
+                        <input type="text" class="form-control" id="lower_limit" name="lower_limit"
+                            placeholder="Enter Lower Limit" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+
+                    <div class="mb-3">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnClose">Close</button>
-                        <button type="submit" id="createNewProduct" class="btn btn-primary">Add New Product
+                        <button type="submit" id="createNewProduct" class="btn btn-primary">Add New Item
                         </button>
                     </div>
 
@@ -54,7 +97,7 @@
             $(document).ready(function() {
 
                 // // Select the form using its id
-                var form = $('#createProductsForm');
+                var form = $('#createItemsForm');
 
                 // Attach the input event handler to the form inputs
                 form.find('input, select').on('input', function() {
@@ -74,7 +117,7 @@
 
 
                 // fetch product data from database
-                fetchAllProductData();
+                fetchAllItemData();
 
                 // Add a submit event listener to the form
                 form.submit(function(event) {
@@ -85,7 +128,7 @@
 
                     // Use jQuery Ajax to send a POST request with the form data
                     $.ajax({
-                        url: '/pm/newProduct',
+                        url: '/pm/newItem',
                         type: 'POST',
                         data: formData,
                         contentType: false,
@@ -99,15 +142,15 @@
                             if (response.status === 200) {
                                 // Handle the successful response
                                 // Close the modal directly
-                                $('#modalAddnewproduct').modal('hide');
+                                $('#modalAddnewitem').modal('hide');
                                 // Example: Display a success message or update the UI
-                                alert('Product created successfully!');
+                                alert('Item created successfully!');
                                 // reset form
-                                $('#createProductsForm')[0].reset();
+                                $('#createItemsForm')[0].reset();
                                 // You can update the UI or perform other actions here
 
                                 //fetch product data from database function
-                                fetchAllProductData();
+                                fetchAllItemData();
                             } else if (response.status === 422) {
                                 // Handle validation errors
                                 var errors = response.errors;
@@ -124,9 +167,9 @@
                             } else {
                                 // Handle other status codes if needed
                                 // For example, display an error message
-                                alert('Failed to create product. Please try again.');
+                                alert('Failed to create item. Please try again.');
                                 // reset form
-                                $('#createProductsForm')[0].reset();
+                                $('#createItemsForm')[0].reset();
                             }
                         },
 
@@ -137,21 +180,19 @@
                 // Add an event listener to the modal close button
                 $('#btnClose, .btn-close').on('click', function() {
                     // Reset the form when the close button is clicked
-                    $('#createProductsForm')[0].reset();
+                    $('#createItemsForm')[0].reset();
                     $('.input-error').hide();
-                    //change submit button to adding
-                    $('#createNewProduct').text('Add New Product');
                 });
 
-                function fetchAllProductData() {
+                function fetchAllItemData() {
                     $.ajax({
-                        url: '{{ route('fetchAllProductData') }}',
+                        url: '{{ route('fetchAllItemData') }}',
                         method: 'get',
                         success: function(response) {
                             // console.log(response);
-                            $('#show_all_product_data').html(response);
+                            $('#show_all_item_data').html(response);
                             // //Make table a data table
-                            $('#all_user_data').DataTable({
+                            $('#all_item_data').DataTable({
 
                                 // Enable horizontal scrolling
                             });
