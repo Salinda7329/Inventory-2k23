@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('brand_name')->nullable();
-            $table->foreignId('brand_id')->constrained('brands');
             $table->foreignId('created_by')->constrained('users');
             $table->boolean('isActive')->default(1);
             $table->timestamps();

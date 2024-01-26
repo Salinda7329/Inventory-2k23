@@ -1,19 +1,19 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewproduct">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewbrand">
     Add New Brand
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modalAddnewproduct" tabindex="-1" aria-labelledby="modalAddnewproduct" aria-hidden="true">
+<div class="modal fade" id="modalAddnewbrand" tabindex="-1" aria-labelledby="modalAddnewproduct" aria-hidden="true">
     <div class="modal-dialog"> <!-- Adjust the modal size as needed -->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddnewproductLabel">Add New Brand</h5>
+                <h5 class="modal-title" id="modalAddnewbrandLabel">Add New Brand</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <form id="createProductsForm" class="mb-3" method="POST" action="#">
+                <form id="createBrandsForm" class="mb-3" method="POST" action="#">
                     @csrf
 
                     {{-- hiidden field to store user_id --}}
