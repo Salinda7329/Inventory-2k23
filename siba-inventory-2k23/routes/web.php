@@ -66,10 +66,13 @@ Route::middleware([
     'CheckPmRole'
 ])->group(function () {
 });
-
-Route::get('/pm/addNewProduct', function () {
+//pm home
+Route::get('/pm/home', function () {
     return view('PurchasingManager.PM-home');
-})->name('pm.addNewProduct');
+})->name('pm.home');
+// Route::get('/pm/home', function () {
+//     return view('PurchasingManager.PM-home');
+// })->name('pm.addNewProduct');
 
 // create new product
 Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
