@@ -1,7 +1,7 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="modaleditproduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="modaleditbrand" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -16,10 +16,10 @@
                     @csrf
 
                     {{-- hidden id input field --}}
-                    <input type="hidden" id="product_Id_hidden" name="product_Id_hidden">
+                    <input type="hidden" id="brand_Id_hidden" name="brand_Id_hidden">
 
                     <div class="mb-3">
-                        <label for="product_name" class="form-label">Product Name</label>
+                        <label for="brand_name" class="form-label">Product Name</label>
                         <input type="text" class="form-control" id="product_name1" name="product_name"
                             placeholder="Enter your Product Name" :value="old('product_name')" required autofocus
                             autocomplete="product_name" />

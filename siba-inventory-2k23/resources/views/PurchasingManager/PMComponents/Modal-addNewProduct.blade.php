@@ -139,8 +139,6 @@
                     // Reset the form when the close button is clicked
                     $('#createProductsForm')[0].reset();
                     $('.input-error').hide();
-                    //change submit button to adding
-                    $('#createNewProduct').text('Add New Product');
                 });
 
                 function fetchAllProductData() {

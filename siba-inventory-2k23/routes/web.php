@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreManagerDashboardController;
@@ -89,10 +90,15 @@ Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])-
 Route::get('/pm/addNewItem', function () {
     return view('PurchasingManager.add-new-item');
 })->name('pm.item');
+
 //view to add new brand
 Route::get('/pm/addNewBrand', function () {
     return view('PurchasingManager.add-new-brand');
 })->name('pm.brand');
+// create new brand
+Route::post('/pm/newBrand', [BrandController::class, 'create'])->name('pm.newBrand');
+//route to fetch all brand data
+Route::get('/pm/home/fetchAllBrandData', [BrandController::class, 'fetchAllBrandData'])->name('fetchAllBrandData');
 
 //--------------End purchasing manager routes-----------------
 
