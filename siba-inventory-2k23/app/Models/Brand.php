@@ -13,6 +13,28 @@ class Brand extends Model
         'created_by',
         'created_at',
         'updated_at',
-        'isactive',
+        'isActive',
     ];
+
+      /**
+     * A description of the createdByUser PHP function.
+     *
+     * @return BelongsTo
+     */
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function getIsActiveBrandAttribute()
+    {
+        $status = [
+            1 =>'Active',
+            2 => 'Deactivated',
+            3 => 'Deleted',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['isActive']] ?? 'Unknown Status';
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreManagerDashboardController;
@@ -66,18 +67,21 @@ Route::middleware([
     'CheckPmRole'
 ])->group(function () {
 });
-
-Route::get('/pm/addNewProduct', function () {
+//pm home
+Route::get('/pm/home', function () {
     return view('PurchasingManager.PM-home');
-})->name('pm.addNewProduct');
+})->name('pm.home');
+// Route::get('/pm/home', function () {
+//     return view('PurchasingManager.PM-home');
+// })->name('pm.addNewProduct');
 
 // create new product
 Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
 //route to fetch all product data
 Route::get('/systemAdmin/home/fetchAllProductData', [ProductController::class, 'fetchAllProductData'])->name('fetchAllProductData');
-//route to edit user data
+//route to edit product data
 Route::get('/pm/Product/edit', [ProductController::class, 'edit'])->name('product.edit');
-//route to update student data
+//route to update product data
 Route::post('/pm/Product/update', [ProductController::class, 'update'])->name('product.update');
 // route to get all category details
 Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
@@ -86,10 +90,19 @@ Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])-
 Route::get('/pm/addNewItem', function () {
     return view('PurchasingManager.add-new-item');
 })->name('pm.item');
+
 //view to add new brand
 Route::get('/pm/addNewBrand', function () {
     return view('PurchasingManager.add-new-brand');
 })->name('pm.brand');
+// create new brand
+Route::post('/pm/newBrand', [BrandController::class, 'create'])->name('pm.newBrand');
+//route to fetch all brand data
+Route::get('/pm/home/fetchAllBrandData', [BrandController::class, 'fetchAllBrandData'])->name('fetchAllBrandData');
+//route to edit brand data
+Route::get('/pm/Brand/edit', [BrandController::class, 'edit'])->name('brand.edit');
+//route to update brand data
+Route::post('/pm/Brand/update', [BrandController::class, 'update'])->name('brand.update');
 
 //--------------End purchasing manager routes-----------------
 
