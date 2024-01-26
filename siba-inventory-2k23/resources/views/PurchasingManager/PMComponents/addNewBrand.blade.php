@@ -9,7 +9,7 @@
                     Brands
                 </div>
                 <div class="card-body">
-                    <div id="show_all_product_data"></div>
+                    <div id="show_all_brand_data"></div>
                 </div>
             </div>
 
