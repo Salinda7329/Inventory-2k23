@@ -102,13 +102,13 @@ class BrandController extends Controller
         $brand = Brand::find($request->brand_Id_hidden);
 
         $brand->update([
-            'brand_name' => $request->product_name,
-            'isActive' => $request->isActive,
+            'brand_name' => $request->brand_name,
+            'isActive' => $request->status1,
         ]);
 
         return response()->json([
             'status' => 200,
-            'no' => $request->isActive,
+            'no' => $request->status1,
         ]);
     }
 }
