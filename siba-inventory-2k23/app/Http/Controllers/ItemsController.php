@@ -96,8 +96,8 @@ class ItemsController extends Controller
                                         <td>" . $item->brandData->brand_name . "</td>
                                         <td>" . $item->po_no . "</td>
                                         <td>" . $item->item_name . "</td>
-                                        <td>" . $item->condition . "</td>
-                                        <td>" . $item->condition_updated_by . "</td>
+                                        <td>" . $item->getIsCondtionItemAttribute() . "</td>
+                                        <td>" . $item->conditionUpdatedByUser->name . "</td>
                                         <td>" . $item->condition_updated_timestamp . "</td>
                                         <td>" . $item->items_remaining . "</td>
                                         <td>" . $item->lower_limit . "</td>
@@ -122,7 +122,6 @@ class ItemsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
-    public function fetchAllItemDataOrignial()
     public function fetchAllItemDataOrignial()
     {
 
