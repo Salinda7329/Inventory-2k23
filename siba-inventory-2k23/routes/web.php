@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreManagerDashboardController;
 use App\Http\Controllers\UserDashboardController;
@@ -86,10 +87,6 @@ Route::post('/pm/Product/update', [ProductController::class, 'update'])->name('p
 // route to get all category details
 Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
 
-//view to add new item
-Route::get('/pm/addNewItem', function () {
-    return view('PurchasingManager.add-new-item');
-})->name('pm.item');
 
 //view to add new brand
 Route::get('/pm/addNewBrand', function () {
@@ -103,6 +100,16 @@ Route::get('/pm/home/fetchAllBrandData', [BrandController::class, 'fetchAllBrand
 Route::get('/pm/Brand/edit', [BrandController::class, 'edit'])->name('brand.edit');
 //route to update brand data
 Route::post('/pm/Brand/update', [BrandController::class, 'update'])->name('brand.update');
+
+
+//view to add new item
+Route::get('/pm/addNewItem', function () {
+    return view('PurchasingManager.add-new-item');
+})->name('pm.item');
+// create new item
+Route::post('/pm/newItem', [ItemsController::class, 'create'])->name('pm.newItem');
+//route to fetch all item data
+Route::get('/pm/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemData'])->name('fetchAllItemData');
 
 //--------------End purchasing manager routes-----------------
 

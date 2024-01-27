@@ -1,5 +1,5 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewproduct">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewitem">
     Add New Item
 </button>
 
@@ -41,7 +41,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="brand_name">Brand Name</label>
-                        <select class="form-select" id="brand_name" name="brand_name" aria-label="brand_name">
+                        <select class="form-select" id="brand_name" name="brand_id" aria-label="brand_name">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
