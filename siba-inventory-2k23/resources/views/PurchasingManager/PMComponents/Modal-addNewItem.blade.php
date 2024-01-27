@@ -41,7 +41,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="brand_name">Brand Name</label>
-                        <select class="form-select" id="brand_name" name="brand_id" aria-label="brand_name">
+                        <select class="form-select" id="brand_id1" name="brand_id" aria-label="brand_name">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
@@ -224,6 +224,30 @@
                     $.each(products, function(index, product) {
                         productDropdown.append('<option value="' + product.id + '">' + product
                             .product_name + '</option>');
+                    });
+                }
+
+                // fetch brands
+                $.ajax({
+                    url: '{{ route('brands.fetch') }}',
+                    method: 'get',
+                    success: function(brands) {
+                        updateBrandDropdown(brands);
+                    }
+                });
+
+                // Function to update the brand dropdown
+                function updateBrandDropdown(brands) {
+                    var brandDropdown = $('#brand_id1');
+                    brandDropdown.empty(); // Clear existing options
+
+                    // Add default option
+                    brandDropdown.append('<option disabled selected hidden>Select a Brand</option>');
+
+                    // Populate the dropdown with products
+                    $.each(brands, function(index, brand) {
+                        brandDropdown.append('<option value="' + brand.id + '">' + brand
+                            .brand_name + '</option>');
                     });
                 }
 

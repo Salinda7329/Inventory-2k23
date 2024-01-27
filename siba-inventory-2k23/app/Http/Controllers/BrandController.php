@@ -111,4 +111,10 @@ class BrandController extends Controller
             'no' => $request->status1,
         ]);
     }
+
+    public function fetchBrands()
+    {
+        $brands = Brand::all();
+        return response()->json($brands);
+    }
 }

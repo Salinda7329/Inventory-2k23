@@ -108,7 +108,8 @@ Route::get('/pm/home/fetchAllBrandData', [BrandController::class, 'fetchAllBrand
 Route::get('/pm/Brand/edit', [BrandController::class, 'edit'])->name('brand.edit');
 //route to update brand data
 Route::post('/pm/Brand/update', [BrandController::class, 'update'])->name('brand.update');
-
+// route to get all brand details
+Route::get('/brands/fetch', [BrandController::class, 'fetchBrands'])->name('brands.fetch');
 
 //view to add new item
 Route::get('/pm/addNewItem', function () {
