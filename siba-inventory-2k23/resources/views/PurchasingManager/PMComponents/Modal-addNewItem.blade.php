@@ -194,7 +194,7 @@
                             $('#show_all_item_data').html(response);
                             // //Make table a data table
                             $('#all_item_data').DataTable({
-
+                                "scrollX": true,
                                 // Enable horizontal scrolling
                             });
                         }

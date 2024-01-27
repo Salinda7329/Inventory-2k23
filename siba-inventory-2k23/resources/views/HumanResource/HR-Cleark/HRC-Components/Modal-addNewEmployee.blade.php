@@ -134,7 +134,7 @@
     </div>
                 <div id="page3" style="display: none;">
                     <!-- Page 3 content -->
-sdsdsdsds
+
                 </div>
             </div>
             <div class="modal-footer mt-4">
@@ -173,8 +173,6 @@ function updateModalContent() {
 }
 
 function saveChanges() {
-    // Implement your save changes logic here
-    // This function will be called when the "Save" button is clicked on the last page
     alert('Changes saved!');
     // You can close the modal if needed
     $('#backDropModal').modal('hide');
