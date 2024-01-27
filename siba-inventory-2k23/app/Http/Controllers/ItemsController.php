@@ -16,31 +16,33 @@ class ItemsController extends Controller
             $input = $request->validate([
                 'user_id_hidden' => ['required'],
                 'po_no' => ['required'],
-                'product_name' => ['required', 'string', 'max:255', 'unique:products'],
-                'brand_name' => ['required', 'string', 'max:255', 'unique:products'],
-                'item_name' => ['required', 'string', 'max:255', 'unique:products'],
+                'product_id' => ['required'],
+                'brand_id' => ['required'],
+                'item_name' => ['required', 'string', 'max:255', 'unique:items'],
                 'condition' => ['required'],
-                'items_remaining' => ['required', 'string', 'max:255'],
-                'lower_limit' => ['required', 'string', 'max:255'],
+                'items_remaining' => ['required', 'string', 'max:255', 'min:0'],
+                'lower_limit' => ['required', 'string', 'max:255', 'min:0'],
 
             ]);
             return DB::transaction(function () use ($input) {
+                // Use Carbon to get the current timestamp
+                $currentTimestamp = now();
                 Item::create([
                     'created_by' => $input['user_id_hidden'],
                     'po_no' => $input['po_no'],
-                    'product_id' => $input['product_name'],
-                    'brand_id' => $input['brand_name'],
+                    'product_id' => $input['product_id'],
+                    'brand_id' => $input['brand_id'],
                     'item_name' => $input['item_name'],
                     'condition' => $input['condition'],
                     'condition_updated_by' => $input['user_id_hidden'],
-                    'conditon_updated_timestamp' => $input['conditon_updated_timestamp'],
+                    'condition_updated_timestamp' =>  $currentTimestamp,
                     'items_remaining' => $input['items_remaining'],
                     'lower_limit' => $input['lower_limit'],
 
                 ]);
 
                 // Return the success response after the user is created
-                return response()->json(['message' => 'New product created successfully.','status' => 200]);
+                return response()->json(['message' => 'New item created successfully.', 'status' => 200]);
             });
         } catch (ValidationException $e) {
             // Handle validation errors

@@ -15,7 +15,7 @@ class Item extends Model
         'item_name',
         'condition',
         'condition_updated_by',
-        'conditon_updated_timestamp',
+        'condition_updated_timestamp',
         'items_remaining',
         'lower_limit',
         'created_by',

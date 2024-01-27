@@ -30,7 +30,7 @@
                     <!-- Dropdown menu on the left side -->
                     <div class="mb-3">
                         <label class="form-label" for="product_name">Product Name</label>
-                        <select class="form-select" id="product_id1" name="product_name" aria-label="product_name">
+                        <select class="form-select" id="product_id1" name="product_id" aria-label="product_name">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
