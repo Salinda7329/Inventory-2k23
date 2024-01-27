@@ -83,7 +83,15 @@ Route::get('/systemAdmin/home/fetchAllProductData', [ProductController::class, '
 //route to edit product data
 Route::get('/pm/Product/edit', [ProductController::class, 'edit'])->name('product.edit');
 //route to update product data
-Route::post('/pm/Product/update', [ProductController::class, 'update'])->name('product.update');
+Route::post('/pm/Product/update', [ProductController::class, 'update'])->name
+('product.update');
+// route to get all product details
+Route::get('/products/fetch', [ProductController::class, 'fetchProducts'])->name('products.fetch');
+
+
+//category view
+//category create
+// category edit PENDING
 // route to get all category details
 Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
 

@@ -116,4 +116,10 @@ class ProductController extends Controller
         ]);
     }
 
+    public function fetchProducts()
+    {
+        $products = Product::all();
+        return response()->json($products);
+    }
+
 }

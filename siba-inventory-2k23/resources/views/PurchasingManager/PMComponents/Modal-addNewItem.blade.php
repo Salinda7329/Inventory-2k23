@@ -20,17 +20,17 @@
                     <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
                         hidden>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="catagory">PO Number</label>
-                            <input type="text" class="form-control" id="po_no" name="po_no"
-                                placeholder="Enter PO Number" />
-                            <div class="input-error text-danger" style="display: none"></div>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="catagory">PO Number</label>
+                        <input type="text" class="form-control" id="po_no" name="po_no"
+                            placeholder="Enter PO Number" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
 
                     <!-- Dropdown menu on the left side -->
                     <div class="mb-3">
                         <label class="form-label" for="product_name">Product Name</label>
-                        <select class="form-select" id="product_name" name="product_name" aria-label="product_name">
+                        <select class="form-select" id="product_id1" name="product_name" aria-label="product_name">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
@@ -83,7 +83,8 @@
 
 
                     <div class="mb-3">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnClose">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            id="btnClose">Close</button>
                         <button type="submit" id="createNewProduct" class="btn btn-primary">Add New Item
                         </button>
                     </div>
@@ -199,6 +200,30 @@
                         }
 
 
+                    });
+                }
+
+                // fetch products
+                $.ajax({
+                    url: '{{ route('products.fetch') }}',
+                    method: 'get',
+                    success: function(products) {
+                        updateProductDropdown(products);
+                    }
+                });
+
+                // Function to update the product dropdown
+                function updateProductDropdown(products) {
+                    var productDropdown = $('#product_id1');
+                    productDropdown.empty(); // Clear existing options
+
+                    // Add default option
+                    productDropdown.append('<option disabled selected hidden>Select a Product</option>');
+
+                    // Populate the dropdown with products
+                    $.each(products, function(index, product) {
+                        productDropdown.append('<option value="' + product.id + '">' + product
+                            .product_name + '</option>');
                     });
                 }
 

@@ -22,7 +22,7 @@
                     <!-- Dropdown menu on the left side -->
                     <div class="mb-3">
                         <label class="form-label" for="catagory">Catagory</label>
-                        <select class="form-select" id="category_id" name="category_id" aria-label="catagory">
+                        <select class="form-select" id="category_id1" name="category_id" aria-label="catagory">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
@@ -40,7 +40,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnClose">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            id="btnClose">Close</button>
                         <button type="submit" id="createNewProduct" class="btn btn-primary">Add New Product
                         </button>
                     </div>
@@ -156,6 +157,30 @@
                         }
 
 
+                    });
+                }
+
+                // fetch categories
+                $.ajax({
+                    url: '{{ route('categories.fetch') }}',
+                    method: 'get',
+                    success: function(categories) {
+                        updateCategoryDropdown(categories);
+                    }
+                });
+
+                // Function to update the category dropdown
+                function updateCategoryDropdown(categories) {
+                    var categoryDropdown = $('#category_id1');
+                    categoryDropdown.empty(); // Clear existing options
+
+                    // Add default option
+                    categoryDropdown.append('<option disabled selected hidden>Select a Category</option>');
+
+                    // Populate the dropdown with categories
+                    $.each(categories, function(index, category) {
+                        categoryDropdown.append('<option value="' + category.id + '">' + category
+                            .category_name + '</option>');
                     });
                 }
 
