@@ -37,6 +37,11 @@ class Item extends Model
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
+    public function brandData()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
+
     public function getIsActiveItemAttribute()
     {
         $status = [
