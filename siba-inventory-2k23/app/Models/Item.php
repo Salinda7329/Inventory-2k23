@@ -29,7 +29,7 @@ class Item extends Model
     }
     public function categoryData()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id')->select('id', 'product_name', 'category_id');
     }
 
     public function productData()
@@ -37,7 +37,7 @@ class Item extends Model
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
-    public function getIsActiveProductAttribute()
+    public function getIsActiveItemAttribute()
     {
         $status = [
             1 =>'Active',
