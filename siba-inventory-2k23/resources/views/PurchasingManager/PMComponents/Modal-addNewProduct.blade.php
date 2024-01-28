@@ -74,8 +74,6 @@
                 });
 
 
-                // fetch product data from database
-                fetchAllProductData();
 
                 // Add a submit event listener to the form
                 form.submit(function(event) {
