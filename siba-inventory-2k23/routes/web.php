@@ -124,6 +124,22 @@ Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit')
 //route to update item data
 Route::post('/pm/Item/update', [ItemsController::class, 'update'])->name('item.update');
 
+// Route::get('/pm/addNewProduct', function () {
+//     return view('PurchasingManager.add-new-product');
+// });
+
+Route::get('/pm/ViewRequestedItems', function () {
+    return view('PurchasingManager.Requested-Items');
+});
+
+Route::get('/pm/viewProducts', function () {
+    return view('PurchasingManager.View-products');
+});
+
+Route::get('/pm/chech/storeRecords', function () {
+    return view('PurchasingManager.Store-Check-Record');
+});
+
 //--------------End purchasing manager routes-----------------
 
 
@@ -180,7 +196,12 @@ Route::get('/store/low-quentity', function () {
     return view('storeManager.low-quentity-product');
 });;
 
+
+
 //--------------End store manager routes-----------------
+
+
+
 
 //-------------------------------------------------Department user------------------------------------------------
 
@@ -207,8 +228,11 @@ Route::get('/dUser/RequestItemTableView', function(){
     return view('DepartmentUser.storereqtable');
 });
 
-
 //-------------------------------------------------End Department user------------------------------------------------
+
+
+
+
 
 
 //-------------------------------------------------Error pages------------------------------------------------
@@ -218,23 +242,7 @@ Route::get('/accountDeactivated', function () {
 })->name('accountDeactivated');
 //-------------------------------------------------End Error pages------------------------------------------------
 
-//-----------------------------------------Purchasing Manager-------------------------------------------------------------------------
 
-// Route::get('/pm/addNewProduct', function () {
-//     return view('PurchasingManager.add-new-product');
-// });
-
-Route::get('/pm/ViewRequestedItems', function () {
-    return view('PurchasingManager.Requested-Items');
-});
-
-Route::get('/pm/viewProducts', function () {
-    return view('PurchasingManager.View-products');
-});
-
-Route::get('/pm/chech/storeRecords', function () {
-    return view('PurchasingManager.Store-Check-Record');
-});
 
 
 
