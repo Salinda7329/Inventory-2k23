@@ -1,5 +1,8 @@
-{{-- methanadi store ake me deela thiyana tka view karann all items penn vdiyata catagory arawa mewa nathuw --}}
-
+{{-- methana departmnt user dapu request tka timestamp akath akk penn piliwelata view wenn hdann. thaw usert oninm edit krann cancel krann plwn wenn hadann
+     --}}
+{{--
+     thaw request aka store manager accept kralanm status aka update krann hadnn athkot edit , cancel buttons penn hdnn epa athkot view status
+     kiyala button akk thiyanw aka obapuwam modl akk anw ake storemanager dala thiyana comment akai accept karpu date aki time akai penn hdnn --}}
 
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
@@ -8,7 +11,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <H3>Request an Item</H3>
+                    <H3>Requested Items</H3>
                 </div>
                 <br><br>
                 <div class="card-body">
@@ -28,7 +31,8 @@
                         <th>Item No</th>
                         <th>Item Name</th>
                         <th>Quentity</th>
-                        <th>Availability</th>
+                        <th>Requested Date</th>
+                        <th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -38,9 +42,11 @@
                         <td>************</td>
                         <td>************</td>
                         <td>************</td>
+                        <td>Pending</td>
 
                         <td>
-                            @include('DepartmentUser.DUComponent.Modal-RequestItems')
+                            @include('DepartmentUser.DUComponent.Modal-editRequestitem')
+                            @include('DepartmentUser.DUComponent.Modal-cancelRequest')
                         </td>
 
                     </tr>
