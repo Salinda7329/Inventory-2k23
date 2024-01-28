@@ -88,8 +88,8 @@ class ItemsController extends Controller
                     </thead>
                     <tbody>";
 
-                    foreach ($items as $item) {
-                        $response .= "<tr>
+            foreach ($items as $item) {
+                $response .= "<tr>
                                         <td>" . $item->id . "</td>
                                         <td>" . $item->productData->categoryData->category_name . "</td>
                                         <td>" . $item->productData->product_name . "</td>
@@ -109,7 +109,7 @@ class ItemsController extends Controller
                                         data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
                                         </td>
                                     </tr>";
-                    }
+            }
 
 
 

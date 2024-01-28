@@ -41,8 +41,8 @@
             </a>
           </li>
           <li class="menu-item">
-            <a href="pages-account-settings-notifications.html" class="menu-link">
-              <div data-i18n="requestitem">Request Item</div>
+            <a href="/dUser/RequestItemTableView" class="menu-link">
+              <div data-i18n="requestitem">Requested Item</div>
             </a>
           </li>
         </ul>
