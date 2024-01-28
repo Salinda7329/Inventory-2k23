@@ -189,4 +189,12 @@ class ItemsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
+
+    public function edit(Request $request)
+    {
+        $item_Id = $request->item_Id;
+        //find data of id using brand model
+        $item = Item::find($item_Id);
+        return response()->json($item);
+    }
 }
