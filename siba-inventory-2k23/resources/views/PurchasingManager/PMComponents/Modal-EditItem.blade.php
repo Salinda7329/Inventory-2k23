@@ -7,6 +7,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Edit Item</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -16,6 +17,7 @@
                     @csrf
 
                     {{-- hidden id input field --}}
+                    <input type="hidden" id="item_Id_hidden" name="item_Id_hidden">
                     <input type="hidden" id="item_Id_hidden" name="item_Id_hidden">
 
                     <div class="mb-3">
@@ -87,6 +89,7 @@
                         // Add an event listener to the modal close button
                         $('.btn-close').on('click', function() {
                             // Reset the form when the close button is clicked
+                            $('#UpdateItemDetailsForm')[0].reset();
                             $('#UpdateItemDetailsForm')[0].reset();
                             $('#password-error').hide();
                             $('.input-error').hide();
