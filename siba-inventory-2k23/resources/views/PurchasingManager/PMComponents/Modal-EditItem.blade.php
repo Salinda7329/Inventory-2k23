@@ -98,7 +98,6 @@
                         $('.btn-close').on('click', function() {
                             // Reset the form when the close button is clicked
                             $('#UpdateItemDetailsForm')[0].reset();
-                            $('#UpdateItemDetailsForm')[0].reset();
                             $('#password-error').hide();
                             $('.input-error').hide();
                         });

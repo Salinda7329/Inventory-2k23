@@ -200,7 +200,7 @@ class ItemsController extends Controller
 
     public function update(Request $request)
     {
-        $item = Item::find($request->item_Id_hidden2);
+        $item = Item::find($request->item_Id_hidden);
 
         $item->update([
             'po_no' => $request->po_no,
