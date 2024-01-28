@@ -14,6 +14,7 @@
 
 
                 <form id="UpdateItemDetailsForm" class="mb-3" method="POST" action="#">
+                <form id="UpdateItemDetailsForm" class="mb-3" method="POST" action="#">
                     @csrf
 
                     {{-- hidden id input field --}}
