@@ -1,16 +1,16 @@
 {{-- meka request aka cancel krann hadann  --}}
 
 
-<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalrequest">
+<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalcancel">
     Cancel
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modalrequest" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modalcancel" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalrequest">Modal title</h5>
+                <h5 class="modal-title" id="modalcancel">Cancel Request</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -25,7 +25,7 @@
                 <div class="row g-2">
                     <div class="col mb-0">
                         <label for="quentity" class="form-label">Quentity</label>
-                        <input type="text" id="quentity" class="form-control" placeholder="" />
+                        <input type="text" id="quentity" class="form-control" placeholder="" disabled/>
                     </div>
                     <div class="col mb-0">
                         <label for="html5-date-input" class="col-md-2 col-form-label">Date</label>
@@ -36,8 +36,8 @@
 
                     </div>
                     <div>
-                        <label for="comment" class="form-label">Comment</label>
-                        <textarea class="form-control" id="comment" rows="3"></textarea>
+                        <label for="coment" class="form-label">Comment</label>
+                        <textarea class="form-control" id="coment" rows="3"></textarea>
                     </div>
 
             </div>
@@ -45,7 +45,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="button" class="btn btn-primary">request</button>
+                <button type="button" class="btn btn-danger">cancel</button>
             </div>
         </div>
     </div>

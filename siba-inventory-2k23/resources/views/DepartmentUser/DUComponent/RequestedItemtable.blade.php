@@ -46,7 +46,7 @@
 
                         <td>
                             @include('DepartmentUser.DUComponent.Modal-editRequestitem')
-                            @include('DepartmentUser.DUComponent.Modal-cancelRequest')
+                           @include('DepartmentUser.DUComponent.Modal-cancelRequest')
                         </td>
 
                     </tr>
