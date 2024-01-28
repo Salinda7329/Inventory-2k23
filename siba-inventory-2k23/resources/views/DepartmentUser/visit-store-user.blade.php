@@ -74,7 +74,7 @@
           <div class="content-wrapper">
             <!-- Content -->
 
-                @include('publicComponent.store')
+                @include('DepartmentUser.DUComponent.store-view')
 
 
 {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}

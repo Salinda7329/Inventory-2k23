@@ -202,6 +202,12 @@ Route::get('/user/view-store', function () {
     return view('DepartmentUser.visit-store-user');
 });
 
+//requested item table view
+Route::get('/dUser/RequestItemTableView', function(){
+    return view('DepartmentUser.storereqtable');
+});
+
+
 //-------------------------------------------------End Department user------------------------------------------------
 
 
