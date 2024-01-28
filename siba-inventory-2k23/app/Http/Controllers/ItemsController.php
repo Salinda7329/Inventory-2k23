@@ -72,8 +72,8 @@ class ItemsController extends Controller
                         <th>Category</th>
                         <th>Product Name</th>
                         <th>Brand Name</th>
-                        <th>Item Name</th>
                         <th>PO No</th>
+                        <th>Item Name</th>
                         <th>Condition</th>
                         <th>Condition Updated By</th>
                         <th>Condition Updated TimeStamp</th>
