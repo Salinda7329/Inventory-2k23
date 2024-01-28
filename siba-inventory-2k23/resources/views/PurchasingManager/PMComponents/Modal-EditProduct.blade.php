@@ -27,15 +27,19 @@
 
 
                     <div class="mb-3">
-                        <label class="form-label" for="catagory">Catagory</label>
-                        <select class="form-select" id="category_id1" name="category_id" aria-label="catagory">
+                        <label class="form-label" for="category_id">Catagory</label>
+                        <select class="form-select" id="category_id2" name="category_id" aria-label="category_id">
                             <option disabled selected hidden>Select an option</option>
-                            <option value="1">Electronic</option>
+                            {{-- <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
-                            <option value="3">Cleaning</option>
+                            <option value="3">Cleaning</option> --}}
                         </select>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
+                    {{-- <div class="mb-3">
+                        <label class="form-label" for="category_id">Catagory</label>
+                        <input type="text" name="category_id" id="category_id2">
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="status" class="form-label">Select Status</label>
@@ -52,6 +56,7 @@
                 </form>
 
                 <script>
+
                     $(document).ready(function() {
 
                         // Add an event listener to the modal close button
@@ -83,27 +88,26 @@
                                     $('#product_name1').val(response.product_name);
                                     $('#status1').val(response.isActive);
 
-                                    // Fetch categories and update the dropdown with the current category selected
+                                    // Populate the category dropdown with category names
                                     $.ajax({
                                         url: '{{ route('categories.fetch') }}',
                                         method: 'get',
                                         success: function(categories) {
-                                            // Pass the current category ID to the updateCategoryDropdown function
                                             updateCategoryDropdown(categories, response
                                                 .category_id);
+                                            // Open the modal after updating the dropdown
+                                            $('#modaleditproduct').modal('show');
                                         }
                                     });
                                 }
                             });
                         });
 
-
                         function fetchAllProductData() {
                             $.ajax({
                                 url: '{{ route('fetchAllProductData') }}',
                                 method: 'get',
                                 success: function(response) {
-                                    // console.log(response);
                                     $('#show_all_product_data').html(response);
                                     // //Make table a data table
                                     $('#all_product_data').DataTable({
@@ -111,8 +115,6 @@
                                         // Enable horizontal scrolling
                                     });
                                 }
-
-
                             });
                         }
 
@@ -136,26 +138,23 @@
                                         $('#UpdateProductDetailsForm')[0].reset();
                                         $('#modaleditproduct').modal('hide');
 
-                                        // fetch product data from database
+                                        // fetch product data from the database
                                         fetchAllProductData();
                                     }
                                 }
                             });
-
-
                         });
-
 
                         // Function to update the category dropdown
                         function updateCategoryDropdown(categories, selectedCategoryId) {
-                            var categoryDropdown = $('#category_id1');
+                            var categoryDropdown = $('#category_id2');
                             categoryDropdown.empty(); // Clear existing options
 
                             // Add default option
                             categoryDropdown.append('<option disabled selected hidden>Select a Category</option>');
 
-                            // Populate the dropdown with categories
-                            $.each(categories, function(index, category) {
+                            // Populate the dropdown with category names
+                            categories.forEach(function(category) {
                                 var option = $('<option></option>')
                                     .attr('value', category.id)
                                     .text(category.category_name);
@@ -168,8 +167,6 @@
                                 categoryDropdown.append(option);
                             });
                         }
-
-
 
 
                     });
