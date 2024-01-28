@@ -102,6 +102,9 @@
                             $('.input-error').hide();
                         });
 
+                        // fetch item data from database
+                        fetchAllItemData();
+
                         //edit user button
                         $(document).on('click', '.editItemButton', function(e) {
                             e.preventDefault();
@@ -143,11 +146,11 @@
                                 method: 'get',
                                 success: function(response) {
                                     // console.log(response);
-                                    $('#show_all_product_data').html(response);
+                                    $('#show_all_item_data').html(response);
                                     // //Make table a data table
-                                    $('#all_user_data').DataTable({
-
+                                    $('#all_item_data').DataTable({
                                         // Enable horizontal scrolling
+                                        "scrollX": true,
                                     });
                                 }
 
@@ -162,7 +165,7 @@
                             const fd = new FormData(this);
 
                             $.ajax({
-                                url: '{{ route('product.update') }}',
+                                url: '{{ route('item.update') }}',
                                 method: 'post',
                                 data: fd,
                                 cache: false,
@@ -172,8 +175,8 @@
                                 success: function(response) {
                                     // console.log(response);
                                     if (response.status == 200) {
-                                        // $('#UpdateUserDetailsForm')[0].reset();
-                                        $('#modaleditproduct').modal('hide');
+                                        $('#UpdateItemDetailsForm')[0].reset();
+                                        $('#modaledititem').modal('hide');
                                         // fetch product data from database
                                         fetchAllItemData();
 
