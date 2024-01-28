@@ -119,6 +119,8 @@ Route::get('/pm/addNewItem', function () {
 Route::post('/pm/newItem', [ItemsController::class, 'create'])->name('pm.newItem');
 //route to fetch all item data
 Route::get('/pm/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemData'])->name('fetchAllItemData');
+//route to edit product data
+Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit');
 
 //--------------End purchasing manager routes-----------------
 

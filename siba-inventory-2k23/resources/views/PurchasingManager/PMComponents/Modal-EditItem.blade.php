@@ -1,49 +1,82 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="modaleditproduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="modaledititem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Product</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
 
-                <form id="UpdateProductDetailsForm" class="mb-3" method="POST" action="#">
+                <form id="UpdateItemDetailsForm" class="mb-3" method="POST" action="#">
                     @csrf
 
                     {{-- hidden id input field --}}
-                    <input type="hidden" id="product_Id_hidden" name="product_Id_hidden">
+                    <input type="hidden" id="item_Id_hidden" name="item_Id_hidden">
 
                     <div class="mb-3">
-                        <label for="product_name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="product_name1" name="product_name"
-                            placeholder="Enter your Product Name" :value="old('product_name')" required autofocus
-                            autocomplete="product_name" />
+                        <label for="po_no" class="form-label">PO Number</label>
+                        <input type="text" class="form-control" id="po_no2" name="po_no"
+                            placeholder="Enter your PO Number" :value="old('po_no')" required autofocus
+                            autocomplete="po_no" />
                     </div>
 
-
                     <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select class="form-control" id="category_id1" name="category_id" required>
-                            <option disabled selected hidden>Select a Category</option>
-                            <!-- Categories will be dynamically added here through JavaScript -->
+                        <label class="form-label" for="product_name">Product Name</label>
+                        <select class="form-select" id="product_id2" name="product_id" aria-label="product_name">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Electronic</option>
+                            <option value="2">Stationary</option>
+                            <option value="3">Cleaning</option>
                         </select>
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="status" class="form-label">Select Status</label>
-                        <select class="form-control" id="status1" name="isActive">
-                            <option disabled selected hidden>Select a Status</option>
-                            <option value="1">Active</option>
-                            <option value="2">Deactive</option>
-                            <option value="3">Delete</option>
+                        <label class="form-label" for="brand_name">Brand Name</label>
+                        <select class="form-select" id="brand_id2" name="brand_id" aria-label="brand_name">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Electronic</option>
+                            <option value="2">Stationary</option>
+                            <option value="3">Cleaning</option>
                         </select>
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="catagory">Item Name</label>
+                        <input type="text" class="form-control" id="item_name2" name="item_name"
+                            placeholder="Enter Item Name" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="condition">Condition</label>
+                        <select class="form-select" id="condition2" name="condition" aria-label="condition">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Working</option>
+                            <option value="2">Damaged</option>
+                        </select>
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="items_remaining">Item Count</label>
+                        <input type="text" class="form-control" id="items_remaining2" name="items_remaining"
+                            placeholder="Enter Item Count" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="lower_limit">Lower Limit</label>
+                        <input type="text" class="form-control" id="lower_limit2" name="lower_limit"
+                            placeholder="Enter Lower Limit" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
 
                     <button class="btn btn-primary d-grid w-100" id="Update_product_button">Update</button>
                 </form>
@@ -54,32 +87,36 @@
                         // Add an event listener to the modal close button
                         $('.btn-close').on('click', function() {
                             // Reset the form when the close button is clicked
-                            $('#UpdateProductDetailsForm')[0].reset();
+                            $('#UpdateItemDetailsForm')[0].reset();
                             $('#password-error').hide();
                             $('.input-error').hide();
                         });
 
                         //edit user button
-                        $(document).on('click', '.editProductButton', function(e) {
+                        $(document).on('click', '.editItemButton', function(e) {
                             e.preventDefault();
-                            let product_Id = $(this).attr('id');
+                            let item_Id = $(this).attr('id');
                             // alert(id);
 
                             $.ajax({
-                                url: '{{ route('product.edit') }}',
+                                url: '{{ route('item.edit') }}',
                                 method: 'get',
                                 data: {
-                                    product_Id: product_Id,
+                                    item_Id: item_Id,
                                     _token: '{{ csrf_token() }}'
                                 },
                                 success: function(response) {
 
-                                    // console.log(response.name);
+                                    console.log(response.po_no);
                                     // Set id value to the hidden field
-                                    $('#product_Id_hidden').val(response.id);
-                                    $('#product_name1').val(response.product_name);
-                                    $('#category_id1').val(response.category_id);
-                                    $('#status1').val(response.isActive);
+                                    $('#item_Id_hidden2').val(response.id);
+                                    $('#po_no2').val(response.po_no);
+                                    $('#product_id2').val(response.product_id);
+                                    $('#brand_id2').val(response.brand_id);
+                                    $('#item_name2').val(response.item_name);
+                                    $('#condition2').val(response.condition);
+                                    $('#items_remaining2').val(response.items_remaining);
+                                    $('#lower_limit2').val(response.lower_limit);
 
                                 }
 
@@ -91,7 +128,7 @@
 
                         function fetchAllProductData() {
                             $.ajax({
-                                url: '{{ route('fetchAllProductData') }}',
+                                url: '{{ route('fetchAllItemData') }}',
                                 method: 'get',
                                 success: function(response) {
                                     // console.log(response);
@@ -108,7 +145,7 @@
                         }
 
                         //Update form
-                        $('#UpdateProductDetailsForm').submit(function(e) {
+                        $('#UpdateItemDetailsForm').submit(function(e) {
                             e.preventDefault();
                             //save form data to fd constant
                             const fd = new FormData(this);
@@ -136,27 +173,51 @@
 
                         });
 
-                        // fetch categories
+                        // fetch products
                         $.ajax({
-                            url: '{{ route('categories.fetch') }}',
+                            url: '{{ route('products.fetch') }}',
                             method: 'get',
-                            success: function(categories) {
-                                updateCategoryDropdown(categories);
+                            success: function(products) {
+                                updateProductDropdown(products);
                             }
                         });
 
-                        // Function to update the category dropdown
-                        function updateCategoryDropdown(categories) {
-                            var categoryDropdown = $('#category_id1');
-                            categoryDropdown.empty(); // Clear existing options
+                        // Function to update the product dropdown
+                        function updateProductDropdown(products) {
+                            var productDropdown = $('#product_id2');
+                            productDropdown.empty(); // Clear existing options
 
                             // Add default option
-                            categoryDropdown.append('<option disabled selected hidden>Select a Category</option>');
+                            productDropdown.append('<option disabled selected hidden>Select a Product</option>');
 
-                            // Populate the dropdown with categories
-                            $.each(categories, function(index, category) {
-                                categoryDropdown.append('<option value="' + category.id + '">' + category
-                                    .category_name + '</option>');
+                            // Populate the dropdown with products
+                            $.each(products, function(index, product) {
+                                productDropdown.append('<option value="' + product.id + '">' + product
+                                    .product_name + '</option>');
+                            });
+                        }
+
+                        // fetch brands
+                        $.ajax({
+                            url: '{{ route('brands.fetch') }}',
+                            method: 'get',
+                            success: function(brands) {
+                                updateBrandDropdown(brands);
+                            }
+                        });
+
+                        // Function to update the brand dropdown
+                        function updateBrandDropdown(brands) {
+                            var brandDropdown = $('#brand_id2');
+                            brandDropdown.empty(); // Clear existing options
+
+                            // Add default option
+                            brandDropdown.append('<option disabled selected hidden>Select a Brand</option>');
+
+                            // Populate the dropdown with products
+                            $.each(brands, function(index, brand) {
+                                brandDropdown.append('<option value="' + brand.id + '">' + brand
+                                    .brand_name + '</option>');
                             });
                         }
 
