@@ -27,11 +27,14 @@
 
 
                     <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select class="form-control" id="category_id1" name="category_id" required>
-                            <option disabled selected hidden>Select a Category</option>
-                            <!-- Categories will be dynamically added here through JavaScript -->
+                        <label class="form-label" for="catagory">Catagory</label>
+                        <select class="form-select" id="category_id1" name="category_id" aria-label="catagory">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Electronic</option>
+                            <option value="2">Stationary</option>
+                            <option value="3">Cleaning</option>
                         </select>
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -59,11 +62,13 @@
                             $('.input-error').hide();
                         });
 
+                        //fetch All product Data
+                        fetchAllProductData();
+
                         //edit user button
                         $(document).on('click', '.editProductButton', function(e) {
                             e.preventDefault();
                             let product_Id = $(this).attr('id');
-                            // alert(id);
 
                             $.ajax({
                                 url: '{{ route('product.edit') }}',
@@ -73,21 +78,25 @@
                                     _token: '{{ csrf_token() }}'
                                 },
                                 success: function(response) {
-
-                                    // console.log(response.name);
                                     // Set id value to the hidden field
                                     $('#product_Id_hidden').val(response.id);
                                     $('#product_name1').val(response.product_name);
-                                    $('#category_id1').val(response.category_id);
                                     $('#status1').val(response.isActive);
 
+                                    // Fetch categories and update the dropdown with the current category selected
+                                    $.ajax({
+                                        url: '{{ route('categories.fetch') }}',
+                                        method: 'get',
+                                        success: function(categories) {
+                                            // Pass the current category ID to the updateCategoryDropdown function
+                                            updateCategoryDropdown(categories, response
+                                                .category_id);
+                                        }
+                                    });
                                 }
-
-
                             });
+                        });
 
-
-                        })
 
                         function fetchAllProductData() {
                             $.ajax({
@@ -97,7 +106,7 @@
                                     // console.log(response);
                                     $('#show_all_product_data').html(response);
                                     // //Make table a data table
-                                    $('#all_user_data').DataTable({
+                                    $('#all_product_data').DataTable({
 
                                         // Enable horizontal scrolling
                                     });
@@ -122,13 +131,13 @@
                                 processData: false,
                                 dataType: 'json',
                                 success: function(response) {
-                                    // console.log(response);
                                     if (response.status == 200) {
-                                        // $('#UpdateUserDetailsForm')[0].reset();
+                                        alert('Product updated successfully!');
+                                        $('#UpdateProductDetailsForm')[0].reset();
                                         $('#modaleditproduct').modal('hide');
+
                                         // fetch product data from database
                                         fetchAllProductData();
-
                                     }
                                 }
                             });
@@ -136,17 +145,9 @@
 
                         });
 
-                        // fetch categories
-                        $.ajax({
-                            url: '{{ route('categories.fetch') }}',
-                            method: 'get',
-                            success: function(categories) {
-                                updateCategoryDropdown(categories);
-                            }
-                        });
 
                         // Function to update the category dropdown
-                        function updateCategoryDropdown(categories) {
+                        function updateCategoryDropdown(categories, selectedCategoryId) {
                             var categoryDropdown = $('#category_id1');
                             categoryDropdown.empty(); // Clear existing options
 
@@ -155,10 +156,21 @@
 
                             // Populate the dropdown with categories
                             $.each(categories, function(index, category) {
-                                categoryDropdown.append('<option value="' + category.id + '">' + category
-                                    .category_name + '</option>');
+                                var option = $('<option></option>')
+                                    .attr('value', category.id)
+                                    .text(category.category_name);
+
+                                // Set 'selected' attribute for the existing category
+                                if (category.id == selectedCategoryId) {
+                                    option.attr('selected', true);
+                                }
+
+                                categoryDropdown.append(option);
                             });
                         }
+
+
+
 
                     });
                 </script>

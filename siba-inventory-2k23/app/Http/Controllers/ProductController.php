@@ -54,7 +54,7 @@ class ProductController extends Controller
         if ($products->count() > 0) {
 
             $response .=
-                "<table id='all_user_data' class='display'>
+                "<table id='all_product_data' class='display'>
                     <thead>
                         <tr>
                         <th>Product ID</th>
@@ -112,7 +112,6 @@ class ProductController extends Controller
 
         return response()->json([
             'status' => 200,
-            'no' => $request->isActive,
         ]);
     }
 

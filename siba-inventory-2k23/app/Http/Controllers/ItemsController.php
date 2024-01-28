@@ -96,8 +96,8 @@ class ItemsController extends Controller
                                         <td>" . $item->brandData->brand_name . "</td>
                                         <td>" . $item->po_no . "</td>
                                         <td>" . $item->item_name . "</td>
-                                        <td>" . $item->condition . "</td>
-                                        <td>" . $item->condition_updated_by . "</td>
+                                        <td>" . $item->getIsCondtionItemAttribute() . "</td>
+                                        <td>" . $item->conditionUpdatedByUser->name . "</td>
                                         <td>" . $item->condition_updated_timestamp . "</td>
                                         <td>" . $item->items_remaining . "</td>
                                         <td>" . $item->lower_limit . "</td>
@@ -122,7 +122,6 @@ class ItemsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
-    public function fetchAllItemDataOrignial()
     public function fetchAllItemDataOrignial()
     {
 
@@ -189,5 +188,33 @@ class ItemsController extends Controller
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
         }
+    }
+
+    public function edit(Request $request)
+    {
+        $item_Id = $request->item_Id;
+        //find data of id using brand model
+        $item = Item::find($item_Id);
+        return response()->json($item);
+    }
+
+    public function update(Request $request)
+    {
+        $item = Item::find($request->item_Id_hidden);
+
+        $item->update([
+            'po_no' => $request->po_no,
+            'product_id' => $request->product_id,
+            'brand_id' => $request->brand_id,
+            'item_name' => $request->item_name,
+            'condition' => $request->condition,
+            'items_remaining' => $request->items_remaining,
+            'lower_limit' => $request->lower_limit,
+            'isActive' => $request->isActive,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+        ]);
     }
 }

@@ -117,7 +117,7 @@
                 });
 
 
-                // fetch product data from database
+                // fetch item data from database
                 fetchAllItemData();
 
                 // Add a submit event listener to the form
@@ -194,8 +194,8 @@
                             $('#show_all_item_data').html(response);
                             // //Make table a data table
                             $('#all_item_data').DataTable({
-
                                 // Enable horizontal scrolling
+                                "scrollX": true,
                             });
                         }
 
