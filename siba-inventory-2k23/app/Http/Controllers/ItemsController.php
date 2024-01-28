@@ -197,4 +197,24 @@ class ItemsController extends Controller
         $item = Item::find($item_Id);
         return response()->json($item);
     }
+
+    public function update(Request $request)
+    {
+        $item = Item::find($request->item_Id_hidden2);
+
+        $item->update([
+            'po_no2' => $request->po_no,
+            'product_id2' => $request->product_id,
+            'brand_id2' => $request->brand_id,
+            'item_name2' => $request->item_name,
+            'condition2' => $request->condition,
+            'items_remaining2' => $request->items_remaining,
+            'lower_limit2' => $request->lower_limit,
+            'isActive' => $request->isActive,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+        ]);
+    }
 }
