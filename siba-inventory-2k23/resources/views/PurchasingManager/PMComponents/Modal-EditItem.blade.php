@@ -175,6 +175,7 @@
                                 success: function(response) {
                                     // console.log(response);
                                     if (response.status == 200) {
+                                        alert('Item updated successfully!');
                                         $('#UpdateItemDetailsForm')[0].reset();
                                         $('#modaledititem').modal('hide');
                                         // fetch product data from database
