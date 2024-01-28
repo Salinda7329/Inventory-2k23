@@ -7,19 +7,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Edit Item</h5>
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
 
                 <form id="UpdateItemDetailsForm" class="mb-3" method="POST" action="#">
-                <form id="UpdateItemDetailsForm" class="mb-3" method="POST" action="#">
                     @csrf
 
                     {{-- hidden id input field --}}
-                    <input type="hidden" id="item_Id_hidden" name="item_Id_hidden">
-                    <input type="hidden" id="item_Id_hidden" name="item_Id_hidden">
+                    <input type="hidden" id="item_Id_hidden2" name="item_Id_hidden">
 
                     <div class="mb-3">
                         <label for="po_no" class="form-label">PO Number</label>
@@ -81,7 +78,17 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <button class="btn btn-primary d-grid w-100" id="Update_product_button">Update</button>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Select Status</label>
+                        <select class="form-control" id="status2" name="isActive">
+                            <option disabled selected hidden>Select a Status</option>
+                            <option value="1">Active</option>
+                            <option value="2">Deactive</option>
+                            <option value="3">Delete</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary d-grid w-100" id="Update_item_button">Update</button>
                 </form>
 
                 <script>
@@ -121,6 +128,7 @@
                                     $('#condition2').val(response.condition);
                                     $('#items_remaining2').val(response.items_remaining);
                                     $('#lower_limit2').val(response.lower_limit);
+                                    $('#status2').val(response.isActive);
 
                                 }
 
@@ -130,7 +138,7 @@
 
                         })
 
-                        function fetchAllProductData() {
+                        function fetchAllItemData() {
                             $.ajax({
                                 url: '{{ route('fetchAllItemData') }}',
                                 method: 'get',
@@ -168,7 +176,7 @@
                                         // $('#UpdateUserDetailsForm')[0].reset();
                                         $('#modaleditproduct').modal('hide');
                                         // fetch product data from database
-                                        fetchAllProductData();
+                                        fetchAllItemData();
 
                                     }
                                 }
