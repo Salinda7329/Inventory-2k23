@@ -32,9 +32,27 @@
 
 
 
-
-        <!-- Forms -->
         <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-layout"></i>
+              <div data-i18n="Layouts">EMP Management</div>
+            </a>
+
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="/HR-AddNewEMP" class="menu-link">
+                  <div data-i18n="Without menu">Add New</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="layouts-without-navbar.html" class="menu-link">
+                  <div data-i18n="Without navbar">View Details</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+        <li class="menu-sub">
             <a href="/store/low-quentity" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Manage Users</div>

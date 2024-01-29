@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Create New Employee | Inventory | SIBA Dynamics</title>
+    <title>HR-Home | Inventory | SIBA Dynamics</title>
 
     <meta name="description" content="" />
 
@@ -35,10 +35,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    {{-- {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -69,7 +66,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                   @include('HumanResource.HR-Cleark.HRC-Components.UserTable')
+                    @include('HumanResource.HR-Cleark.HRC-Components.addNewEmployee')
 
 
                     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
