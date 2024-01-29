@@ -162,10 +162,10 @@ Route::middleware([
 //home route
 Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-//view requested items route
-Route::get('/view-requested-items', function () {
+//view requested items by users
+Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');
-});
+})->name('storeManager.requests');
 
 //store visit route
 Route::get('/visit-store', function () {
