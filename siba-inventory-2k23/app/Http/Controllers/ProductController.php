@@ -121,4 +121,17 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function fetchProductDetails(Request $request)
+    {
+        $productId = $request->input('productId');
+
+        // Replace this with your logic to fetch product details based on $productId
+        $product = Product::find($productId);
+
+        return response()->json([
+            'product_name' => $product->product_name,
+            // Add other fields you want to fetch
+        ]);
+    }
+
 }

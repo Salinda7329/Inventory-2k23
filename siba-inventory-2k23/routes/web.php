@@ -87,6 +87,8 @@ Route::post('/pm/Product/update', [ProductController::class, 'update'])->name
 ('product.update');
 // route to get all product details
 Route::get('/products/fetch', [ProductController::class, 'fetchProducts'])->name('products.fetch');
+//route to fetch all product data for store
+Route::get('/products/fetchProductDetails', [ProductController::class, 'fetchProductDetails'])->name('fetchProductDetails');
 
 
 //category view
@@ -224,7 +226,6 @@ Route::get('user-update-profile', function () {
 Route::get('/user/view-store', function () {
     return view('DepartmentUser.visit-store-user');
 });
-
 //requested item table view
 Route::get('/dUser/RequestItemTableView', function(){
     return view('DepartmentUser.storereqtable');

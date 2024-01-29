@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Doctrine\DBAL\Query\QueryException;
@@ -55,7 +56,7 @@ class ItemsController extends Controller
     }
 
     //Not for users
-   public function fetchAllItemData()
+    public function fetchAllItemData()
     {
 
         $items = Item::all();
@@ -128,7 +129,10 @@ class ItemsController extends Controller
     public function fetchAllItemDataUser()
     {
 
-        $items = Item::all();
+        // $items = Item::all();
+        // Retrieve only active items
+        $items = Item::where('isActive', 1)->get();
+
 
         //returning data inside the table
         $response = '';
