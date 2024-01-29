@@ -113,8 +113,6 @@ class ItemsController extends Controller
                                     </tr>";
             }
 
-
-
             $response .=
                 "</tbody>
                 </table>";
