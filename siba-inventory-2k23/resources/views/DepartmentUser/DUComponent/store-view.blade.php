@@ -10,48 +10,33 @@
                 <div class="card-header">
                     <H3>Request an Item</H3>
                 </div>
-                <br><br>
                 <div class="card-body">
-
-                    <div class="row">
-                        <!-- Left side -->
-                        <div class="col-md-6">
-
-                        </div>
-                        <!-- Right side -->
-                        <div class="col-md-6">
+                    <div id="show_all_item_data"></div>
+                </div>
             </div>
-
-            <table id="example" class="hover" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Item No</th>
-                        <th>Item Name</th>
-                        <th>Quentity</th>
-                        <th>Availability</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>************</td>
-                        <td>************</td>
-                        <td>************</td>
-                        <td>************</td>
-
-                        <td>
-                            @include('DepartmentUser.DUComponent.Modal-RequestItems')
-                        </td>
-
-                    </tr>
+            <script>
+                $(document).ready(function() {
+                    fetchAllItemData();
+                    function fetchAllItemData() {
+                    $.ajax({
+                        url: '{{ route('fetchAllItemData') }}',
+                        method: 'get',
+                        success: function(response) {
+                            // console.log(response);
+                            $('#show_all_item_data').html(response);
+                            // //Make table a data table
+                            $('#all_item_data').DataTable({
+                                // Enable horizontal scrolling
+                                "scrollX": true,
+                            });
+                        }
 
 
-            </table>
-                <script>
-                    $(document).ready( function () {
-                        $('#example').DataTable();
                     });
-                </script>
+                }
+                })
+            </script>
         </div>
+        @include('DepartmentUser.DUComponent.Modal-RequestItems')
     </div>
 </div>
