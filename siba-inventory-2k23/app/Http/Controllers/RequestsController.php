@@ -94,8 +94,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td>
-                            <a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal'
-                            data-bs-target='#processModal' class='editUserButton btn-sm btn-outline-secondary'>Process</a>|<a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal'
+                            <a href='#' id='" . $request->item_user . "' class='processRequestButton btn-sm btn-outline-secondary'>Process</a>|<a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal'
                             data-bs-target='#actionModal' class='btn-sm btn-outline-primary requestActionButton'>Action</a>
                             </td>
                                     </tr>";
@@ -110,6 +109,26 @@ class RequestsController extends Controller
             echo $response;
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
+
+
+    public function RequestAction(Request $request)
+    {
+        $itemUser = $request->input('itemUser');
+
+        // Find the request by item_user and update the status
+        $request = Request::where('item_user', $itemUser)->first();
+        if ($request) {
+            if ($request->status === 0) {
+                $request->status = 1;
+                $request->save();
+                return response()->json(['success' => true, 'message' => 'Status updated successfully']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Status is already 1']);
+            }
+        } else {
+            return response()->json(['success' => false, 'message' => 'Request not found']);
         }
     }
 }

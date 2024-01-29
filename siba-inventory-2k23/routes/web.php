@@ -168,6 +168,9 @@ Route::get('/storeManager/view-requested-items', function () {
 })->name('storeManager.requests');
 //route to fetch all request data
 Route::get('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
+//route to change the status of a request
+Route::post('/storeManager/processRequest', [RequestsController::class, 'RequestAction'])->name('RequestAction');
+
 
 
 

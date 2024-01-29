@@ -18,27 +18,56 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
             <script>
                 $(document).ready(function() {
                     fetchAllRequestData();
+
                     function fetchAllRequestData() {
-                    $.ajax({
-                        url: '{{ route('fetchAllRequestData') }}',
-                        method: 'get',
-                        success: function(response) {
-                            // console.log(response);
-                            $('#show_all_requests_data').html(response);
-                            // //Make table a data table
-                            $('#all_request_data').DataTable({
-                                // Enable horizontal scrolling
-                                // "scrollX": true,
-                            });
-                        }
+                        $.ajax({
+                            url: '{{ route('fetchAllRequestData') }}',
+                            method: 'get',
+                            success: function(response) {
+                                // console.log(response);
+                                $('#show_all_requests_data').html(response);
+                                // //Make table a data table
+                                $('#all_request_data').DataTable({
+                                    // Enable horizontal scrolling
+                                    // "scrollX": true,
+                                });
+                            }
 
 
+                        });
+                    }
+
+                    // Add event listeners for process buttons
+                    $(document).on("click", ".processRequestButton", function(e) {
+                        e.preventDefault();
+                        console.log("Process button clicked");
+
+                        const itemUser = this.id;
+                        console.log("Item User:", itemUser);
+
+                        // Send AJAX request to the backend using jQuery
+                        $.ajax({
+                            url: '{{ route('RequestAction') }}',
+                            type: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                            data: JSON.stringify({
+                                itemUser: itemUser
+                            }),
+                            dataType: 'json',
+                            success: function(data) {
+                                console.log("Request action successful:", data);
+                            },
+                            error: function(error) {
+                                console.error('Error performing request action:', error);
+                            }
+                        });
                     });
-                }
                 })
             </script>
         </div>
     </div>
 </div>
-@include('storeManager.SMcomponent.process-item-buttonModal-requestedtable')
 @include('storeManager.SMcomponent.action-item-buttonModal-requestedtable')
