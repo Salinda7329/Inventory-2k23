@@ -16,10 +16,10 @@
             </div>
             <script>
                 $(document).ready(function() {
-                    fetchAllItemData();
-                    function fetchAllItemData() {
+                    fetchAllItemDataUser();
+                    function fetchAllItemDataUser() {
                     $.ajax({
-                        url: '{{ route('fetchAllItemData') }}',
+                        url: '{{ route('fetchAllItemDataUser') }}',
                         method: 'get',
                         success: function(response) {
                             // console.log(response);

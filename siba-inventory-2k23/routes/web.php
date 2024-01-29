@@ -117,8 +117,10 @@ Route::get('/pm/addNewItem', function () {
 })->name('pm.item');
 // create new item
 Route::post('/pm/newItem', [ItemsController::class, 'create'])->name('pm.newItem');
-//route to fetch all item data
+//route to fetch all item data ( Not for users)
 Route::get('/pm/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemData'])->name('fetchAllItemData');
+//route to fetch all item data ( Only for users)
+Route::get('/user/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemDataUser'])->name('fetchAllItemDataUser');
 //route to edit product data
 Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit');
 //route to update item data
