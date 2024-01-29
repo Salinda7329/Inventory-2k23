@@ -19,28 +19,34 @@ auto watenn dann --}}
 
                 <form id="RequestItemForm" class="mb-3" method="POST" action="#">
                     @csrf
+
+
                     <div class="mb-3">
                         <label for="product_name" class="form-label">Product Name</label>
-                        <input class="form-control" type="text" id="product_name" placeholder="" readonly />
+                        <input class="form-control" type="text" id="product_name" name="product_name" placeholder=""
+                            readonly />
                     </div>
                     <div class="mb-3">
                         <label for="itemid" class="form-label">Item ID</label>
-                        <input class="form-control" type="text" id="item_id" placeholder="" readonly />
+                        <input class="form-control" type="text" id="item_id" name="item_id_user" placeholder=""
+                            readonly />
                     </div>
                     <div class="mb-3">
                         <label for="itemname" class="form-label">Item Name</label>
-                        <input class="form-control" type="text" id="item_name" placeholder="" readonly />
+                        <input class="form-control" type="text" id="item_name" name="item_name" placeholder=""
+                            readonly />
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="quentity" class="form-label">Quentity</label>
-                            <input type="text" id="quentity" class="form-control" placeholder="" />
-                        </div>
-                        <div>
-                            <label for="comment" class="form-label">Comment</label>
-                            <textarea class="form-control" id="comment" rows="3"></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="quentity" class="form-label">Quentity</label>
+                        <input type="text" id="quantity_user" name="quantity_user" class="form-control"
+                            placeholder="" />
                     </div>
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Comment</label>
+                        <textarea class="form-control" id="user_remark" name="user_remark" rows="3"></textarea>
+                    </div>
+                    
+                    <input type="hidden" id="request_by" name="request_by" value="Auth::user()->id">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
