@@ -271,6 +271,11 @@ Route::get('/HR-AddNewEMP' , function(){
     return view('HumanResource.AddNewEMP');
 });
 
+///////////////////
+Route::get('/categot/{category_id}', 'ProductController@showItemsByCategory')->name('itemsByCategory');
+///////////////////
+
+
 
 
 
