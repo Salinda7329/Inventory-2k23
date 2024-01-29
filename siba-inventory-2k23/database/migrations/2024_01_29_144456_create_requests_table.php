@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->string('item_id_user')->nullable()->constrained('items');
+            $table->string('item_user')->nullable()->constrained('items');
             $table->string('quantity_user')->nullable();
             $table->string('user_remark')->nullable();
             $table->foreignId('request_by')->nullable()->constrained('users');

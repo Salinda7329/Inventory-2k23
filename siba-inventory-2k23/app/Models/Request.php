@@ -10,7 +10,7 @@ class Request extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'item_id_user',
+        'item_user',
         'quantity_user',
         'user_remark',
         'request_by',
@@ -43,7 +43,7 @@ class Request extends Model
 
     public function getItemById()
     {
-        return $this->belongsTo(Item::class, 'item_id_user', 'id');
+        return $this->belongsTo(Item::class, 'item_user', 'id');
     }
 
 }

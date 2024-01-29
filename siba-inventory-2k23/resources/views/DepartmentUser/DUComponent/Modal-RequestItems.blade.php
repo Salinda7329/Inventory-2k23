@@ -28,7 +28,7 @@ auto watenn dann --}}
                     </div>
                     <div class="mb-3">
                         <label for="itemid" class="form-label">Item ID</label>
-                        <input class="form-control" type="text" id="item_id" name="item_id_user" placeholder=""
+                        <input class="form-control" type="text" id="item_id" name="item_user" placeholder=""
                             readonly />
                     </div>
                     <div class="mb-3">

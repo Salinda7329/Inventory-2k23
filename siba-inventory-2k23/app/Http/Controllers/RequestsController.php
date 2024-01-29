@@ -19,7 +19,7 @@ class RequestsController extends Controller
                 'request_by' => ['required'],
                 'quantity_user' => ['required'],
                 'user_remark' => ['required'],
-                'item_id_user' => ['required'],
+                'item_user' => ['required'],
                 'type' => ['required'],
                 'status' => ['required'],
             ]);
@@ -27,7 +27,7 @@ class RequestsController extends Controller
                 // Use Carbon to get the current timestamp
                 $currentTimestamp = now();
                 ModelsRequest::create([
-                    'item_id_user' => $input['item_id_user'],
+                    'item_user' => $input['item_user'],
                     'quantity_user' => $input['quantity_user'],
                     'user_remark' => $input['user_remark'],
                     'request_by' => $input['request_by'],
@@ -49,63 +49,6 @@ class RequestsController extends Controller
         }
     }
 
-    public function fetchAllRequestDataOriginal()
-    {
-
-        // $items = Item::all();
-        // Retrieve only active items
-        $requests = ModelsRequest::where('isActive', 1)->get();
-
-
-        //returning data inside the table
-        $response = '';
-
-        if ($requests->count() > 0) {
-
-            $response .=
-                "<table id='all_request_data' class='display'>
-                    <thead>
-                        <tr>
-                        <th>Request ID</th>
-                        <th>Type</th>
-                        <th>Item_Id</th>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Remark</th>
-                        <th>Requested_by</th>
-                        <th>Requested_at</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-
-            foreach ($requests as $request) {
-                $response .= "<tr>
-                                        <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
-                                        <td>" . $request->item_id_user . "</td>
-                                        <td>" . $request->getItemById->name . "</td>
-                                        <td>" . $request->quantity_user . "</td>
-                                        <td>" . $request->user_remark . "</td>
-                                        <td>" . $request->requestedByUser->name . "</td>
-                                        <td>" . $request->requested_timestamp . "</td>
-                                        <td>" . $request->status . "</td>
-                                        <td>Action Modal</td>
-                                    </tr>";
-            }
-
-
-
-            $response .=
-                "</tbody>
-                </table>";
-
-            echo $response;
-        } else {
-            echo "<h3 align='center'>No Records in Database</h3>";
-        }
-    }
     public function fetchAllRequestData()
     {
 
@@ -138,12 +81,12 @@ class RequestsController extends Controller
                     <tbody>";
 
             foreach ($requests as $request) {
-                $itemName = $request->getItemById ? $request->getItemById->name : 'N/A';
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
                                         <td>" . $request->getTypeRequestAttribute() . "</td>
-                                        <td>" . $request->item_id_user . "</td>
+                                        <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
