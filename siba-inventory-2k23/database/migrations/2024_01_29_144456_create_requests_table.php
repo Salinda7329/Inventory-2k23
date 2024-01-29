@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->string('item_id_user')->nullable();
+            $table->string('item_id_user')->nullable()->constrained('items');
             $table->string('quantity_user')->nullable();
             $table->string('user_remark')->nullable();
-            $table->foreignId('request_by')->constrained('users')->default(null);
+            $table->foreignId('request_by')->nullable()->constrained('users');
             $table->timestamp('requested_timestamp')->default(null);
 
             $table->boolean('type')->default(1);
 
             $table->boolean('status')->default(0);
-            
+
             $table->foreignId('item_id')->nullable()->constrained('items');
             $table->string('quantity')->nullable();
             $table->string('sm_remark')->nullable();

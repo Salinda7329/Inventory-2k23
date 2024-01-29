@@ -82,7 +82,7 @@ class RequestsController extends Controller
             foreach ($requests as $request) {
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->type . "</td>
+                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_id_user . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>

@@ -23,4 +23,15 @@ class Request extends Model
         'store_manager_timestamp',
         'isActive',
     ];
+
+    public function getTypeRequestAttribute()
+    {
+        $status = [
+            1 =>'request_item',
+            2 => 'return_item',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['type']] ?? 'Unknown Status';
+    }
 }
