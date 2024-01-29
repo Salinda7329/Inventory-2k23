@@ -49,8 +49,6 @@
 
 <body>
 
-
-    {{-- side nav bar --}}
     @include('PurchasingManager.PMComponents.PM-SideMenu')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">

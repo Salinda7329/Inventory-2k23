@@ -48,4 +48,60 @@ class RequestsController extends Controller
             return response()->json(['error' => 'Failed to create request.', 'status' => 500]);
         }
     }
+
+    public function fetchAllRequestData()
+    {
+
+        // $items = Item::all();
+        // Retrieve only active items
+        $requests = ModelsRequest::where('isActive', 1)->get();
+
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='all_request_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Type</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Remark</th>
+                        <th>Requested_by</th>
+                        <th>Requested_at</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($requests as $request) {
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->type . "</td>
+                                        <td>" . $request->item_id_user . "</td>
+                                        <td>" . $request->quantity_user . "</td>
+                                        <td>" . $request->user_remark . "</td>
+                                        <td>" . $request->request_by . "</td>
+                                        <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $request->status . "</td>
+                                        <td>Action Modal</td>
+                                    </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 }
