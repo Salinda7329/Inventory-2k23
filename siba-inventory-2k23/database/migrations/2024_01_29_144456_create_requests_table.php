@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->boolean('status')->default(0);
 
-            $table->foreignId('item_id')->nullable()->constrained('items');
+            $table->foreignId('item_id')->nullable();
             $table->string('quantity')->nullable();
             $table->string('sm_remark')->nullable();
             $table->foreignId('store_manager')->nullable()->constrained('users');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\ItemsController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,4 +35,15 @@ class Request extends Model
 
         return $status[$this->attributes['type']] ?? 'Unknown Status';
     }
+
+    public function requestedByUser()
+    {
+        return $this->belongsTo(User::class, 'request_by', 'id');
+    }
+
+    public function getItemById()
+    {
+        return $this->belongsTo(Item::class, 'item_id_user', 'id');
+    }
+
 }
