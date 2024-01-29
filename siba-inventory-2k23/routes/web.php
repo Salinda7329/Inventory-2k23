@@ -166,6 +166,12 @@ Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index
 Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');
 })->name('storeManager.requests');
+//route to fetch all request data
+Route::get('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
+
+
+
+
 
 //store visit route
 Route::get('/visit-store', function () {

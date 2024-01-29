@@ -8,9 +8,8 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
             <div class="card">
                 <div class="card-header">
-                    <H3>Requested Items</H3>
+                    Requested Items by Users
                 </div>
-                <br><br>
                 <div class="card-body">
                     <div id="show_all_requests_data"></div>
                 </div>
@@ -18,8 +17,25 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
             <script>
                 $(document).ready(function() {
-                    $('#example').DataTable();
-                });
+                    fetchAllRequestData();
+                    function fetchAllRequestData() {
+                    $.ajax({
+                        url: '{{ route('fetchAllRequestData') }}',
+                        method: 'get',
+                        success: function(response) {
+                            // console.log(response);
+                            $('#show_all_requests_data').html(response);
+                            // //Make table a data table
+                            $('#all_request_data').DataTable({
+                                // Enable horizontal scrolling
+                                // "scrollX": true,
+                            });
+                        }
+
+
+                    });
+                }
+                })
             </script>
         </div>
     </div>
