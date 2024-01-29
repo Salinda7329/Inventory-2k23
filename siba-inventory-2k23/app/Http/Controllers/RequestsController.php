@@ -93,9 +93,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td>
-                            <a href='#' id='" . $request->item_user . "' class='processRequestButton btn-sm btn-outline-secondary'>Process</a>|<a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal'
-                            data-bs-target='#actionModal' class='btn-sm btn-outline-primary requestActionButton'>Action</a>
+                                        <td><a data-status='" . $request->status . "' href='#' id='". $request->item_user."' class='processRequestButton btn-sm ' >".$request->getStatusRequestAttribute2()."</a>|<a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton'>Action</a>
                             </td>
                                     </tr>";
             }
@@ -113,20 +111,23 @@ class RequestsController extends Controller
     }
 
 
+
+
     public function RequestAction(Request $request)
     {
         $itemUser = $request->input('itemUser');
 
-        // Find the request by item_user and update the status
-        $request = Request::where('item_user', $itemUser)->first();
-        if ($request) {
-            if ($request->status === 0) {
-                $request->status = 1;
-                $request->save();
-                return response()->json(['success' => true, 'message' => 'Status updated successfully']);
-            } else {
-                return response()->json(['success' => false, 'message' => 'Status is already 1']);
-            }
+        // Find the request by item_user
+        $itemRequest = ModelsRequest::where('item_user', $itemUser)->first();
+
+        if ($itemRequest) {
+            // Toggle the status between 0 and 1
+            $itemRequest->status = $itemRequest->status == 0 ? 1 : 0;
+            $itemRequest->save();
+
+            $newStatus = $itemRequest->status;
+
+            return response()->json(['success' => true, 'message' => $newStatus]);
         } else {
             return response()->json(['success' => false, 'message' => 'Request not found']);
         }
