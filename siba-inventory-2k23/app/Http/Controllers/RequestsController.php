@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\Product;
+use App\Models\Request as ModelsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Validation\ValidationException;
 
@@ -18,11 +19,14 @@ class RequestsController extends Controller
                 'request_by' => ['required'],
                 'quantity_user' => ['required'],
                 'user_remark' => ['required'],
+                'item_id_user' => ['required'],
+                'type' => ['required'],
+                'status' => ['required'],
             ]);
             return DB::transaction(function () use ($input) {
-                 // Use Carbon to get the current timestamp
-                 $currentTimestamp = now();
-                Request::create([
+                // Use Carbon to get the current timestamp
+                $currentTimestamp = now();
+                ModelsRequest::create([
                     'item_id_user' => $input['item_id_user'],
                     'quantity_user' => $input['quantity_user'],
                     'user_remark' => $input['user_remark'],
@@ -31,8 +35,9 @@ class RequestsController extends Controller
                     'type' => $input['type'],
                     'status' => $input['status'],
                 ]);
-                // Return the success response after the request is created
-                return response()->json(['message' => 'New product request created successfully.', 'status' => 200]);
+
+                // Return the success response after the user is created
+                return response()->json(['message' => 'New request created successfully.', 'status' => 200]);
             });
         } catch (ValidationException $e) {
             // Handle validation errors
@@ -40,7 +45,7 @@ class RequestsController extends Controller
         } catch (QueryException $e) {
             // Log the error if needed: \Log::error($e);
 
-            return response()->json(['error' => 'Failed to create product.', 'status' => 500]);
+            return response()->json(['error' => 'Failed to create request.', 'status' => 500]);
         }
     }
 }

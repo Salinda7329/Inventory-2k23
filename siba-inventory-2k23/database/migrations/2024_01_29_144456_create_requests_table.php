@@ -16,17 +16,17 @@ return new class extends Migration
             $table->string('item_id_user')->nullable();
             $table->string('quantity_user')->nullable();
             $table->string('user_remark')->nullable();
-            $table->foreignId('request_by')->constrained('users')->nullable()->default(null);
+            $table->foreignId('request_by')->constrained('users')->default(null);
 
 
-            $table->timestamp('requested_timestamp')->nullable()->default(null);
+            $table->timestamp('requested_timestamp')->default(null);
             $table->boolean('type')->default(1);
             $table->boolean('status')->default(0);
-            $table->foreignId('item_id')->constrained('items')->nullable();;
+            $table->foreignId('item_id')->nullable()->constrained('items');
             $table->string('quantity')->nullable();
             $table->string('sm_remark')->nullable();
-            $table->foreignId('store_manager')->constrained('users')->nullable()->default(null);
-            $table->timestamp('store_manager_timestamp')->nullable()->default(null);
+            $table->foreignId('store_manager')->nullable()->constrained('users');
+            $table->timestamp('store_manager_timestamp')->nullable();
             $table->boolean('isActive')->default(1);
             $table->timestamps();
         });

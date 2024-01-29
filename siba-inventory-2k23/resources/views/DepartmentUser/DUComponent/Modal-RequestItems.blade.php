@@ -23,7 +23,7 @@ auto watenn dann --}}
 
                     <div class="mb-3">
                         <label for="product_name" class="form-label">Product Name</label>
-                        <input class="form-control" type="text" id="product_name" name="product_name" placeholder=""
+                        <input class="form-control" type="text" id="product_name" name="" placeholder=""
                             readonly />
                     </div>
                     <div class="mb-3">
@@ -45,11 +45,14 @@ auto watenn dann --}}
                     <div class="mb-3">
                         <label for="comment" class="form-label">Comment</label>
                         <textarea class="form-control" id="user_remark" name="user_remark" rows="3"></textarea>
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <input type="hidden" id="request_by" name="request_by" value="Auth::user()->id">
-
+                    <input type="hidden" id="request_by" name="request_by" value="{{ Auth::user()->id }}">
+                    {{-- // request_item --}}
                     <input type="hidden" id="type" name="type" value="1">
+                    {{-- // user_request --}}
+                    <input type="hidden" id="status" name="status" value="0">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -65,7 +68,7 @@ auto watenn dann --}}
                     var form = $('#RequestItemForm');
 
                     // Attach the input event handler to the form inputs
-                    form.find('input, select').on('input', function() {
+                    form.find('input, select, textarea').on('input', function() {
                         $(this).next('.input-error').hide();
                     });
                     // Attach the keypress event handler to the form inputs
@@ -155,11 +158,11 @@ auto watenn dann --}}
                                 if (response.status === 200) {
                                     // Handle the successful response
                                     // Close the modal directly
-                                    $('#modalAddnewproduct').modal('hide');
+                                    $('#modalrequestitem').modal('hide');
                                     // Example: Display a success message or update the UI
-                                    alert('Product created successfully!');
+                                    alert('Request created successfully!');
                                     // reset form
-                                    $('#createProductsForm')[0].reset();
+                                    $('#RequestItemForm')[0].reset();
                                     // You can update the UI or perform other actions here
 
                                     //fetch product data from database function
@@ -180,9 +183,9 @@ auto watenn dann --}}
                                 } else {
                                     // Handle other status codes if needed
                                     // For example, display an error message
-                                    alert('Failed to create product. Please try again.');
+                                    alert('Failed to create request. Please try again.');
                                     // reset form
-                                    $('#createProductsForm')[0].reset();
+                                    $('#RequestItemForm')[0].reset();
                                 }
                             },
 
