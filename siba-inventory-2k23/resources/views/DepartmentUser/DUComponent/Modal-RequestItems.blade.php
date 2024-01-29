@@ -37,26 +37,48 @@ auto watenn dann --}}
                             readonly />
                     </div>
                     <div class="mb-3">
-                        <label for="quentity" class="form-label">Quentity</label>
+                        <label for="quentity" class="form-label">Quantity</label>
                         <input type="text" id="quantity_user" name="quantity_user" class="form-control"
                             placeholder="" />
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
                     <div class="mb-3">
                         <label for="comment" class="form-label">Comment</label>
                         <textarea class="form-control" id="user_remark" name="user_remark" rows="3"></textarea>
                     </div>
-                    
+
                     <input type="hidden" id="request_by" name="request_by" value="Auth::user()->id">
+
+                    <input type="hidden" id="type" name="type" value="1">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="button" class="btn btn-primary">request</button>
+                <button type="submit" type="button" class="btn btn-primary">request</button>
             </div>
             </form>
             <script>
                 $(document).ready(function() {
+
+                    // // Select the form using its id
+                    var form = $('#RequestItemForm');
+
+                    // Attach the input event handler to the form inputs
+                    form.find('input, select').on('input', function() {
+                        $(this).next('.input-error').hide();
+                    });
+                    // Attach the keypress event handler to the form inputs
+                    form.find('input').keypress(function(e) {
+                        // If the pressed key is Enter (key code 13)
+                        if (e.which === 13) {
+                            // Prevent the default form submission behavior
+                            e.preventDefault();
+
+                            // Trigger the form submission
+                            form.submit();
+                        }
+                    });
 
                     // Add an event listener to the modal close button
                     $('.btn-close').on('click', function() {
@@ -65,7 +87,7 @@ auto watenn dann --}}
                         $('.input-error').hide();
                     });
 
-                    //edit user button
+                    //request  item button
                     $(document).on('click', '.requestItemButton', function(e) {
                         e.preventDefault();
                         let item_Id = $(this).attr('id');
@@ -109,6 +131,65 @@ auto watenn dann --}}
                             }
                         });
                     }
+
+                    // Add a submit event listener to the form
+                    form.submit(function(event) {
+                        // Prevent the default form submission behavior
+                        event.preventDefault();
+                        // Serialize the form data into a URL-encoded string
+                        var formData = new FormData(form[0]);
+
+                        // Use jQuery Ajax to send a POST request with the form data
+                        $.ajax({
+                            url: '/user/newRequest',
+                            type: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            dataType: 'json',
+                            success: function(response) {
+                                // Clear existing error messages
+                                $('.text-danger').text('');
+
+                                // Check if the response status is 200
+                                if (response.status === 200) {
+                                    // Handle the successful response
+                                    // Close the modal directly
+                                    $('#modalAddnewproduct').modal('hide');
+                                    // Example: Display a success message or update the UI
+                                    alert('Product created successfully!');
+                                    // reset form
+                                    $('#createProductsForm')[0].reset();
+                                    // You can update the UI or perform other actions here
+
+                                    //fetch product data from database function
+                                    fetchAllProductData();
+                                } else if (response.status === 422) {
+                                    // Handle validation errors
+                                    var errors = response.errors;
+
+                                    for (var key in errors) {
+                                        // Find the form field
+                                        var field = $('[name="' + key + '"]');
+                                        // Display the error message
+                                        field.next('.input-error').text(errors[key][0]).show();
+                                    }
+
+                                    $('#password-error').text(errors[key][0]).show();
+
+                                } else {
+                                    // Handle other status codes if needed
+                                    // For example, display an error message
+                                    alert('Failed to create product. Please try again.');
+                                    // reset form
+                                    $('#createProductsForm')[0].reset();
+                                }
+                            },
+
+
+                        });
+                    });
+
                 });
             </script>
         </div>

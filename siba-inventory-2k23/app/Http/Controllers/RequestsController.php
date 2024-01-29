@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Item;
+use App\Models\Product;
+use Doctrine\DBAL\Query\QueryException;
+use Illuminate\Validation\ValidationException;
 
 class RequestsController extends Controller
 {
@@ -10,19 +15,24 @@ class RequestsController extends Controller
     {
         try {
             $input = $request->validate([
-                'category_id' => ['required'],
-                'product_name' => ['required', 'string', 'max:255', 'unique:products'],
-                'user_id_hidden' => ['required'],
+                'request_by' => ['required'],
+                'quantity_user' => ['required'],
+                'user_remark' => ['required'],
             ]);
             return DB::transaction(function () use ($input) {
-                Product::create([
-                    'category_id' => $input['category_id'],
-                    'product_name' => $input['product_name'],
-                    'created_by' => $input['user_id_hidden'],
+                 // Use Carbon to get the current timestamp
+                 $currentTimestamp = now();
+                Request::create([
+                    'item_id_user' => $input['item_id_user'],
+                    'quantity_user' => $input['quantity_user'],
+                    'user_remark' => $input['user_remark'],
+                    'request_by' => $input['request_by'],
+                    'requested_timestamp' => $currentTimestamp,
+                    'type' => $input['type'],
+                    'status' => $input['status'],
                 ]);
-
-                // Return the success response after the user is created
-                return response()->json(['message' => 'New product created successfully.','status' => 200]);
+                // Return the success response after the request is created
+                return response()->json(['message' => 'New product request created successfully.', 'status' => 200]);
             });
         } catch (ValidationException $e) {
             // Handle validation errors

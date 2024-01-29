@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StoreManagerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -230,6 +231,10 @@ Route::get('/user/view-store', function () {
 Route::get('/dUser/RequestItemTableView', function(){
     return view('DepartmentUser.storereqtable');
 });
+
+//route to make request
+Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
+
 
 //-------------------------------------------------End Department user------------------------------------------------
 
