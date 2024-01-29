@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>HR-Home | Inventory | SIBA Dynamics</title>
+    <title>Add New EMP | Inventory | SIBA Dynamics</title>
 
     <meta name="description" content="" />
 
