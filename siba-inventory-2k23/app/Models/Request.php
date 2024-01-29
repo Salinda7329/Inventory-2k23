@@ -50,10 +50,19 @@ class Request extends Model
     {
         $status = [
             0 =>'user_request',
-            1 => 'store_manager_processing',
-            2 => 'store_manager_processing',
-            3 => 'store_manager_accepted',
-            4 => 'store_manger_rejected',
+            1 => 'sm_processing',
+            2 => 'sm_accepted',
+            3 => 'sm_rejected',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['status']] ?? 'Unknown Status';
+    }
+    public function getStatusRequestAttribute2()
+    {
+        $status = [
+            0 =>'Process',
+            1 => 'Processing',
             // Add more roles as needed
         ];
 

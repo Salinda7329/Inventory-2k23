@@ -31,6 +31,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                     // Enable horizontal scrolling
                                     // "scrollX": true,
                                 });
+
                             }
 
 
@@ -40,10 +41,8 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                     // Add event listeners for process buttons
                     $(document).on("click", ".processRequestButton", function(e) {
                         e.preventDefault();
-                        console.log("Process button clicked");
 
                         const itemUser = this.id;
-                        console.log("Item User:", itemUser);
 
                         // Send AJAX request to the backend using jQuery
                         $.ajax({
@@ -58,7 +57,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                             }),
                             dataType: 'json',
                             success: function(data) {
-                                console.log("Request action successful:", data);
+                                fetchAllRequestData();
                             },
                             error: function(error) {
                                 console.error('Error performing request action:', error);
