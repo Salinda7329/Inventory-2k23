@@ -31,7 +31,7 @@ class ProductController extends Controller
                 ]);
 
                 // Return the success response after the user is created
-                return response()->json(['message' => 'New product created successfully.','status' => 200]);
+                return response()->json(['message' => 'New product created successfully.', 'status' => 200]);
             });
         } catch (ValidationException $e) {
             // Handle validation errors
@@ -57,7 +57,7 @@ class ProductController extends Controller
                 "<table id='all_product_data' class='display'>
                     <thead>
                         <tr>
-                        <th>Product ID</th>
+                        <th>Product</th>
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Input Date</th>
@@ -71,16 +71,16 @@ class ProductController extends Controller
             foreach ($products as $product) {
                 $response .=
                     "<tr>
-                            <td>" . $product->id . "</td>
-                            <td>" . $product->product_name . "</td>
-                            <td>" . $product->categoryData->category_name . "</td>
-                            <td>" . $product->created_at . "</td>
-                            <td>" . $product->createdByUser->name . "</td>
-                            <td>" . $product->getIsActiveProductAttribute() . "</td>
-                            <td><a href='#' id='" . $product->id . "'  data-bs-toggle='modal'
-                            data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a>
-                            </td>
-                        </tr>";
+                                <td>" . $product->id . "</td>
+                                <td>" . $product->product_name . "</td>
+                                <td><a href='/category/" . $product->categoryData->id . "'>" . $product->categoryData->category_name . "</a></td>
+                                <td>" . $product->created_at . "</td>
+                                <td>" . $product->createdByUser->name . "</td>
+                                <td>" . $product->getIsActiveProductAttribute() . "</td>
+                                <td><a href='#' id='" . $product->id . "'  data-bs-toggle='modal'
+                                    data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a>
+                                </td>
+                            </tr>";
             }
 
             $response .=
@@ -93,7 +93,8 @@ class ProductController extends Controller
         }
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $product_Id = $request->product_Id;
         //find data of id using Student model
         $product = Product::find($product_Id);
@@ -120,6 +121,7 @@ class ProductController extends Controller
         $products = Product::all();
         return response()->json($products);
     }
+<<<<<<< Updated upstream
 
     public function fetchProductDetails(Request $request)
     {
@@ -134,4 +136,6 @@ class ProductController extends Controller
         ]);
     }
 
+=======
+>>>>>>> Stashed changes
 }
