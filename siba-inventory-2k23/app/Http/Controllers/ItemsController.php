@@ -54,7 +54,7 @@ class ItemsController extends Controller
         }
     }
 
-    public function fetchAllItemData()
+    public function fetchAllItemDataOriginal()
     {
 
         $items = Item::all();
@@ -149,5 +149,90 @@ class ItemsController extends Controller
         return response()->json([
             'status' => 200,
         ]);
+    }
+
+    //Show item data only for users with user role
+    public function fetchAllItemData()
+    {
+        // Check user role
+        $userRole = auth()->user()->role; // Assuming you are using Laravel's authentication
+
+        $items = Item::all();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($items->count() > 0) {
+
+            $response .=
+                "<table id='all_item_data' class='display'>
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Category</th>
+                        <th>Product Name</th>
+                        <th>Brand Name</th>
+                        <th>PO No</th>
+                        <th>Item Name</th>
+                        <th>Condition</th>
+                        <th>Condition Updated By</th>
+                        <th>Condition Updated TimeStamp</th>
+                        <th>Items remaining</th>
+                        <th>Lower limit</th>
+                        <th>Input TimeStamp</th>
+                        <th>Created By</th>
+                        <th>Updated TimeStamp</th>
+                        <th>Status</th>
+                        <th>Action</th>";
+
+            // Display "New Action2" column only if user role is 1
+            if ($userRole == 1) {
+                $response .= "<th>Action</th>";
+            }
+
+            $response .=
+                "</tr>
+                </thead>
+                <tbody>";
+
+            foreach ($items as $item) {
+                $response .= "<tr>
+                                <td>" . $item->id . "</td>
+                                <td>" . $item->productData->categoryData->category_name . "</td>
+                                <td>" . $item->productData->product_name . "</td>
+                                <td>" . $item->brandData->brand_name . "</td>
+                                <td>" . $item->po_no . "</td>
+                                <td>" . $item->item_name . "</td>
+                                <td>" . $item->getIsCondtionItemAttribute() . "</td>
+                                <td>" . $item->conditionUpdatedByUser->name . "</td>
+                                <td>" . $item->condition_updated_timestamp . "</td>
+                                <td>" . $item->items_remaining . "</td>
+                                <td>" . $item->lower_limit . "</td>
+                                <td>" . $item->created_at . "</td>
+                                <td>" . $item->createdByUser->name . "</td>
+                                <td>" . $item->updated_at . "</td>
+                                <td>" . $item->getIsActiveItemAttribute() . "</td>
+                                <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
+                                data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
+                                </td>";
+
+                // Display "New Action2" column only if user role is 1
+                if ($userRole == 1) {
+                    $response .= "<td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
+                    data-bs-target='#modalrequestitem' class='requestItemButton'>Request Item</a>
+                    </td>";
+                }
+
+                $response .= "</tr>";
+            }
+
+            $response .=
+                "</tbody>
+            </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
     }
 }
