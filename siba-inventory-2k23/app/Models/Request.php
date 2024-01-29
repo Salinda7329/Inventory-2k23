@@ -46,4 +46,18 @@ class Request extends Model
         return $this->belongsTo(Item::class, 'item_user', 'id');
     }
 
+    public function getStatusRequestAttribute()
+    {
+        $status = [
+            0 =>'user_request',
+            1 => 'store_manager_processing',
+            2 => 'store_manager_processing',
+            3 => 'store_manager_accepted',
+            4 => 'store_manger_rejected',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['status']] ?? 'Unknown Status';
+    }
+
 }

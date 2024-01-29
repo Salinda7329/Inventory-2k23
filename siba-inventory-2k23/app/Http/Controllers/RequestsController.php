@@ -92,8 +92,12 @@ class RequestsController extends Controller
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
-                                        <td>" . $request->status . "</td>
-                                        <td>Action Modal</td>
+                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td>
+                            <a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal'
+                            data-bs-target='#processModal' class='editUserButton btn-sm btn-outline-secondary'>Process</a>|<a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal'
+                            data-bs-target='#actionModal' class='btn-sm btn-outline-primary requestActionButton'>Action</a>
+                            </td>
                                     </tr>";
             }
 

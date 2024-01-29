@@ -40,5 +40,5 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
         </div>
     </div>
 </div>
-@include('storeManager.SMcomponent.issue-item-buttonModal-requestedtable')
-@include('storeManager.SMcomponent.cancel-button-modal-request-table')
+@include('storeManager.SMcomponent.process-item-buttonModal-requestedtable')
+@include('storeManager.SMcomponent.action-item-buttonModal-requestedtable')
