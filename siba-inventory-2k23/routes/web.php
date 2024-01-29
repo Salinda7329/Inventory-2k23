@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StoreManagerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -87,6 +88,8 @@ Route::post('/pm/Product/update', [ProductController::class, 'update'])->name
 ('product.update');
 // route to get all product details
 Route::get('/products/fetch', [ProductController::class, 'fetchProducts'])->name('products.fetch');
+//route to fetch all product data for store
+Route::get('/products/fetchProductDetails', [ProductController::class, 'fetchProductDetails'])->name('fetchProductDetails');
 
 
 //category view
@@ -117,8 +120,10 @@ Route::get('/pm/addNewItem', function () {
 })->name('pm.item');
 // create new item
 Route::post('/pm/newItem', [ItemsController::class, 'create'])->name('pm.newItem');
-//route to fetch all item data
+//route to fetch all item data ( Not for users)
 Route::get('/pm/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemData'])->name('fetchAllItemData');
+//route to fetch all item data ( Only for users)
+Route::get('/user/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemDataUser'])->name('fetchAllItemDataUser');
 //route to edit product data
 Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit');
 //route to update item data
@@ -157,10 +162,10 @@ Route::middleware([
 //home route
 Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-//view requested items route
-Route::get('/view-requested-items', function () {
+//view requested items by users
+Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');
-});
+})->name('storeManager.requests');
 
 //store visit route
 Route::get('/visit-store', function () {
@@ -222,11 +227,14 @@ Route::get('user-update-profile', function () {
 Route::get('/user/view-store', function () {
     return view('DepartmentUser.visit-store-user');
 });
-
 //requested item table view
 Route::get('/dUser/RequestItemTableView', function(){
     return view('DepartmentUser.storereqtable');
 });
+
+//route to make request
+Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
+
 
 //-------------------------------------------------End Department user------------------------------------------------
 
@@ -253,8 +261,8 @@ Route::get('/HR-Home' , function(){
     return view('HumanResource.HR-Cleark.HRC-Home');
 });
 
-Route::get('/HR-AddNewUser' , function(){
-    return view('HumanResource.HR-Cleark.HRC-Employees');
+Route::get('/HR-AddNewEMP' , function(){
+    return view('HumanResource.AddNewEMP');
 });
 
 

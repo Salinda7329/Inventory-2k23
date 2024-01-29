@@ -72,7 +72,7 @@
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Requested Item</span></li>
       <!-- Forms -->
       <li class="menu-item">
-        <a href="/view-requested-items" class="menu-link">
+        <a href="/storeManager/view-requested-items" class="menu-link">
           <i class="menu-icon tf-icons bx bx-detail"></i>
           <div data-i18n="Form Elements">View Request</div>
         </a>

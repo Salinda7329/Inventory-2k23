@@ -23,6 +23,7 @@ return new class extends Migration
             $table->timestamp('condition_updated_timestamp')->nullable()->default(null);
             $table->string('items_remaining')->nullable()->default(null);
             $table->string('lower_limit')->nullable()->default(null);
+            $table->boolean('availability')->default(1);
             $table->foreignId('created_by')->constrained('users')->nullable()->default(null);
             $table->boolean('isActive')->default(1);
             $table->timestamps();
