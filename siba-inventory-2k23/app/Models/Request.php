@@ -27,8 +27,8 @@ class Request extends Model
     public function getTypeRequestAttribute()
     {
         $status = [
-            1 =>'request_item',
-            2 => 'return_item',
+            1 =>'Request',
+            2 => 'Return',
             // Add more roles as needed
         ];
 
