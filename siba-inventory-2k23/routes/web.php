@@ -244,8 +244,8 @@ Route::get('/dUser/RequestItemTableView', function(){
 
 //route to make request
 Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
-
-
+// move this route from HR route group
+Route::get('/categot/{category_id}', 'ProductController@showItemsByCategory')->name('itemsByCategory');
 //-------------------------------------------------End Department user------------------------------------------------
 
 
@@ -276,7 +276,7 @@ Route::get('/HR-AddNewEMP' , function(){
 });
 
 ///////////////////
-Route::get('/categot/{category_id}', 'ProductController@showItemsByCategory')->name('itemsByCategory');
+
 ///////////////////
 
 
