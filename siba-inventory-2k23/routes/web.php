@@ -12,8 +12,9 @@ use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 // login page
+// default page when first load /
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 // home page
 Route::get('/home', function () {
