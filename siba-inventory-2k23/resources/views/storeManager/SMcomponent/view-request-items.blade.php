@@ -15,141 +15,11 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                 </div>
             </div>
 
-            {{-- <script>
-                $(document).ready(function() {
-                    fetchAllRequestData();
-
-                    showActionButton();
-
-                    function showActionButton() {
-                    // Select the button with the specific itemUser value
-                    var button = $('.processRequestButton');
-                    // Show or hide action button based on data-status
-                    button.each(function() {
-                        console.log('It worked');
-                        var status = $(this).data('status');
-                        var actionButton = $(this).next('.actionRequestButton');
-
-                        if (status == 0) {
-                            actionButton.hide();
-                        } else {
-                            actionButton.show();
-                        }
-                    });
-                }
-
-                    function fetchAllRequestData() {
-                        $.ajax({
-                            url: '{{ route('fetchAllRequestData') }}',
-                            method: 'get',
-                            success: function(response) {
-                                // console.log(response);
-                                $('#show_all_requests_data').html(response);
-                                // //Make table a data table
-                                $('#all_request_data').DataTable({
-                                    // Enable horizontal scrolling
-                                    // "scrollX": true,
-                                });
-
-                            }
-
-
-                        });
-                    }
-
-                    // Add event listeners for process buttons
-                    $(document).on("click", ".processRequestButton", function(e) {
-                        e.preventDefault();
-
-                        const itemUser = this.id;
-
-                        // Send AJAX request to the backend using jQuery
-                        $.ajax({
-                            url: '{{ route('RequestAction') }}',
-                            type: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            data: JSON.stringify({
-                                itemUser: itemUser
-                            }),
-                            dataType: 'json',
-                            success: function(data) {
-                                fetchAllRequestData();
-                            },
-                            error: function(error) {
-                                console.error('Error performing request action:', error);
-                            }
-                        });
-                    });
-                })
-            </script> --}}
-            {{-- <script>
-                $(document).ready(function() {
-                    fetchAllRequestData();
-
-                    function fetchAllRequestData() {
-                        // Store a reference to the button
-                        var processButton = $('.processRequestButton');
-                        $.ajax({
-                            url: '{{ route('fetchAllRequestData') }}',
-                            method: 'get',
-                            success: function(response) {
-                                // console.log(response);
-                                $('#show_all_requests_data').html(response);
-                                // //Make table a data table
-                                $('#all_request_data').DataTable({
-                                    // Enable horizontal scrolling
-                                    // "scrollX": true,
-                                });
-
-                                // Check if the text is "Process"
-                                if ($('.processRequestButton').text().trim() === 'Processing') {
-                                    // Remove the existing classes and add the new ones
-                                    $(this).removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-                                }else{
-                                    $(this).removeClass('btn-outline-danger').addClass('btn-outline-secondary');
-                                }
-                            }
-                        });
-                    }
-
-                    // Add event listeners for process buttons
-                    $(document).on("click", ".processRequestButton", function(e) {
-                        e.preventDefault();
-
-                        const itemUser = this.id;
-
-                        // Send AJAX request to the backend using jQuery
-                        $.ajax({
-                            url: '{{ route('RequestAction') }}',
-                            type: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            data: JSON.stringify({
-                                itemUser: itemUser
-                            }),
-                            dataType: 'json',
-                            success: function(data) {
-                                fetchAllRequestData();
-                            },
-                            error: function(error) {
-                                console.error('Error performing request action:', error);
-                            }
-                        });
-                    });
-                });
-            </script> --}}
             <script>
                 $(document).ready(function() {
                     fetchAllRequestData();
 
                     function fetchAllRequestData() {
-                        // Store a reference to the button
-                        var processButton = $('.processRequestButton');
 
                         $.ajax({
                             url: '{{ route('fetchAllRequestData') }}',
@@ -163,19 +33,18 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                     // "scrollX": true,
                                 });
 
-                                // Check if the text is "Processing"
-                                processButton.each(function() {
-                                    var buttonText = $(this).text().trim();
-
-                                    if (buttonText === 'Processing') {
-                                        // Remove the existing classes and add the new ones
-                                        $(this).removeClass('btn-outline-secondary').addClass(
+                                //Change status button color
+                                $('.processRequestButton').each(function() {
+                                    var status = $(this).attr('data-status');
+                                    if (status == "1") {
+                                        $(this).removeClass('btn-outline-primary').addClass(
                                             'btn-outline-danger');
-                                    } else {
+                                    } else if (status == "0") {
                                         $(this).removeClass('btn-outline-danger').addClass(
                                             'btn-outline-secondary');
                                     }
                                 });
+
                             }
                         });
                     }
