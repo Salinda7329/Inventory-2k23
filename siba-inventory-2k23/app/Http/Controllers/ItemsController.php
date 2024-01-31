@@ -131,7 +131,7 @@ class ItemsController extends Controller
 
         // $items = Item::all();
         // Retrieve only active items
-        $items = Item::where('isActive', 1)->get();
+        $items = Item::where('isActive', 1)->where('condition', 1)->where('availability', 1)->get();
 
 
         //returning data inside the table
