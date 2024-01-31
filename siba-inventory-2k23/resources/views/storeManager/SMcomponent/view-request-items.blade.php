@@ -33,7 +33,6 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                     // "scrollX": true,
                                 });
 
-
                                 $('.processRequestButton').each(function() {
                                     var status = $(this).attr('data-status');
                                     if (status == "1") {
@@ -48,7 +47,6 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                             '.requestActionButton').hide();
                                     }
                                 });
-
 
 
                             }
