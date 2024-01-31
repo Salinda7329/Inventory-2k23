@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalissueTitle">Process Request</h5>
+                <h5 class="modal-title" id="modalActionTitle">Process Request</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -38,7 +38,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="type1" class="form-label">Request Remark</label>
-                            <input type="text" class="form-control" id="user_remark1" name="user_remark" readonly disabled>
+                            <input type="text" class="form-control" id="user_remark1" name="user_remark" readonly
+                                disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="status1">Action</label>
+                            <select class="form-select" id="status1" name="status" aria-label="catagory">
+                                <option disabled selected hidden>Select an option</option>
+                                <option value="2">Approve</option>
+                                <option value="3">Reject</option>
+                            </select>
+                            <div class="input-error text-danger" style="display: none"></div>
                         </div>
                         <div class="row">
                             <!-- Left side -->
@@ -64,15 +74,7 @@
 
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="status1">Action</label>
-                            <select class="form-select" id="status1" name="status" aria-label="catagory">
-                                <option disabled selected hidden>Select an option</option>
-                                <option value="2">Approve</option>
-                                <option value="3">Reject</option>
-                            </select>
-                            <div class="input-error text-danger" style="display: none"></div>
-                        </div>
+
                         <div class="mb-3">
                             <label for="comments" class="form-label">Remark</label>
                             <textarea class="form-control" id="sm_remark1" name="sm_remark" rows="3" placeholder="Add your comments here..."></textarea>
@@ -105,7 +107,16 @@
 
                                 console.log(response.type);
                                 // Set id value to the hidden field
-                                $('#type1').val(response.type);
+                                if (response.type == 1) {
+                                    $('#type1').val("Requesting");
+                                    // Set color to red when type is 1
+                                    $('#type1').css('color', 'red');
+                                } else {
+                                    $('#type1').val("Returning");
+                                    // Set color to green when type is not 1
+                                    $('#type1').css('color', 'green');
+                                }
+                                $('#modalActionTitle').text("Process Request - ID " + response.id);
                                 $('#item_user1').val(response.item_user);
                                 $('#quantity_user1').val(response.quantity_user);
                                 $('#user_remark1').val(response.user_remark);
