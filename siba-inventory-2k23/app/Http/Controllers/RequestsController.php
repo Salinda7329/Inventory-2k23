@@ -93,7 +93,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='". $request->item_user."' class='processRequestButton btn-sm requestButtons' >".$request->getRequestProcessAttribute()."</a><a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
+                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='" . $request->item_user . "' class='processRequestButton btn-sm requestButtons' >" . $request->getRequestProcessAttribute() . "</a><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
                             </td>
                                     </tr>";
             }
@@ -132,4 +132,16 @@ class RequestsController extends Controller
             return response()->json(['success' => false, 'message' => 'Request not found']);
         }
     }
+    //fetch request data for reqeust action model
+    public function dataForProcessModal(Request $request)
+    {
+        $request_id = $request->input('request_id');
+
+        // Find the request by item_user
+        $requestData = ModelsRequest::where('id', $request_id)->first();
+
+
+        return response()->json($requestData);
+    }
+
 }
