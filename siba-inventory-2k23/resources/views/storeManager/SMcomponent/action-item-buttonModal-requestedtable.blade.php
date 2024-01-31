@@ -11,11 +11,9 @@
                     @csrf
 
                     {{-- hiidden field to store request id --}}
-                    <input type="text"  name="request_id_hidden"
-                        id="request_id_hidden" hidden>
+                    <input type="text" name="request_id_hidden" id="request_id_hidden" hidden>
                     {{-- hiidden field to store request type --}}
-                    <input type="text"  name="request_type_hidden"
-                        id="request_type_hidden" hidden>
+                    <input type="text" name="request_type_hidden" id="request_type_hidden" hidden>
                     {{-- hiidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="store_manager"
                         id="store_manager_id_hidden" hidden>
@@ -24,7 +22,8 @@
                         <!-- ... (your existing form content) ... -->
                         <div class="mb-3">
                             <label for="type1" class="form-label">User Request Type</label>
-                            <input type="text" class="form-control type1" id="type1" name="type" readonly disabled>
+                            <input type="text" class="form-control type1" id="type1" name="type" readonly
+                                disabled>
                         </div>
                         <div class="row">
                             <div class="col-md-7">
@@ -129,6 +128,7 @@
                                 $('#request_id_hidden').val(response.id);
                                 $('#request_type_hidden').val(response.type);
 
+
                             }
 
 
@@ -176,39 +176,20 @@
                                 // Clear existing error messages
                                 // $('.text-danger').text('');
 
+
                                 // // Check if the response status is 200
-                                // if (response.status === 200) {
-                                //     // Handle the successful response
-                                //     // Close the modal directly
-                                //     $('#modalAddnewproduct').modal('hide');
-                                //     // Example: Display a success message or update the UI
-                                //     alert('Product created successfully!');
-                                //     // reset form
-                                //     $('#createProductsForm')[0].reset();
-                                //     // You can update the UI or perform other actions here
+                                if (response.status === 200) {
+                                    // Close the modal directly
+                                    $('#actionModal').modal('hide');
+                                    //     // Handle the successful response
+                                    //     // reset form
+                                    $('#processRequestForm')[0].reset();
+                                    //     // Example: Display a success message or update the UI
+                                    alert('Request processed successfully!');
 
-                                //     //fetch product data from database function
-                                //     fetchAllProductData();
-                                // } else if (response.status === 422) {
-                                //     // Handle validation errors
-                                //     var errors = response.errors;
-
-                                //     for (var key in errors) {
-                                //         // Find the form field
-                                //         var field = $('[name="' + key + '"]');
-                                //         // Display the error message
-                                //         field.next('.input-error').text(errors[key][0]).show();
-                                //     }
-
-                                //     $('#password-error').text(errors[key][0]).show();
-
-                                // } else {
-                                //     // Handle other status codes if needed
-                                //     // For example, display an error message
-                                //     // alert('Failed to create product. Please try again.');
-                                //     // reset form
-                                //     $('#createProductsForm')[0].reset();
-                                // }
+                                    //fetch  fetchAllRequestData(); function
+                                    fetchAllRequestData();
+                                }
                             },
 
 
@@ -218,51 +199,49 @@
                     // Add an event listener to the modal close button
                     $('#btnClose, .btn-close').on('click', function() {
                         // Reset the form when the close button is clicked
-                        $('#createProductsForm')[0].reset();
+                        $('#processRequestForm')[0].reset();
                         $('.input-error').hide();
                     });
 
-                    function fetchAllProductData() {
+                    function fetchAllRequestData() {
+
                         $.ajax({
-                            url: '{{ route('fetchAllProductData') }}',
+                            url: '{{ route('fetchAllRequestData') }}',
                             method: 'get',
                             success: function(response) {
                                 // console.log(response);
-                                $('#show_all_product_data').html(response);
+                                $('#show_all_requests_data').html(response);
                                 // //Make table a data table
-                                $('#all_user_data').DataTable({
-
+                                $('#all_request_data').DataTable({
                                     // Enable horizontal scrolling
+                                    // "scrollX": true,
                                 });
+
+                                $('.processRequestButton').each(function() {
+                                    var status = $(this).attr('data-status');
+                                    if (status == "1") {
+                                        $(this).removeClass('btn btn-primary').addClass(
+                                            'btn btn-danger');
+                                        $(this).closest('#requestButtonContainer').find(
+                                            '.requestActionButton').show();
+                                    } else if (status == "0") {
+                                        $(this).removeClass('btn btn-danger').addClass(
+                                            'btn btn-primary');
+                                        $(this).closest('#requestButtonContainer').find(
+                                            '.requestActionButton').hide();
+                                    } else{
+                                        $(this).removeClass('btn btn-danger').addClass(
+                                            'btn btn-success');
+                                        $(this).closest('#requestButtonContainer').find(
+                                            '.requestActionButton').hide();
+                                    }
+                                });
+
+
                             }
-
-
                         });
                     }
 
-                    // fetch categories
-                    // $.ajax({
-                    //     url: '{{ route('categories.fetch') }}',
-                    //     method: 'get',
-                    //     success: function(categories) {
-                    //         updateCategoryDropdown(categories);
-                    //     }
-                    // });
-
-                    // Function to update the category dropdown
-                    function updateCategoryDropdown(categories) {
-                        var categoryDropdown = $('#category_id1');
-                        categoryDropdown.empty(); // Clear existing options
-
-                        // Add default option
-                        categoryDropdown.append('<option disabled selected hidden>Select a Category</option>');
-
-                        // Populate the dropdown with categories
-                        $.each(categories, function(index, category) {
-                            categoryDropdown.append('<option value="' + category.id + '">' + category
-                                .category_name + '</option>');
-                        });
-                    }
                 });
             </script>
         </div>

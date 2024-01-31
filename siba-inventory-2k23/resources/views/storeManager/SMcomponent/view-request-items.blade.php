@@ -36,13 +36,18 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                 $('.processRequestButton').each(function() {
                                     var status = $(this).attr('data-status');
                                     if (status == "1") {
-                                        $(this).removeClass('btn-outline-primary').addClass(
-                                            'btn-outline-danger');
+                                        $(this).removeClass('btn btn-primary').addClass(
+                                            'btn btn-danger');
                                         $(this).closest('#requestButtonContainer').find(
                                             '.requestActionButton').show();
                                     } else if (status == "0") {
-                                        $(this).removeClass('btn-outline-danger').addClass(
-                                            'btn-outline-secondary');
+                                        $(this).removeClass('btn btn-danger').addClass(
+                                            'btn btn-primary');
+                                        $(this).closest('#requestButtonContainer').find(
+                                            '.requestActionButton').hide();
+                                    } else{
+                                        $(this).removeClass('btn btn-danger').addClass(
+                                            'btn btn-success');
                                         $(this).closest('#requestButtonContainer').find(
                                             '.requestActionButton').hide();
                                     }
@@ -77,13 +82,13 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                             success: function(data) {
                                 fetchAllRequestData();
                                 // Use the stored reference to update the clicked button's class
-                                if (data.message === 0) {
-                                    clickedButton.removeClass('btn-outline-danger').addClass(
-                                        'btn-outline-secondary');
-                                } else {
-                                    clickedButton.removeClass('btn-outline-secondary').addClass(
-                                        'btn-outline-danger');
-                                }
+                                // if (data.message === 0) {
+                                //     clickedButton.removeClass('btn-outline-danger').addClass(
+                                //         'btn-outline-secondary');
+                                // } else {
+                                //     clickedButton.removeClass('btn-outline-secondary').addClass(
+                                //         'btn-outline-danger');
+                                // }
                             },
                             error: function(error) {
                                 console.error('Error performing request action:', error);

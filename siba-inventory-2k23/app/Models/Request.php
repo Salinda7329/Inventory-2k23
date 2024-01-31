@@ -63,6 +63,8 @@ class Request extends Model
         $status = [
             0 =>'Process',
             1 => 'Processing',
+            2 => 'Processed',
+            3 => 'Processed',
             // Add more roles as needed
         ];
 
