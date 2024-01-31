@@ -45,6 +45,16 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                     }
                                 });
 
+                                $('.processRequestButton').each(function() {
+                                    if ($(this).data('status') == 1) {
+                                        $(this).closest('#requestButtonContainer').find(
+                                            '.requestActionButton').show();
+                                    } else {
+                                        $(this).closest('#requestButtonContainer').find(
+                                            '.requestActionButton').hide();
+                                    }
+                                });
+
                             }
                         });
                     }
