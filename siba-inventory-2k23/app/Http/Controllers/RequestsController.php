@@ -144,4 +144,47 @@ class RequestsController extends Controller
         return response()->json($requestData);
     }
 
+    public function processRequest(Request $request)
+    {
+        $store_manager = $request->store_manager;
+
+
+
+        $quantity = $request->quantity;
+        $sm_remark = $request->sm_remark;
+
+        $currentTimestamp = now();
+        // 'store_manager_timestamp' => $currentTimestamp,
+
+
+        $item_id = $request->item_id;
+        $status = $request->request_status;
+        $type = $request->request_type_hidden;
+
+        if ($type == 1 && $status == 2) {
+            // Update the availability column to 0
+            $updated = Item::where('id', $item_id)->update(['availability' => 0]);
+
+            // if ($updated) {
+            //     return response()->json(['message' => 'Availability updated successfully.']);
+            // } else {
+            //     return response()->json(['message' => 'Item not found.'], 404);
+            // }
+        } else if ($type == 2 && $status == 2) {
+            // Update the availability column to 1
+            $updated = Item::where('id', $item_id)->update(['availability' => 1]);
+        }
+
+        //request type return or request
+        $request_id = $request->request_id_hidden;
+
+        // Find the request by id
+        $RequestRow = ModelsRequest::where('id', $request_id)->update(['status' => $status]);
+
+        if ($RequestRow) {
+            // update the status
+            return response()->json(['success' => true, 'message' => "Request status done"]);
+        }
+
+    }
 }

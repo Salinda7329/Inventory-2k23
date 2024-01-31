@@ -10,6 +10,12 @@
                 <form id="processRequestForm" class="mb-3" method="POST" action="#">
                     @csrf
 
+                    {{-- hiidden field to store request id --}}
+                    <input type="text"  name="request_id_hidden"
+                        id="request_id_hidden" hidden>
+                    {{-- hiidden field to store request type --}}
+                    <input type="text"  name="request_type_hidden"
+                        id="request_type_hidden" hidden>
                     {{-- hiidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="store_manager"
                         id="store_manager_id_hidden" hidden>
@@ -18,7 +24,7 @@
                         <!-- ... (your existing form content) ... -->
                         <div class="mb-3">
                             <label for="type1" class="form-label">User Request Type</label>
-                            <input type="text" class="form-control" id="type1" name="type" readonly disabled>
+                            <input type="text" class="form-control type1" id="type1" name="type" readonly disabled>
                         </div>
                         <div class="row">
                             <div class="col-md-7">
@@ -43,7 +49,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="status1">Action</label>
-                            <select class="form-select" id="status1" name="status" aria-label="catagory">
+                            <select class="form-select" id="status1" name="request_status" aria-label="catagory">
                                 <option disabled selected hidden>Select an option</option>
                                 <option value="2">Approve</option>
                                 <option value="3">Reject</option>
@@ -120,6 +126,8 @@
                                 $('#item_user1').val(response.item_user);
                                 $('#quantity_user1').val(response.quantity_user);
                                 $('#user_remark1').val(response.user_remark);
+                                $('#request_id_hidden').val(response.id);
+                                $('#request_type_hidden').val(response.type);
 
                             }
 
@@ -166,41 +174,41 @@
                             dataType: 'json',
                             success: function(response) {
                                 // Clear existing error messages
-                                $('.text-danger').text('');
+                                // $('.text-danger').text('');
 
-                                // Check if the response status is 200
-                                if (response.status === 200) {
-                                    // Handle the successful response
-                                    // Close the modal directly
-                                    $('#modalAddnewproduct').modal('hide');
-                                    // Example: Display a success message or update the UI
-                                    alert('Product created successfully!');
-                                    // reset form
-                                    $('#createProductsForm')[0].reset();
-                                    // You can update the UI or perform other actions here
+                                // // Check if the response status is 200
+                                // if (response.status === 200) {
+                                //     // Handle the successful response
+                                //     // Close the modal directly
+                                //     $('#modalAddnewproduct').modal('hide');
+                                //     // Example: Display a success message or update the UI
+                                //     alert('Product created successfully!');
+                                //     // reset form
+                                //     $('#createProductsForm')[0].reset();
+                                //     // You can update the UI or perform other actions here
 
-                                    //fetch product data from database function
-                                    fetchAllProductData();
-                                } else if (response.status === 422) {
-                                    // Handle validation errors
-                                    var errors = response.errors;
+                                //     //fetch product data from database function
+                                //     fetchAllProductData();
+                                // } else if (response.status === 422) {
+                                //     // Handle validation errors
+                                //     var errors = response.errors;
 
-                                    for (var key in errors) {
-                                        // Find the form field
-                                        var field = $('[name="' + key + '"]');
-                                        // Display the error message
-                                        field.next('.input-error').text(errors[key][0]).show();
-                                    }
+                                //     for (var key in errors) {
+                                //         // Find the form field
+                                //         var field = $('[name="' + key + '"]');
+                                //         // Display the error message
+                                //         field.next('.input-error').text(errors[key][0]).show();
+                                //     }
 
-                                    $('#password-error').text(errors[key][0]).show();
+                                //     $('#password-error').text(errors[key][0]).show();
 
-                                } else {
-                                    // Handle other status codes if needed
-                                    // For example, display an error message
-                                    alert('Failed to create product. Please try again.');
-                                    // reset form
-                                    $('#createProductsForm')[0].reset();
-                                }
+                                // } else {
+                                //     // Handle other status codes if needed
+                                //     // For example, display an error message
+                                //     // alert('Failed to create product. Please try again.');
+                                //     // reset form
+                                //     $('#createProductsForm')[0].reset();
+                                // }
                             },
 
 
@@ -233,13 +241,13 @@
                     }
 
                     // fetch categories
-                    $.ajax({
-                        url: '{{ route('categories.fetch') }}',
-                        method: 'get',
-                        success: function(categories) {
-                            updateCategoryDropdown(categories);
-                        }
-                    });
+                    // $.ajax({
+                    //     url: '{{ route('categories.fetch') }}',
+                    //     method: 'get',
+                    //     success: function(categories) {
+                    //         updateCategoryDropdown(categories);
+                    //     }
+                    // });
 
                     // Function to update the category dropdown
                     function updateCategoryDropdown(categories) {

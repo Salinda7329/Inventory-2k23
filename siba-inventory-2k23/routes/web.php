@@ -170,10 +170,11 @@ Route::get('/storeManager/view-requested-items', function () {
 //route to fetch all request data
 Route::get('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
 //route to change the status of a request
-Route::post('/storeManager/processRequest', [RequestsController::class, 'RequestAction'])->name('RequestAction');
+Route::post('/storeManager/RequestAction', [RequestsController::class, 'RequestAction'])->name('RequestAction');
 //route to get data for request process modal
 Route::get('/storeManager/dataForProcessModal', [RequestsController::class, 'dataForProcessModal'])->name('dataForProcessModal');
-
+//route to send process reqeust modal data to request controller
+Route::post('/storeManager/processRequest', [RequestsController::class, 'processRequest'])->name('processRequest');
 
 
 

@@ -64,7 +64,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
                         // Send AJAX request to the backend using jQuery
                         $.ajax({
-                            url: '{{ route('RequestAction') }}',
+                            url: '/storeManager/RequestAction',
                             type: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
