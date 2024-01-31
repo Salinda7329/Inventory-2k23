@@ -93,7 +93,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td><a data-status='" . $request->status . "' href='#' id='". $request->item_user."' class='processRequestButton btn-sm ' >".$request->getStatusRequestAttribute2()."</a>|<a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton'>Action</a>
+                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='". $request->item_user."' class='processRequestButton btn-sm requestButtons' >".$request->getRequestProcessAttribute()."</a><a href='#' id='" . $request->item_user . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
                             </td>
                                     </tr>";
             }

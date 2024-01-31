@@ -58,7 +58,7 @@ class Request extends Model
 
         return $status[$this->attributes['status']] ?? 'Unknown Status';
     }
-    public function getStatusRequestAttribute2()
+    public function getRequestProcessAttribute()
     {
         $status = [
             0 =>'Process',
