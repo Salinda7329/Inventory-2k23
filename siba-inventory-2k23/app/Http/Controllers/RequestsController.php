@@ -49,6 +49,7 @@ class RequestsController extends Controller
         }
     }
 
+    //for store manager
     public function fetchAllRequestData()
     {
 
@@ -118,7 +119,8 @@ class RequestsController extends Controller
         $itemUser = $request->input('itemUser');
 
         // Find the request by item_user
-        $itemRequest = ModelsRequest::where('item_user', $itemUser)->first();
+        // $itemRequest = ModelsRequest::where('item_user', $itemUser)->last();
+        $itemRequest = ModelsRequest::where('item_user', $itemUser)->orderBy('created_at', 'desc')->first();
 
         if ($itemRequest) {
             // Toggle the status between 0 and 1
@@ -171,7 +173,6 @@ class RequestsController extends Controller
         }
 
 
-
         // Find the request by id
         $RequestRow = ModelsRequest::where('id', $request_id)->update([
             'status' => $status,
@@ -188,6 +189,7 @@ class RequestsController extends Controller
         }
     }
 
+    //to get user's requests
     public function fetchMyRequestData(Request $request)
     {
 
@@ -246,6 +248,7 @@ class RequestsController extends Controller
         }
     }
 
+    //for user
     public function fetchMyItems(Request $request)
     {
 

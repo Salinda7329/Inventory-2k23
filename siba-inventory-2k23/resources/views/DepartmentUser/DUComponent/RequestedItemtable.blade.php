@@ -25,7 +25,6 @@
 
                         fetchMyRequestData();
 
-                    // fetchMyRequestData();
 
                     function fetchMyRequestData() {
 
@@ -50,42 +49,42 @@
                     }
 
                     // Add event listeners for process buttons
-                    $(document).on("click", ".processRequestButton", function(e) {
-                        e.preventDefault();
+                    // $(document).on("click", ".processRequestButton", function(e) {
+                    //     e.preventDefault();
 
-                        const itemUser = this.id;
+                    //     const itemUser = this.id;
 
-                        // Store a reference to the button
-                        var clickedButton = $(this);
+                    //     // Store a reference to the button
+                    //     var clickedButton = $(this);
 
-                        // Send AJAX request to the backend using jQuery
-                        $.ajax({
-                            url: '/storeManager/RequestAction',
-                            type: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            data: JSON.stringify({
-                                itemUser: itemUser
-                            }),
-                            dataType: 'json',
-                            success: function(data) {
-                                fetchAllRequestData();
-                                // Use the stored reference to update the clicked button's class
-                                // if (data.message === 0) {
-                                //     clickedButton.removeClass('btn-outline-danger').addClass(
-                                //         'btn-outline-secondary');
-                                // } else {
-                                //     clickedButton.removeClass('btn-outline-secondary').addClass(
-                                //         'btn-outline-danger');
-                                // }
-                            },
-                            error: function(error) {
-                                console.error('Error performing request action:', error);
-                            }
-                        });
-                    });
+                    //     // Send AJAX request to the backend using jQuery
+                    //     $.ajax({
+                    //         url: '/storeManager/RequestAction',
+                    //         type: 'POST',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    //         },
+                    //         data: JSON.stringify({
+                    //             itemUser: itemUser
+                    //         }),
+                    //         dataType: 'json',
+                    //         success: function(data) {
+                    //             fetchAllRequestData();
+                    //             // Use the stored reference to update the clicked button's class
+                    //             // if (data.message === 0) {
+                    //             //     clickedButton.removeClass('btn-outline-danger').addClass(
+                    //             //         'btn-outline-secondary');
+                    //             // } else {
+                    //             //     clickedButton.removeClass('btn-outline-secondary').addClass(
+                    //             //         'btn-outline-danger');
+                    //             // }
+                    //         },
+                    //         error: function(error) {
+                    //             console.error('Error performing request action:', error);
+                    //         }
+                    //     });
+                    // });
                 });
             </script>
 
