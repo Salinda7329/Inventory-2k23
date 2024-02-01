@@ -175,6 +175,8 @@ Route::post('/storeManager/RequestAction', [RequestsController::class, 'RequestA
 Route::get('/storeManager/dataForProcessModal', [RequestsController::class, 'dataForProcessModal'])->name('dataForProcessModal');
 //route to send process reqeust modal data to request controller
 Route::post('/storeManager/processRequest', [RequestsController::class, 'processRequest'])->name('processRequest');
+//route to make a request to return an item
+Route::get('/user/request-return', [RequestsController::class, 'makeRequestReturn'])->name('makeRequest.return');
 
 
 

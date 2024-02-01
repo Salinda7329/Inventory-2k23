@@ -254,7 +254,7 @@ class RequestsController extends Controller
 
         $user_id = $request->user_id;
         // Retrieve only active items
-        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type',1)->where('status',2)->get();
+        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 1)->where('status', 2)->get();
 
 
         //returning data inside the table
@@ -293,7 +293,8 @@ class RequestsController extends Controller
                                         <td>" . $request->sm_remark . "</td>
                                         <td>" . $request->storeManagerAttributes->name . "</td>
                                         <td>" . $request->store_manager_timestamp . "</td>
-                                        <td>Action</td>
+                                        <td id='returnButtonContainer'><a href='#' id='" . $request->item_id . "'  data-bs-toggle='modal' data-bs-target='#returnModal' class='returnRequestButton btn-sm btn-outline-primary returnActionButton returnButtons'>Return</a>
+                            </td>
                                     </tr>";
             }
 
@@ -307,5 +308,33 @@ class RequestsController extends Controller
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
         }
+    }
+
+    public function makeRequestReturn(Request $request)
+    {
+        $input = $request->validate([
+            'request_by' => ['required'],
+            'quantity_user' => ['required'],
+            'user_remark' => ['required'],
+            'item_user' => ['required'],
+            'type' => ['required'],
+            'status' => ['required'],
+        ]);
+        return DB::transaction(function () use ($input) {
+            // Use Carbon to get the current timestamp
+            $currentTimestamp = now();
+            ModelsRequest::create([
+                'item_user' => $input['item_user'],
+                'quantity_user' => $input['quantity_user'],
+                'user_remark' => $input['user_remark'],
+                'request_by' => $input['request_by'],
+                'requested_timestamp' => $currentTimestamp,
+                'type' => $input['type'],
+                'status' => $input['status'],
+            ]);
+
+            // Return the success response after the user is created
+            return response()->json(['message' => 'New request created successfully.', 'status' => 200]);
+        });
     }
 }

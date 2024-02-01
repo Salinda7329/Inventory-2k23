@@ -69,6 +69,7 @@
                     <!-- Content -->
 
                     @include('DepartmentUser.DUComponent.user-myItems')
+                    @include('DepartmentUser.DUComponent.Modal-ReturnItems')
 
 
                     {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}

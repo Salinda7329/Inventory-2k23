@@ -7,17 +7,17 @@ auto watenn dann --}}
 </button> --}}
 
 <!-- Modal -->
-<div class="modal fade" id="modalrequestitem" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="returnModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalrequest">Request an Item</h5>
+                <h5 class="modal-title" id="modalrequest">Return Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
 
-                <form id="RequestItemForm" class="mb-3" method="POST" action="#">
+                <form id="returnItemForm" class="mb-3" method="POST" action="#">
                     @csrf
 
 
@@ -50,7 +50,7 @@ auto watenn dann --}}
 
                     <input type="hidden" id="request_by" name="request_by" value="{{ Auth::user()->id }}">
                     {{-- // request_item --}}
-                    <input type="hidden" id="type" name="type" value="1">
+                    <input type="hidden" id="type" name="type" value="2">
                     {{-- // user_request --}}
                     <input type="hidden" id="status" name="status" value="0">
             </div>
@@ -58,14 +58,14 @@ auto watenn dann --}}
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" type="button" class="btn btn-primary">request</button>
+                <button type="submit" type="button" class="btn btn-primary">Return</button>
             </div>
             </form>
             <script>
                 $(document).ready(function() {
 
                     // // Select the form using its id
-                    var form = $('#RequestItemForm');
+                    var form = $('#returnItemForm');
 
                     // Attach the input event handler to the form inputs
                     form.find('input, select, textarea').on('input', function() {
@@ -91,7 +91,7 @@ auto watenn dann --}}
                     });
 
                     //request  item button
-                    $(document).on('click', '.requestItemButton', function(e) {
+                    $(document).on('click', '.returnRequestButton', function(e) {
                         e.preventDefault();
                         let item_Id = $(this).attr('id');
                         // alert(id);
@@ -105,7 +105,8 @@ auto watenn dann --}}
                             },
                             success: function(response) {
 
-                                // console.log(response);
+                                console.log(response.po_no);
+                                console.log('thats it');
                                 // Set id value to the hidden field
                                 $('#item_id').val(response.id);
                                 $('#item_name').val(response.item_name);
