@@ -245,4 +245,64 @@ class RequestsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
+
+    public function fetchMyItems(Request $request)
+    {
+
+        $user_id = $request->user_id;
+        // Retrieve only active items
+        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type',1)->where('status',2)->get();
+
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='all_myItem_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Item_Id</th>
+                        <th>Item_name</th>
+                        <th>Quantity</th>
+                        <th>Sm Remark</th>
+                        <th>Issued_by</th>
+                        <th>Issued_at</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($requests as $request) {
+                $itemName = $request->getItemNameById ? $request->getItemNameById->item_name : 'N/A';
+
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->getTypeRequestAttribute() . "</td>
+                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td>" . $request->item_id . "</td>
+                                        <td>" . $itemName . "</td>
+                                        <td>" . $request->quantity . "</td>
+                                        <td>" . $request->sm_remark . "</td>
+                                        <td>" . $request->storeManagerAttributes->name . "</td>
+                                        <td>" . $request->store_manager_timestamp . "</td>
+                                        <td>Action</td>
+                                    </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 }

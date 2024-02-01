@@ -46,6 +46,16 @@ class Request extends Model
         return $this->belongsTo(Item::class, 'item_user', 'id');
     }
 
+    public function getItemNameById()
+    {
+        return $this->belongsTo(Item::class, 'item_id', 'id');
+    }
+
+    public function storeManagerAttributes()
+    {
+        return $this->belongsTo(User::class, 'store_manager', 'id');
+    }
+
     public function getStatusRequestAttribute()
     {
         $status = [

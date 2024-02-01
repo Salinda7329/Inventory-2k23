@@ -249,6 +249,12 @@ Route::get('/dUser/RequestItemTableView', function(){
 Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
 //route to view user my request history
 Route::post('/user/fetchMyRequestData', [RequestsController::class, 'fetchMyRequestData'])->name('fetchMyRequestData');
+//route to view current items user have
+Route::get('/dUser/user-myItems', function(){
+    return view('DepartmentUser.user-myItems');
+});
+//route to view items user has currently
+Route::post('/user/fetchMyItems', [RequestsController::class, 'fetchMyItems'])->name('fetchMyItems');
 //-------------------------------------------------End Department user------------------------------------------------
 
 
