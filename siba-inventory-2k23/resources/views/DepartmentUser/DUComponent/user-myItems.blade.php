@@ -23,7 +23,7 @@
                     // get the current user id
                     var authenticatedUserId = {{ auth()->id() }};
 
-                        fetchMyRequestData();
+                    fetchMyRequestData();
 
                     // fetchMyRequestData();
 
@@ -53,7 +53,9 @@
                     $(document).on("click", ".processRequestButton", function(e) {
                         e.preventDefault();
 
-                        const itemUser = this.id;
+                        const id = this.id;
+                        const parts = id.split('.');
+                        const itemUser = parts[1]; // Get the part after the dot
 
                         // Store a reference to the button
                         var clickedButton = $(this);

@@ -50,13 +50,22 @@ class RequestsController extends Controller
     }
 
     //for store manager
-    public function fetchAllRequestData()
+    public function fetchAllRequestData(Request $request)
     {
+        $store_manager = $request->sm_id;
 
-        // $items = Item::all();
+        // // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
+
+        $requests = ModelsRequest::where('isActive', 1)
+            ->where(function ($query) use ($store_manager) {
+                $query->where('store_manager', null)
+                    ->orWhere('store_manager', $store_manager);
+            })
+            ->get();
+
         // Retrieve only active items
-        $requests = ModelsRequest::where('isActive', 1)->get();
-
+        // $requests = ModelsRequest::where('isActive', 1)->get();
 
         //returning data inside the table
         $response = '';
@@ -94,7 +103,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='" . $request->item_user . "' class='processRequestButton btn-sm requestButtons' >" . $request->getRequestProcessAttribute() . "</a><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
+                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm requestButtons' >" . $request->getRequestProcessAttribute() . "</a><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
                             </td>
                                     </tr>";
             }
@@ -116,15 +125,16 @@ class RequestsController extends Controller
 
     public function RequestAction(Request $request)
     {
-        $itemUser = $request->input('itemUser');
+        $store_manager = $request->sm_id;
+        $itemUser = $request->itemUser;
 
         // Find the request by item_user
-        // $itemRequest = ModelsRequest::where('item_user', $itemUser)->last();
-        $itemRequest = ModelsRequest::where('item_user', $itemUser)->orderBy('created_at', 'desc')->first();
+        $itemRequest = ModelsRequest::where('item_user', $itemUser)->first();
 
         if ($itemRequest) {
             // Toggle the status between 0 and 1
             $itemRequest->status = $itemRequest->status == 0 ? 1 : 0;
+            $itemRequest->store_manager = $store_manager;
             $itemRequest->save();
 
             $newStatus = $itemRequest->status;
@@ -248,7 +258,7 @@ class RequestsController extends Controller
         }
     }
 
-    //for user
+    //for user. Items now at user
     public function fetchMyItems(Request $request)
     {
 
@@ -256,11 +266,34 @@ class RequestsController extends Controller
         // Retrieve only active items
         $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 1)->where('status', 2)->get();
 
+        $item_ids = ModelsRequest::where('isActive', 1)
+            ->where('request_by', $user_id)
+            ->where('type', 1)
+            ->where('status', 2)
+            ->pluck('item_id');
+
+        // $requests = item_id
+
+        $availability = Item::whereIn('id', $item_ids)
+            ->where('availability', 0)
+            ->get();
+
+        // $requests = ModelsRequest::where('isActive', 1)
+        //     ->where('request_by', $user_id)
+        //     ->where('type', 1)
+        //     ->where('status', 2)
+        //     ->whereHas('item', function ($query) {
+        //         // Check the item's id and availability
+        //         $query->where('id', '=', 'models_requests.item_id')
+        //             ->where('availability', '=', 0);
+        //     })
+        //     ->get();
+
 
         //returning data inside the table
         $response = '';
 
-        if ($requests->count() > 0) {
+        if ($availability->count() > 0) {
 
             $response .=
                 "<table id='all_myItem_data' class='display'>

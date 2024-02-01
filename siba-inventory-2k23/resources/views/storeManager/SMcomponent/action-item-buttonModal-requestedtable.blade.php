@@ -95,6 +95,10 @@
             </div>
             <script>
                 $(document).ready(function() {
+
+                    // get the current user id
+                    var authenticatedSMId = {{ auth()->id() }};
+
                     //edit user button ( role,department,isActive)
                     $(document).on('click', '.actionRequestButton', function(e) {
                         e.preventDefault();
@@ -203,13 +207,23 @@
                         $('.input-error').hide();
                     });
 
+
+
                     function fetchAllRequestData() {
 
                         $.ajax({
                             url: '{{ route('fetchAllRequestData') }}',
-                            method: 'get',
+                            type: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                            data: JSON.stringify({
+                                sm_id: authenticatedSMId,
+                            }),
+                            dataType: 'json',
                             success: function(response) {
-                                // console.log(response);
+                                console.log(response);
                                 $('#show_all_requests_data').html(response);
                                 // //Make table a data table
                                 $('#all_request_data').DataTable({
@@ -229,9 +243,10 @@
                                             'btn btn-primary');
                                         $(this).closest('#requestButtonContainer').find(
                                             '.requestActionButton').hide();
-                                    } else{
+                                    } else {
                                         $(this).removeClass('btn btn-danger').addClass(
                                             'btn btn-success');
+                                        $(this).addAttribute('disabled');
                                         $(this).closest('#requestButtonContainer').find(
                                             '.requestActionButton').hide();
                                     }
