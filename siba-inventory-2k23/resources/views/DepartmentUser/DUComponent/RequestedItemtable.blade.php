@@ -11,10 +11,83 @@
 
             <div class="card">
                 <div class="card-header">
-                    <H3>Requested Items History</H3>
+                    Request History
                 </div>
                 <div class="card-body">
+                    <div id="show_my_request_data"></div>
                 </div>
             </div>
+
+            <script>
+                $(document).ready(function() {
+                    // get the current user id
+                    var authenticatedUserId = {{ auth()->id() }};
+
+                        fetchMyRequestData();
+
+                    // fetchMyRequestData();
+
+                    function fetchMyRequestData() {
+
+                        $.ajax({
+                            url: '{{ route('fetchMyRequestData') }}',
+                            method: 'post',
+                            data: {
+                                user_id: authenticatedUserId, // Include the user ID in the data
+                                _token: '{{ csrf_token() }}' // Include the CSRF token
+                            },
+                            success: function(response) {
+                                // console.log(response);
+                                $('#show_my_request_data').html(response);
+                                // //Make table a data table
+                                $('#all_request_data').DataTable({
+                                    // Enable horizontal scrolling
+                                    // "scrollX": true,
+                                });
+
+                            }
+                        });
+                    }
+
+                    // Add event listeners for process buttons
+                    $(document).on("click", ".processRequestButton", function(e) {
+                        e.preventDefault();
+
+                        const itemUser = this.id;
+
+                        // Store a reference to the button
+                        var clickedButton = $(this);
+
+                        // Send AJAX request to the backend using jQuery
+                        $.ajax({
+                            url: '/storeManager/RequestAction',
+                            type: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                            data: JSON.stringify({
+                                itemUser: itemUser
+                            }),
+                            dataType: 'json',
+                            success: function(data) {
+                                fetchAllRequestData();
+                                // Use the stored reference to update the clicked button's class
+                                // if (data.message === 0) {
+                                //     clickedButton.removeClass('btn-outline-danger').addClass(
+                                //         'btn-outline-secondary');
+                                // } else {
+                                //     clickedButton.removeClass('btn-outline-secondary').addClass(
+                                //         'btn-outline-danger');
+                                // }
+                            },
+                            error: function(error) {
+                                console.error('Error performing request action:', error);
+                            }
+                        });
+                    });
+                });
+            </script>
+
         </div>
     </div>

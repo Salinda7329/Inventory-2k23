@@ -247,6 +247,8 @@ Route::get('/dUser/RequestItemTableView', function(){
 
 //route to make request
 Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
+//route to view user my request history
+Route::post('/user/fetchMyRequestData', [RequestsController::class, 'fetchMyRequestData'])->name('fetchMyRequestData');
 //-------------------------------------------------End Department user------------------------------------------------
 
 

@@ -187,4 +187,62 @@ class RequestsController extends Controller
             return response()->json(['status' => 200, 'message' => "Request status done"]);
         }
     }
+
+    public function fetchMyRequestData(Request $request)
+    {
+
+        $user_id = $request->user_id;
+        // Retrieve only active items
+        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->get();
+
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='all_request_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Type</th>
+                        <th>Item_Id</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Remark</th>
+                        <th>Requested_by</th>
+                        <th>Requested_at</th>
+                        <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->getTypeRequestAttribute() . "</td>
+                                        <td>" . $request->item_user . "</td>
+                                        <td>" . $itemName . "</td>
+                                        <td>" . $request->quantity_user . "</td>
+                                        <td>" . $request->user_remark . "</td>
+                                        <td>" . $request->requestedByUser->name . "</td>
+                                        <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                    </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 }
