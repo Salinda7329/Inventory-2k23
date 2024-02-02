@@ -27,75 +27,7 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Inventory</span>
       </li>
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Layouts">View Request</div>
-        </a>
 
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/pm/ViewRequestedItems" class="menu-link">
-              <div data-i18n="Without menu">View Inventory Request</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="layouts-without-navbar.html" class="menu-link">
-              <div data-i18n="Without navbar">View My Request</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="layouts-container.html" class="menu-link">
-              <div data-i18n="Container">View Request History</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Layouts">New Products</div>
-        </a>
-
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/pm/home" class="menu-link">
-              <div data-i18n="Without menu">Add New Product</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Layouts">New Items</div>
-        </a>
-
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/pm/addNewItem" class="menu-link">
-              <div data-i18n="Without menu">Add New Item</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Layouts">Brands</div>
-        </a>
-
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/pm/addNewBrand" class="menu-link">
-              <div data-i18n="Without menu">Add New Brand</div>
-            </a>
-          </li>
-        </ul>
-      </li>
 
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -118,6 +50,94 @@
             </li>
           </ul>
       </li>
+
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Manage Requests</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/ViewRequestedItems" class="menu-link">
+              <div data-i18n="Without menu">View Inventory Request</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="layouts-without-navbar.html" class="menu-link">
+              <div data-i18n="Without navbar">View My Request</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="layouts-container.html" class="menu-link">
+              <div data-i18n="Container">View Request History</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Manage Items</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/addNewItem" class="menu-link">
+              <div data-i18n="Without menu">Add New Item</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Manage Products</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/home" class="menu-link">
+              <div data-i18n="Without menu">Add New Product</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Manage Brands</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/addNewBrand" class="menu-link">
+              <div data-i18n="Without menu">Add New Brand</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Manage Categories</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/addNewBrand" class="menu-link">
+              <div data-i18n="Without menu">Add New Category</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
 
 
 
