@@ -33,9 +33,9 @@ class AdminDashboardController extends Controller
                         <tr>
                         <th>User_ID</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Epf</th>
                         <th>Name</th>
-                        <th>Role</th>
                         <th>Department</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -48,8 +48,8 @@ class AdminDashboardController extends Controller
                     "<tr>
                             <td>" . $user->id . "</td>
                             <td>" . $user->email . "</td>
+                            <td>" . $user->getRoleNameAttribute() . "</td>
                             <td>" . $user->epf . "</td>
-                            <td>" . $user->name . "</td>
                             <td>";
                             if (Auth::check() && Auth::id() == $user->id) {
                                 $response .= "<span style='color: green;'>{$user->name}</span>";
