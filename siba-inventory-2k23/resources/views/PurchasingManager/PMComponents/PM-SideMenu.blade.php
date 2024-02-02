@@ -131,7 +131,7 @@
 
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="/pm/addNewBrand" class="menu-link">
+            <a href="/pm/addNewCategory" class="menu-link">
               <div data-i18n="Without menu">Add New Category</div>
             </a>
           </li>

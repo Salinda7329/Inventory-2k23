@@ -97,7 +97,21 @@ Route::get('/products/fetchProductDetails', [ProductController::class, 'fetchPro
 //category create
 // category edit PENDING
 // route to get all category details
+//view to add new brand
+Route::get('/pm/addNewBrand', function () {
+    return view('PurchasingManager.add-new-brand');
+})->name('pm.brand');
 Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
+// create new brand
+Route::post('/pm/newBrand', [BrandController::class, 'create'])->name('pm.newBrand');
+//route to fetch all brand data
+Route::get('/pm/home/fetchAllBrandData', [BrandController::class, 'fetchAllBrandData'])->name('fetchAllBrandData');
+//route to edit brand data
+Route::get('/pm/Brand/edit', [BrandController::class, 'edit'])->name('brand.edit');
+//route to update brand data
+Route::post('/pm/Brand/update', [BrandController::class, 'update'])->name('brand.update');
+// route to get all brand details
+Route::get('/brands/fetch', [BrandController::class, 'fetchBrands'])->name('brands.fetch');
 
 
 //view to add new brand
