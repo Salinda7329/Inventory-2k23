@@ -163,18 +163,42 @@ Route::middleware([
 //home route
 Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
+
+
 //view requests by users
 Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');
 })->name('storeManager.requests');
+//route to fetch all requests data
+Route::post('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
+
+
+//view issued items history
+Route::get('/storeManager/view-issued-items-history', function () {
+    return view('storeManager.view-issued-items-history');
+})->name('storeManager.requests');
+//route to fetch all requests history data ( issued items history)
+Route::post('/storeManager/fetchAllRequestsHistory', [RequestsController::class, 'fetchAllRequestsHistory'])->name('fetchAllRequestsHistory');
+
+
+
 //view returns by users
 Route::get('/storeManager/view-return-items', function () {
     return view('storeManager.view-return-item');
 })->name('storeManager.returns');
-//route to fetch all requests data
-Route::post('/storeManager/fetchAllReturnsData', [RequestsController::class, 'fetchAllReturnsData'])->name('fetchAllReturnsData');
 //route to fetch all returns data
-Route::post('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
+Route::post('/storeManager/fetchAllReturnsData', [RequestsController::class, 'fetchAllReturnsData'])->name('fetchAllReturnsData');
+
+//view accepted items history
+Route::get('/storeManager/view-accepted-items-history', function () {
+    return view('storeManager.view-accepted-items-history');
+})->name('storeManager.requests');
+//route to fetch all returns history data
+Route::post('/storeManager/fetchAllReturnsHistory', [RequestsController::class, 'fetchAllReturnsHistory'])->name('fetchAllReturnsHistory');
+
+
+
+
 //route to change the status of a request
 Route::post('/storeManager/RequestAction', [RequestsController::class, 'RequestAction'])->name('RequestAction');
 //route to get data for request process modal

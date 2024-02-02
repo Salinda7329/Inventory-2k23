@@ -60,11 +60,11 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
         <!-- Forms -->
         <li class="menu-item">
-            <a href="/store/History" class="menu-link">
+            <a href="/storeManager/view-issued-items-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Issued Items History</div>
             </a>
-            <a href="/store/History" class="menu-link">
+            <a href="/storeManager/view-accepted-items-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Accepted Items History</div>
             </a>
