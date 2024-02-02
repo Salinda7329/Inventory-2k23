@@ -34,6 +34,10 @@
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Visit Store </div>
             </a>
+            <a href="/Store/Not-Returned_Items" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="User interface">View Not Returned Items</div>
+            </a>
         </li>
 
         <!-- Forms -->
@@ -49,11 +53,21 @@
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View Returns</div>
             </a>
-            <a href="/Store/Not-Returned_Items" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="User interface">View Not Returned Items</div>
-            </a>
             <!-- Components -->
+        </li>
+
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
+        <!-- Forms -->
+        <li class="menu-item">
+            <a href="/store/History" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Issued Items History</div>
+            </a>
+            <a href="/store/History" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Accepted Items History</div>
+            </a>
         </li>
 
 
@@ -72,18 +86,7 @@
             </a>
 
 
-
-
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
-        <!-- Forms -->
-        <li class="menu-item">
-            <a href="/store/History" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Check History</div>
-            </a>
-        </li>
-
-        <!-- Misc -->
+            <!-- Misc -->
 
         </li>
     </ul>

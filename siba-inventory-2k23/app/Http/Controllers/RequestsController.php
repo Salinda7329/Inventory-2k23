@@ -57,8 +57,8 @@ class RequestsController extends Controller
         // // Retrieve only active items
         // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
 
-        $requests = ModelsRequest::where('isActive', 1)
-            ->where(function ($query) use ($store_manager) {
+        $requests = ModelsRequest::where('type', 1)
+            ->where('isActive', 1)->where(function ($query) use ($store_manager) {
                 $query->where('store_manager', null)
                     ->orWhere('store_manager', $store_manager);
             })
