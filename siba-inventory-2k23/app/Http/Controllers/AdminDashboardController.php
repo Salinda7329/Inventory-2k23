@@ -60,7 +60,13 @@ class AdminDashboardController extends Controller
                             <td>" . $user->getRoleNameAttribute() . "</td>
                             <td>" . $user->epf . "</td>
                            <td>" . $user->getDepartmentNameAttribute() . "</td>
-                            <td>" . $user->getIsActiveNameAttribute() . "</td>
+                            <td>";
+                            if ($user->isActive == 1) $response .= "<span style='color: green;'>Active</span>";
+                            else if ($user->isActive == 2) $response .= "<span style='color: red;'>Deactivated</span>";
+                            else $response .= "<span style='color: gray;'>Deleted</span>";
+
+                $response .=
+                            "</td>
                             <td><a href='#' id='" . $user->id . "'  data-bs-toggle='modal'
                             data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
                             </td>
