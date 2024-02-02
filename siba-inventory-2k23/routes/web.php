@@ -163,10 +163,14 @@ Route::middleware([
 //home route
 Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-//view requested items by users
+//view requests by users
 Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');
 })->name('storeManager.requests');
+//view returns by users
+Route::get('/storeManager/view-return-items', function () {
+    return view('storeManager.view-return-item');
+})->name('storeManager.returns');
 //route to fetch all request data
 Route::post('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
 //route to change the status of a request
