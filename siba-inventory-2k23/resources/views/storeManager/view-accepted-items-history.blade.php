@@ -66,7 +66,8 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    @include('storeManager.SMcomponent.view-request-items')
+                    @include('storeManager.SMcomponent.accepted-items-history')
+                    <!-- / Content -->
 
                     {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
