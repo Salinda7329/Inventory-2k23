@@ -86,7 +86,7 @@ auto watenn dann --}}
                     // Add an event listener to the modal close button
                     $('.btn-close').on('click', function() {
                         // Reset the form when the close button is clicked
-                        $('#RequestItemForm')[0].reset();
+                        $('#returnItemForm')[0].reset();
                         $('.input-error').hide();
                     });
 
@@ -159,11 +159,11 @@ auto watenn dann --}}
                                 if (response.status === 200) {
                                     // Handle the successful response
                                     // Close the modal directly
-                                    $('#modalrequestitem').modal('hide');
                                     // Example: Display a success message or update the UI
                                     alert('Request created successfully!');
+                                    $('#returnModal').modal('hide');
                                     // reset form
-                                    $('#RequestItemForm')[0].reset();
+                                    $('#returnItemForm')[0].reset();
                                     // You can update the UI or perform other actions here
 
                                     //fetch product data from database function
