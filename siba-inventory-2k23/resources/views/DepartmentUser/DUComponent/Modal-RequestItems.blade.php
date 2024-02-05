@@ -166,7 +166,7 @@ auto watenn dann --}}
                                     // You can update the UI or perform other actions here
 
                                     //fetch product data from database function
-                                    fetchAllProductData();
+                                    fetchAllItemDataUser();
                                 } else if (response.status === 422) {
                                     // Handle validation errors
                                     var errors = response.errors;

@@ -103,7 +103,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm requestButtons' >" . $request->getRequestProcessAttribute() . "</a>
+                                        <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm' >Process</a>
                             </td>
                                     </tr>";
             }
@@ -120,13 +120,13 @@ class RequestsController extends Controller
         }
     }
 
-    //for store manager. returns all processing request data
+    //for store manager. returns all processing request data under each sm
     public function fetchAllProcessingRequestData(Request $request)
     {
-        // $store_manager = $request->sm_id;
+        $store_manager = $request->sm_id;
 
         // // Retrieve only active items
-        $requests = ModelsRequest::where('type', 1)->where('isActive', 1)->where('status', 0)->where('store_manager', null)->get();
+        $requests = ModelsRequest::where('type', 1)->where('isActive', 1)->where('status', 1)->where('store_manager', $store_manager)->get();
 
         // $requests = ModelsRequest::where('type', 1)
         //     ->where('isActive', 1)->where(function ($query) use ($store_manager) {
@@ -174,7 +174,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm requestButtons' >" . $request->getRequestProcessAttribute() . "</a>
+                                        <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
                             </td>
                                     </tr>";
             }
@@ -428,22 +428,23 @@ class RequestsController extends Controller
     public function RequestAction(Request $request)
     {
         $store_manager = $request->sm_id;
-        $itemUser = $request->itemUser;
+        $requestId = $request->requestId;
 
-        // Find the request by item_user
-        $itemRequest = ModelsRequest::where('item_user', $itemUser)->first();
+        // Find the request by requestId
+        $itemRequest = ModelsRequest::where('id', $requestId)->first();
 
         if ($itemRequest) {
-            // Toggle the status between 0 and 1
-            $itemRequest->status = $itemRequest->status == 0 ? 1 : 0;
-            $itemRequest->store_manager = $store_manager;
-            $itemRequest->save();
+            // Update the sm_id
+            $itemRequest->update(['store_manager' => $store_manager]);
 
-            $newStatus = $itemRequest->status;
+            // Alternatively, you can use the fill and save method
+            // $itemRequest->fill(['sm_id' => $store_manager])->save();
 
-            return response()->json(['success' => true, 'message' => $newStatus]);
+            // Additional processing or response as needed
+            return response()->json(['message' => 'store_manager updated successfully', 'status' => 200]);
         } else {
-            return response()->json(['success' => false, 'message' => 'Request not found']);
+            // Handle the case where no matching record is found
+            return response()->json(['error' => 'Request not found', 'status' => 404]);
         }
     }
     //fetch request data for reqeust action model

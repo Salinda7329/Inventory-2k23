@@ -66,7 +66,8 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    @include('storeManager.SMcomponent.view-processing-requests')
+                    @include('storeManager.SMcomponent.view-request-items')
+                    <!-- / Content -->
 
                     {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
