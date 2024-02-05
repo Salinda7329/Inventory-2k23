@@ -638,35 +638,52 @@ class RequestsController extends Controller
     public function fetchMyItems(Request $request)
     {
 
-        $user_id = $request->user_id;
-        // Retrieve only active items
-        // $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 1)->where('status', 2)->get();
+        // $user_id = $request->user_id;
 
-        // $item_ids = ModelsRequest::where('isActive', 1)
+        // // Retrieve requests that match the specified conditions
+        // $requests = ModelsRequest::where('isActive', 1)
         //     ->where('request_by', $user_id)
         //     ->where('type', 1)
         //     ->where('status', 2)
-        //     ->first();
-        // // ->pluck('item_id');
+        //     ->get();
+
+        // // $item_ids = $requests->pluck('item_id')->toArray();
+        // // Retrieve unique item ids
+        // $item_ids = array_unique($requests->pluck('item_id')->toArray());
+
+        // $latestRequests = ModelsRequest::whereIn('item_id', $item_ids)
+        //     ->where('isActive', 1)
+        //     ->where('type', 1)
+        //     ->where('status', 2)
+        //     ->latest('updated_at')
+        //     ->get();
 
 
-        // // $requests = item_id
-
-        // $availability = Item::where('id', $item_ids)
+        // // Retrieve items that match the specified conditions
+        // $availability = Item::whereIn('id', $item_ids)
         //     ->where('availability', 0)
         //     ->get();
 
-        // Retrieve requests that match the specified conditions
-        $requests = ModelsRequest::where('isActive', 1)
-            ->where('request_by', $user_id)
+        $user_id = $request->user_id;
+
+        // Group requests by item_id and retrieve the latest request for each item
+        $latestRequests = ModelsRequest::whereIn('item_id', function ($query) use ($user_id) {
+            $query->select(DB::raw('MAX(id)'))
+                ->from('requests')
+                ->where('isActive', 1)
+                ->where('request_by', $user_id)
+                ->where('type', 1)
+                ->where('status', 2)
+                ->groupBy('item_id');
+        })
+            ->where('isActive', 1)
             ->where('type', 1)
             ->where('status', 2)
+            ->latest('store_manager_timestamp')
             ->get();
 
-        $item_ids = $requests->pluck('item_id')->toArray();
-
         // Retrieve items that match the specified conditions
-        $availability = Item::whereIn('id', $item_ids)
+        $availability = Item::whereIn('id', $latestRequests->pluck('item_id')->toArray())
             ->where('availability', 0)
             ->get();
 
@@ -693,7 +710,7 @@ class RequestsController extends Controller
                     </thead>
                     <tbody>";
 
-            foreach ($requests as $request) {
+            foreach ($latestRequests as $request) {
                 $itemName = $request->getItemNameById ? $request->getItemNameById->item_name : 'N/A';
 
                 $response .= "<tr>
@@ -705,7 +722,7 @@ class RequestsController extends Controller
                                         <td>" . $request->quantity . "</td>
                                         <td>" . $request->sm_remark . "</td>
                                         <td>" . $request->storeManagerAttributes->name . "</td>
-                                        <td>" . $request->store_manager_timestamp . "</td>
+                                        <td>" . $request->updated_at . "</td>
                                         <td id='returnButtonContainer'><a href='#' id='" . $request->item_id . "'  data-bs-toggle='modal' data-bs-target='#returnModal' class='returnRequestButton btn-sm btn-outline-primary returnActionButton returnButtons'>Return</a>
                             </td>
                                     </tr>";
