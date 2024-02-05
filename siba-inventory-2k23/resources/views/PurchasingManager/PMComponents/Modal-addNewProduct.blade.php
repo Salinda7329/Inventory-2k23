@@ -148,7 +148,7 @@
                             // console.log(response);
                             $('#show_all_product_data').html(response);
                             // //Make table a data table
-                            $('#all_user_data').DataTable({
+                            $('#all_product_data').DataTable({
 
                                 // Enable horizontal scrolling
                             });
