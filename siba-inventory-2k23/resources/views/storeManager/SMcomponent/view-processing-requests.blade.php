@@ -21,7 +21,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                     // get the current user id
                     var authenticatedSMId = {{ auth()->id() }};
 
-                    fetchAllRequestData();
+                    fetchAllProcessingRequestData();
 
                     // function fetchAllRequestData() {
 
@@ -108,9 +108,9 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                     //     });
                     // }
 
-                    function fetchAllRequestData() {
+                    function fetchAllProcessingRequestData() {
                         $.ajax({
-                            url: '{{ route('fetchAllProcessingRequestsData') }}',
+                            url: '{{ route('fetchAllProcessingRequestData') }}',
                             type: 'post',
                             headers: {
                                 'Content-Type': 'application/json',

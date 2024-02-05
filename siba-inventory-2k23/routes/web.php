@@ -197,6 +197,12 @@ Route::get('/storeManager/view-requested-items', function () {
 //route to fetch all requests data
 Route::post('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
 
+//view-processing-requests
+Route::get('/storeManager/view-processing-requests', function () {
+    return view('storeManager.view-processing-requests');
+})->name('storeManager.processing-requests');
+//route to fetch all processing requests data
+Route::post('/storeManager/fetchAllProcessingRequestData', [RequestsController::class, 'fetchAllProcessingRequestData'])->name('fetchAllProcessingRequestData');
 
 //view issued items history
 Route::get('/storeManager/view-issued-items-history', function () {
