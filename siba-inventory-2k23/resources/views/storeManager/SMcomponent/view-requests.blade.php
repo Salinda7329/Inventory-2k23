@@ -8,7 +8,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
             <div class="card">
                 <div class="card-header">
-                    All Requests by Users
+                    Processing Requests
                 </div>
                 <div class="card-body">
                     <div id="show_all_requests_data"></div>
@@ -110,7 +110,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
                     function fetchAllRequestData() {
                         $.ajax({
-                            url: '{{ route('fetchAllRequestData') }}',
+                            url: '{{ route('fetchAllProcessingRequestsData') }}',
                             type: 'post',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                         }),
                                         dataType: 'json',
                                         success: function(data) {
-                                            fetchAllRequestData();
+                                            // fetchAllRequestData();
                                             // Use the stored reference to update the clicked button's class
                                             if (data.message === 0) {
                                                 clickedButton.removeClass('btn-outline-danger').addClass(
