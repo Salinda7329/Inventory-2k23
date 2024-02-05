@@ -13,7 +13,7 @@ class Category extends Model
         'created_by',
         'created_at',
         'updated_at',
-        'isactive',
+        'isActive',
     ];
 
     public function createdByUser()

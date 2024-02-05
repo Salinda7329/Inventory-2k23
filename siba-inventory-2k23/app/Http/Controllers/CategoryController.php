@@ -36,11 +36,6 @@ class CategoryController extends Controller
             return response()->json(['error' => 'Failed to create category.', 'status' => 500]);
         }
     }
-    public function fetchCategories()
-    {
-        $categories = Category::all();
-        return response()->json($categories);
-    }
 
     public function fetchAllCategoryData()
     {
@@ -88,5 +83,34 @@ class CategoryController extends Controller
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
         }
+    }
+
+    public function edit(Request $request)
+    {
+        $category_Id = $request->category_Id;
+        //find data of id using brand model
+        $category = Category::find($category_Id);
+        return response()->json($category);
+    }
+
+    public function update(Request $request)
+    {
+        $category = Category::find($request->category_Id_hidden2);
+
+        $category->update([
+            'category_name' => $request->category_name,
+            'isActive' => $request->status2,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'no' => $request->status2,
+        ]);
+    }
+
+    public function fetchCategories()
+    {
+        $categories = Category::all();
+        return response()->json($categories);
     }
 }

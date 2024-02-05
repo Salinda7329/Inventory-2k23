@@ -99,9 +99,15 @@ Route::get('/pm/addNewCategory', function () {
 })->name('pm.category');
 //category create
 Route::post('/pm/newCategory', [CategoryController::class, 'create'])->name('pm.newCategory');
-// category edit PENDING
+// category edit
+Route::get('/pm/Category/edit', [CategoryController::class, 'edit'])->name('category.edit');
+//route to update category data
+Route::post('/pm/Category/update', [CategoryController::class, 'update'])->name('category.update');
 // route to get all category details table
 Route::get('/categories/fetchAllCategoryData', [CategoryController::class, 'fetchAllCategoryData'])->name('fetchAllCategoryData');
+
+
+
 //view to add new brand
 Route::get('/pm/addNewBrand', function () {
     return view('PurchasingManager.add-new-brand');
