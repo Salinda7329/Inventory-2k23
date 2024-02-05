@@ -94,6 +94,9 @@ Route::get('/products/fetchProductDetails', [ProductController::class, 'fetchPro
 
 
 //category view
+Route::get('/pm/addNewCategory', function () {
+    return view('PurchasingManager.add-new-category');
+})->name('pm.category');
 //category create
 // category edit PENDING
 // route to get all category details
