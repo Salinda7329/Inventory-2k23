@@ -74,7 +74,7 @@
           <div class="content-wrapper">
             <!-- Content -->
 
-                @include('publicComponent.store')
+                @include('storeManager.SMcomponent.view-items')
 
 
 {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}

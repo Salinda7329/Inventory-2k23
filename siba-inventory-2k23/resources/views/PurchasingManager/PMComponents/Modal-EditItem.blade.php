@@ -17,6 +17,8 @@
 
                     {{-- hidden id input field --}}
                     <input type="hidden" id="item_Id_hidden2" name="item_Id_hidden">
+                    {{-- hidden current user id input field --}}
+                    <input type="hidden" id="user_id_hidden2" name="user_id_hidden2" value="{{ Auth::user()->id }}">
 
                     <div class="mb-3">
                         <label for="po_no" class="form-label">PO Number</label>

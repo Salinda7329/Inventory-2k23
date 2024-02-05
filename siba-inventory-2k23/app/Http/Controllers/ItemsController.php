@@ -200,6 +200,7 @@ class ItemsController extends Controller
             'brand_id' => $request->brand_id,
             'item_name' => $request->item_name,
             'condition' => $request->condition,
+            'condition_updated_by' => $request->user_id_hidden2,
             'items_remaining' => $request->items_remaining,
             'lower_limit' => $request->lower_limit,
             'isActive' => $request->isActive,

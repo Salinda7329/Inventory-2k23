@@ -30,7 +30,7 @@
             <span class="menu-header-text">Store</span>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="/storeManager/store" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Visit Store </div>
             </a>

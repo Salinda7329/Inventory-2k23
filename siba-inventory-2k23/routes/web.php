@@ -238,7 +238,7 @@ Route::get('/user/request-return', [RequestsController::class, 'makeRequestRetur
 
 
 //store visit route
-Route::get('/visit-store', function () {
+Route::get('/storeManager/store', function () {
     return view('storeManager.store');
 });
 
