@@ -272,42 +272,42 @@ class RequestsController extends Controller
     }
 
 
-     //to return accepted items history
-     public function fetchAllReturnsHistory(Request $request)
-     {
-         $store_manager = $request->sm_id;
+    //to return accepted items history
+    public function fetchAllReturnsHistory(Request $request)
+    {
+        $store_manager = $request->sm_id;
 
-         // // Retrieve only active items
-         // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
+        // // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
 
-         // $requests = ModelsRequest::where('type', 1)
-         //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
-         //         $query->where('status',2)
-         //             ->orWhere('status',3);
-         //     })
-         //     ->get();
+        // $requests = ModelsRequest::where('type', 1)
+        //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
+        //         $query->where('status',2)
+        //             ->orWhere('status',3);
+        //     })
+        //     ->get();
 
-         $requests = ModelsRequest::where('type', 2)
-         ->where('isActive', 1)
-         ->where(function ($query) use ($store_manager) {
-             $query->where('store_manager', $store_manager)
-                 ->where(function ($query) {
-                     $query->where('status', 2);
-                 });
-         })
-         ->get();
+        $requests = ModelsRequest::where('type', 2)
+            ->where('isActive', 1)
+            ->where(function ($query) use ($store_manager) {
+                $query->where('store_manager', $store_manager)
+                    ->where(function ($query) {
+                        $query->where('status', 2);
+                    });
+            })
+            ->get();
 
 
-         // Retrieve only active items
-         // $requests = ModelsRequest::where('isActive', 1)->get();
+        // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->get();
 
-         //returning data inside the table
-         $response = '';
+        //returning data inside the table
+        $response = '';
 
-         if ($requests->count() > 0) {
+        if ($requests->count() > 0) {
 
-             $response .=
-                 "<table id='all_accepted_items_data' class='display'>
+            $response .=
+                "<table id='all_accepted_items_data' class='display'>
                      <thead>
                          <tr>
                          <th>Request ID</th>
@@ -323,10 +323,10 @@ class RequestsController extends Controller
                      </thead>
                      <tbody>";
 
-             foreach ($requests as $request) {
-                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
 
-                 $response .= "<tr>
+                $response .= "<tr>
                                          <td>" . $request->id . "</td>
                                          <td>" . $request->getTypeRequestAttribute() . "</td>
                                          <td>" . $request->item_user . "</td>
@@ -337,19 +337,19 @@ class RequestsController extends Controller
                                          <td>" . $request->requested_timestamp . "</td>
                                          <td>" . $request->getStatusRequestAttribute() . "</td>
                               </tr>";
-             }
+            }
 
 
 
-             $response .=
-                 "</tbody>
+            $response .=
+                "</tbody>
                  </table>";
 
-             echo $response;
-         } else {
-             echo "<h3 align='center'>No Records in Database</h3>";
-         }
-     }
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 
 
 
@@ -495,31 +495,35 @@ class RequestsController extends Controller
 
         $user_id = $request->user_id;
         // Retrieve only active items
-        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 1)->where('status', 2)->get();
+        // $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 1)->where('status', 2)->get();
 
-        $item_ids = ModelsRequest::where('isActive', 1)
-            ->where('request_by', $user_id)
-            ->where('type', 1)
-            ->where('status', 2)
-            ->pluck('item_id');
-
-        // $requests = item_id
-
-        $availability = Item::whereIn('id', $item_ids)
-            ->where('availability', 0)
-            ->get();
-
-        // $requests = ModelsRequest::where('isActive', 1)
+        // $item_ids = ModelsRequest::where('isActive', 1)
         //     ->where('request_by', $user_id)
         //     ->where('type', 1)
         //     ->where('status', 2)
-        //     ->whereHas('item', function ($query) {
-        //         // Check the item's id and availability
-        //         $query->where('id', '=', 'models_requests.item_id')
-        //             ->where('availability', '=', 0);
-        //     })
+        //     ->first();
+        // // ->pluck('item_id');
+
+
+        // // $requests = item_id
+
+        // $availability = Item::where('id', $item_ids)
+        //     ->where('availability', 0)
         //     ->get();
 
+        // Retrieve requests that match the specified conditions
+        $requests = ModelsRequest::where('isActive', 1)
+            ->where('request_by', $user_id)
+            ->where('type', 1)
+            ->where('status', 2)
+            ->get();
+
+        $item_ids = $requests->pluck('item_id')->toArray();
+
+        // Retrieve items that match the specified conditions
+        $availability = Item::whereIn('id', $item_ids)
+            ->where('availability', 0)
+            ->get();
 
         //returning data inside the table
         $response = '';
