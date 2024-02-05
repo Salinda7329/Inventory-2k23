@@ -218,7 +218,14 @@ Route::get('/storeManager/view-return-items', function () {
     return view('storeManager.view-return-item');
 })->name('storeManager.returns');
 //route to fetch all returns data
-Route::post('/storeManager/fetchAllReturnsData', [RequestsController::class, 'fetchAllReturnsData'])->name('fetchAllReturnsData');
+Route::post('/storeManager/fetchAllReturnData', [RequestsController::class, 'fetchAllReturnData'])->name('fetchAllReturnData');
+
+//view-processing-returns
+Route::get('/storeManager/view-processing-requests', function () {
+    return view('storeManager.view-processing-requests');
+})->name('storeManager.processing-requests');
+//route to fetch all processing returns data
+Route::post('/storeManager/fetchAllProcessingRequestData', [RequestsController::class, 'fetchAllProcessingRequestData'])->name('fetchAllProcessingRequestData');
 
 //view accepted items history
 Route::get('/storeManager/view-accepted-items-history', function () {

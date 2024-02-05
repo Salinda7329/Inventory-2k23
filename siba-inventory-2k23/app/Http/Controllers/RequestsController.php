@@ -103,7 +103,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm' >Process</a>
+                                        <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm btn btn-primary' >Process</a>
                             </td>
                                     </tr>";
             }
@@ -272,7 +272,7 @@ class RequestsController extends Controller
 
 
     //for store manager. returns all return requests by users
-    public function fetchAllReturnsData(Request $request)
+    public function fetchAllReturnData(Request $request)
     {
         $store_manager = $request->sm_id;
 
@@ -325,7 +325,7 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td id='requestButtonContainer'><a data-status='" . $request->status . "' href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm requestButtons' >" . $request->getRequestProcessAttribute() . "</a><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
+                                        <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm btn btn-primary' >Process</a>
                             </td>
                                     </tr>";
             }
@@ -435,7 +435,10 @@ class RequestsController extends Controller
 
         if ($itemRequest) {
             // Update the sm_id
-            $itemRequest->update(['store_manager' => $store_manager]);
+            $itemRequest->update([
+                'store_manager' => $store_manager,
+                'status' => 1,
+            ]);
 
             // Alternatively, you can use the fill and save method
             // $itemRequest->fill(['sm_id' => $store_manager])->save();
