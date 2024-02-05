@@ -80,6 +80,7 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
+                    @if(Auth::user()->role == 3)
                     <div class="mb-3">
                         <label for="status" class="form-label">Select Status</label>
                         <select class="form-control" id="status2" name="isActive">
@@ -89,6 +90,7 @@
                             <option value="3">Delete</option>
                         </select>
                     </div>
+                    @endif
 
                     <button class="btn btn-primary d-grid w-100" id="Update_item_button">Update</button>
                 </form>
