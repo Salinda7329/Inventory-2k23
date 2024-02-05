@@ -8,7 +8,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
             <div class="card">
                 <div class="card-header">
-                    Processing Requests
+                    Processing Returns
                 </div>
                 <div class="card-body">
                     <div id="show_all_requests_data"></div>
@@ -21,12 +21,12 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                     // get the current user id
                     var authenticatedSMId = {{ auth()->id() }};
 
-                    fetchAllProcessingRequestData();
+                    fetchAllProcessingReturnData();
 
 
-                    function fetchAllProcessingRequestData() {
+                    function fetchAllProcessingReturnData() {
                         $.ajax({
-                            url: '{{ route('fetchAllProcessingRequestData') }}',
+                            url: '{{ route('fetchAllProcessingReturnData') }}',
                             type: 'post',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -73,10 +73,12 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                             // fetchAllRequestData();
                                             // Use the stored reference to update the clicked button's class
                                             if (data.message === 0) {
-                                                clickedButton.removeClass('btn-outline-danger').addClass(
+                                                clickedButton.removeClass(
+                                                    'btn-outline-danger').addClass(
                                                     'btn-outline-secondary');
                                             } else {
-                                                clickedButton.removeClass('btn-outline-secondary').addClass(
+                                                clickedButton.removeClass(
+                                                    'btn-outline-secondary').addClass(
                                                     'btn-outline-danger');
                                             }
                                         },
@@ -93,7 +95,6 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                             }
                         });
                     }
-
                 });
             </script>
 

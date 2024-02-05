@@ -221,11 +221,11 @@ Route::get('/storeManager/view-return-items', function () {
 Route::post('/storeManager/fetchAllReturnData', [RequestsController::class, 'fetchAllReturnData'])->name('fetchAllReturnData');
 
 //view-processing-returns
-Route::get('/storeManager/view-processing-requests', function () {
-    return view('storeManager.view-processing-requests');
-})->name('storeManager.processing-requests');
+Route::get('/storeManager/view-processing-returns', function () {
+    return view('storeManager.view-processing-returns');
+})->name('storeManager.processing-returns');
 //route to fetch all processing returns data
-Route::post('/storeManager/fetchAllProcessingRequestData', [RequestsController::class, 'fetchAllProcessingRequestData'])->name('fetchAllProcessingRequestData');
+Route::post('/storeManager/fetchAllProcessingReturnData', [RequestsController::class, 'fetchAllProcessingReturnData'])->name('fetchAllProcessingReturnData');
 
 //view accepted items history
 Route::get('/storeManager/view-accepted-items-history', function () {

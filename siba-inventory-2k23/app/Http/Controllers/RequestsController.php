@@ -342,6 +342,76 @@ class RequestsController extends Controller
         }
     }
 
+    //for store manager. returns all processing request data under each sm
+    public function fetchAllProcessingReturnData(Request $request)
+    {
+        $store_manager = $request->sm_id;
+
+        // // Retrieve only active items
+        $requests = ModelsRequest::where('type', 2)->where('isActive', 1)->where('status', 1)->where('store_manager', $store_manager)->get();
+
+        // $requests = ModelsRequest::where('type', 1)
+        //     ->where('isActive', 1)->where(function ($query) use ($store_manager) {
+        //         $query->where('store_manager', null)
+        //             ->orWhere('store_manager', $store_manager);
+        //     })
+        //     ->get();
+
+        // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->get();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='all_request_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Type</th>
+                        <th>Item_Id</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Remark</th>
+                        <th>Requested_by</th>
+                        <th>Requested_at</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->getTypeRequestAttribute() . "</td>
+                                        <td>" . $request->item_user . "</td>
+                                        <td>" . $itemName . "</td>
+                                        <td>" . $request->quantity_user . "</td>
+                                        <td>" . $request->user_remark . "</td>
+                                        <td>" . $request->requestedByUser->name . "</td>
+                                        <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
+                            </td>
+                                    </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 
     //to return accepted items history
     public function fetchAllReturnsHistory(Request $request)
