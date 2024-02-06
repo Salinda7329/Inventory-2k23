@@ -671,7 +671,7 @@ class RequestsController extends Controller
         }
     }
 
-    //to get user's requests
+    //to get user's requests history
     public function fetchMyRequestData(Request $request)
     {
 
@@ -695,8 +695,9 @@ class RequestsController extends Controller
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Remark</th>
-                        <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>SM</th>
+                        <th>SM_Remark</th>
                         <th>Status</th>
                         </tr>
                     </thead>
@@ -704,6 +705,7 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $smName = $request->storeManagerAttributes ? $request->storeManagerAttributes->name : 'N/A';
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
@@ -712,8 +714,9 @@ class RequestsController extends Controller
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
-                                        <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $smName . "</td>
+                                        <td>" . $request->sm_remark . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                     </tr>";
             }
