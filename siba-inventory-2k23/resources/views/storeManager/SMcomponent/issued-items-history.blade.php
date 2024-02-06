@@ -43,6 +43,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                 $('#all_issued_items_data').DataTable({
                                     // Enable horizontal scrolling
                                     // "scrollX": true,
+                                    order: [[0, 'desc']]
                                 });
 
                                 // Add event listeners for process buttons
