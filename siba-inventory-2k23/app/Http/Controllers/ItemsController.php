@@ -16,6 +16,7 @@ class ItemsController extends Controller
         try {
             $input = $request->validate([
                 'user_id_hidden' => ['required'],
+                'owner_hidden' => ['required'],
                 'po_no' => ['required'],
                 'product_id' => ['required'],
                 'brand_id' => ['required'],
@@ -30,6 +31,7 @@ class ItemsController extends Controller
                 $currentTimestamp = now();
                 Item::create([
                     'created_by' => $input['user_id_hidden'],
+                    'owner' => $input['owner_hidden'],
                     'po_no' => $input['po_no'],
                     'product_id' => $input['product_id'],
                     'brand_id' => $input['brand_id'],
@@ -77,6 +79,7 @@ class ItemsController extends Controller
                         <th>PO No</th>
                         <th>Item Name</th>
                         <th>Availability</th>
+                        <th>Owner</th>
                         <th>Condition</th>
                         <th>Condition Updated By</th>
                         <th>Condition Updated TimeStamp</th>
@@ -100,6 +103,7 @@ class ItemsController extends Controller
                                         <td>" . $item->po_no . "</td>
                                         <td>" . $item->item_name . "</td>
                                         <td>" . $item->getIsAvailabilityAttribute() . "</td>
+                                        <td>" . $item->ownerUser->name . "</td>
                                         <td>" . $item->getIsCondtionItemAttribute() . "</td>
                                         <td>" . $item->conditionUpdatedByUser->name . "</td>
                                         <td>" . $item->condition_updated_timestamp . "</td>

@@ -18,6 +18,7 @@ class Item extends Model
         'condition_updated_timestamp',
         'items_remaining',
         'lower_limit',
+        'owner',
         'created_by',
         'isActive',
         'created_time_stamp',
@@ -30,6 +31,10 @@ class Item extends Model
     public function conditionUpdatedByUser()
     {
         return $this->belongsTo(User::class, 'condition_updated_by', 'id');
+    }
+    public function ownerUser()
+    {
+        return $this->belongsTo(User::class, 'owner', 'id');
     }
     public function categoryData()
     {
