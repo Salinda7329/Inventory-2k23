@@ -562,7 +562,10 @@ class RequestsController extends Controller
             // }
         } else if ($type == 2 && $status == 2) {
             // Update the availability column to 1
-            $updated = Item::where('id', $item_id)->update(['availability' => 1]);
+            $updated = Item::where('id', $item_id)->update([
+                'availability' => 1,
+                'owner' => NULL,
+            ]);
         }
 
 
