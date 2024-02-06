@@ -720,77 +720,72 @@ class RequestsController extends Controller
         }
     }
 
-    //Not for users. Items now at users
+    //Not for users. All items now at users
     public function fetchItemsAtUsers(Request $request)
     {
+        // Retrieve item IDs that match the specified conditions
+        $item_ids_with_owner = Item::where('availability', 0)
+            ->whereNotNull('owner')
+            ->pluck('id')
+            ->toArray();
 
-
-        // // Retrieve requests that match the specified conditions
-        $requests = ModelsRequest::where('isActive', 1)
+        // Retrieve the latest requests for each item that match the specified conditions
+        $latestRequests = ModelsRequest::whereIn('item_id', $item_ids_with_owner)
+            ->where('isActive', 1)
             ->where('type', 1)
             ->where('status', 2)
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('requests')
+                    ->whereColumn('item_id', 'requests.item_id')
+                    ->groupBy('item_id');
+            })
             ->get();
 
-        $item_ids = $requests->pluck('item_id')->toArray();
-
-
-        // // Retrieve items that match the specified conditions
-        $availability = Item::whereIn('id', $item_ids)
-            ->where('availability', 0)
-            ->whereNotNull('owner')
-            ->get();
-
-
-        //returning data inside the table
+        // Returning data inside the table
         $response = '';
 
-        if ($availability->count() > 0) {
+        if ($latestRequests->count() > 0) {
+            $response .= "<table id='all_myItem_data' class='display'>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Item_Id</th>
+                                <th>Item_name</th>
+                                <th>Quantity</th>
+                                <th>Sm Remark</th>
+                                <th>Issued_by</th>
+                                <th>Issued_at</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
 
-            $response .=
-                "<table id='all_myItem_data' class='display'>
-                    <thead>
-                        <tr>
-                        <th>Request ID</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Item_Id</th>
-                        <th>Item_name</th>
-                        <th>Quantity</th>
-                        <th>Sm Remark</th>
-                        <th>Issued_by</th>
-                        <th>Issued_at</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-
-            foreach ($requests as $request) {
+            foreach ($latestRequests as $request) {
                 $itemName = $request->getItemNameById ? $request->getItemNameById->item_name : 'N/A';
 
                 $response .= "<tr>
-                                        <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
-                                        <td>" . $request->getStatusRequestAttribute() . "</td>
-                                        <td>" . $request->item_id . "</td>
-                                        <td>" . $itemName . "</td>
-                                        <td>" . $request->quantity . "</td>
-                                        <td>" . $request->sm_remark . "</td>
-                                        <td>" . $request->storeManagerAttributes->name . "</td>
-                                        <td>" . $request->updated_at . "</td>
-                            </tr>";
+                            <td>" . $request->id . "</td>
+                            <td>" . $request->getTypeRequestAttribute() . "</td>
+                            <td>" . $request->getStatusRequestAttribute() . "</td>
+                            <td>" . $request->item_id . "</td>
+                            <td>" . $itemName . "</td>
+                            <td>" . $request->quantity . "</td>
+                            <td>" . $request->sm_remark . "</td>
+                            <td>" . $request->storeManagerAttributes->name . "</td>
+                            <td>" . $request->updated_at . "</td>
+                        </tr>";
             }
 
-
-
-            $response .=
-                "</tbody>
-                </table>";
+            $response .= "</tbody>
+                    </table>";
 
             echo $response;
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
-
 
 
     public function makeRequestReturn(Request $request)
