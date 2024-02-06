@@ -544,9 +544,16 @@ class RequestsController extends Controller
         //request type return or request
         $request_id = $request->request_id_hidden;
 
+        //Get the user id from the request
+        $request = ModelsRequest::find($request_id);
+        $requesting_user = $request->request_by;
+
         if ($type == 1 && $status == 2) {
             // Update the availability column to 0
-            $updated = Item::where('id', $item_id)->update(['availability' => 0]);
+            $updated = Item::where('id', $item_id)->update([
+                'availability' => 0,
+                'owner' => $requesting_user,
+            ]);
 
             // if ($updated) {
             //     return response()->json(['message' => 'Availability updated successfully.']);
@@ -638,54 +645,24 @@ class RequestsController extends Controller
     public function fetchMyItems(Request $request)
     {
 
-        // $user_id = $request->user_id;
+        $user_id = $request->user_id;
 
         // // Retrieve requests that match the specified conditions
-        // $requests = ModelsRequest::where('isActive', 1)
-        //     ->where('request_by', $user_id)
-        //     ->where('type', 1)
-        //     ->where('status', 2)
-        //     ->get();
+        $requests = ModelsRequest::where('isActive', 1)
+            ->where('request_by', $user_id)
+            ->where('type', 1)
+            ->where('status', 2)
+            ->get();
 
-        // // $item_ids = $requests->pluck('item_id')->toArray();
-        // // Retrieve unique item ids
-        // $item_ids = array_unique($requests->pluck('item_id')->toArray());
-
-        // $latestRequests = ModelsRequest::whereIn('item_id', $item_ids)
-        //     ->where('isActive', 1)
-        //     ->where('type', 1)
-        //     ->where('status', 2)
-        //     ->latest('updated_at')
-        //     ->get();
+        $item_ids = $requests->pluck('item_id')->toArray();
 
 
         // // Retrieve items that match the specified conditions
-        // $availability = Item::whereIn('id', $item_ids)
-        //     ->where('availability', 0)
-        //     ->get();
-
-        $user_id = $request->user_id;
-
-        // Group requests by item_id and retrieve the latest request for each item
-        $latestRequests = ModelsRequest::whereIn('item_id', function ($query) use ($user_id) {
-            $query->select(DB::raw('MAX(id)'))
-                ->from('requests')
-                ->where('isActive', 1)
-                ->where('request_by', $user_id)
-                ->where('type', 1)
-                ->where('status', 2)
-                ->groupBy('item_id');
-        })
-            ->where('isActive', 1)
-            ->where('type', 1)
-            ->where('status', 2)
-            ->latest('store_manager_timestamp')
-            ->get();
-
-        // Retrieve items that match the specified conditions
-        $availability = Item::whereIn('id', $latestRequests->pluck('item_id')->toArray())
+        $availability = Item::whereIn('id', $item_ids)
             ->where('availability', 0)
+            ->where('owner', $user_id)
             ->get();
+
 
         //returning data inside the table
         $response = '';
@@ -710,7 +687,7 @@ class RequestsController extends Controller
                     </thead>
                     <tbody>";
 
-            foreach ($latestRequests as $request) {
+            foreach ($requests as $request) {
                 $itemName = $request->getItemNameById ? $request->getItemNameById->item_name : 'N/A';
 
                 $response .= "<tr>
@@ -739,6 +716,8 @@ class RequestsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
+
+
 
     public function makeRequestReturn(Request $request)
     {
