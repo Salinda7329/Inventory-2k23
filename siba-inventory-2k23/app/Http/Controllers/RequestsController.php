@@ -237,7 +237,9 @@ class RequestsController extends Controller
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>Sm Remark</th>
                         <th>Status</th>
+                        <th>Issued_at</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -254,7 +256,9 @@ class RequestsController extends Controller
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $request->sm_remark . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td>" . $request->updated_at . "</td>
                              </tr>";
             }
 
@@ -733,8 +737,8 @@ class RequestsController extends Controller
         // Retrieve the latest requests for each item that match the specified conditions
         $latestRequests = ModelsRequest::whereIn('item_id', $item_ids_with_owner)
             ->where('isActive', 1)
-            ->where('type', 1)
-            ->where('status', 2)
+            ->whereIn('type',[1,2])
+            ->whereIn('status', [2,3])
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('requests')
@@ -804,8 +808,8 @@ class RequestsController extends Controller
         // Retrieve the latest requests for each item that match the specified conditions
         $latestRequests = ModelsRequest::whereIn('item_id', $item_ids_with_owner)
             ->where('isActive', 1)
-            ->where('type', 1)
-            ->where('status', 2)
+            ->whereIn('type',[1,2])
+            ->whereIn('status', [2,3])
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('requests')
