@@ -221,6 +221,14 @@ Route::get('/storeManager/view-issued-items-history', function () {
 Route::post('/storeManager/fetchAllRequestsHistory', [RequestsController::class, 'fetchAllRequestsHistory'])->name('fetchAllRequestsHistory');
 
 
+//view rejected requests history
+Route::get('/storeManager/view-rejected-history', function () {
+    return view('storeManager.view-rejected-history');
+})->name('storeManager.rejected');
+//route to fetch all rejected requests history
+Route::post('/storeManager/fetchAllRejectedHistory', [RequestsController::class, 'fetchAllRejectedHistory'])->name('fetchAllRejectedHistory');
+
+
 
 //view returns by users
 Route::get('/storeManager/view-return-items', function () {
