@@ -57,6 +57,17 @@ class Item extends Model
         return $status[$this->attributes['condition']] ?? 'Unknown Status';
     }
 
+    public function getIsAvailabilityAttribute()
+    {
+        $status = [
+            0 => 'Not-Available',
+            1 => 'Available',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['availability']] ?? 'Unknown Status';
+    }
+
     public function getIsActiveItemAttribute()
     {
         $status = [

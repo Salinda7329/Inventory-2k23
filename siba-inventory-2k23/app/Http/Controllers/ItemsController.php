@@ -76,6 +76,7 @@ class ItemsController extends Controller
                         <th>Brand Name</th>
                         <th>PO No</th>
                         <th>Item Name</th>
+                        <th>Availability</th>
                         <th>Condition</th>
                         <th>Condition Updated By</th>
                         <th>Condition Updated TimeStamp</th>
@@ -98,6 +99,7 @@ class ItemsController extends Controller
                                         <td>" . $item->brandData->brand_name . "</td>
                                         <td>" . $item->po_no . "</td>
                                         <td>" . $item->item_name . "</td>
+                                        <td>" . $item->getIsAvailabilityAttribute() . "</td>
                                         <td>" . $item->getIsCondtionItemAttribute() . "</td>
                                         <td>" . $item->conditionUpdatedByUser->name . "</td>
                                         <td>" . $item->condition_updated_timestamp . "</td>
