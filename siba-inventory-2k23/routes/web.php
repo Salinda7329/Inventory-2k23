@@ -190,6 +190,15 @@ Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index
 
 
 
+//view to see items with users
+Route::get('/storeManager/view-user-items', function () {
+    return view('storeManager.view-all-user-items');
+});
+//route to fetch all items at users
+Route::get('/storeManager/fetchItemsAtUsers', [RequestsController::class, 'fetchItemsAtUsers'])->name('fetchItemsAtUsers');
+
+
+
 //view requests by users
 Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');

@@ -103,7 +103,7 @@ class ItemsController extends Controller
                                         <td>" . $item->po_no . "</td>
                                         <td>" . $item->item_name . "</td>
                                         <td>" . $item->getIsAvailabilityAttribute() . "</td>
-                                        <td>" . $item->ownerUser->name . "</td>
+                                        <td>" . ($item->ownerUser && $item->ownerUser->name ? $item->ownerUser->name : 'N/A') . "</td>
                                         <td>" . $item->getIsCondtionItemAttribute() . "</td>
                                         <td>" . $item->conditionUpdatedByUser->name . "</td>
                                         <td>" . $item->condition_updated_timestamp . "</td>

@@ -34,7 +34,7 @@
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Visit Store </div>
             </a>
-            <a href="#" class="menu-link">
+            <a href="/storeManager/view-user-items" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View Not Returned Items</div>
             </a>
