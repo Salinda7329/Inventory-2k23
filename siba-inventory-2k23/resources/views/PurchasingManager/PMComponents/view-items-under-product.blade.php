@@ -29,8 +29,12 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->item_name }}</td>
-                                        <td>{{ $item->condition }}</td>
-                                        <td>{{ $item->availability }}</td>
+                                        <td style="color: {{ $item->condition ==1 ? 'green' : 'red' }}">
+                                            {{ $item->condition ==1 ? 'Working' : 'Damaged' }}
+                                        </td>
+                                        <td style="color: {{ $item->availability == 1 ? 'green' : 'red' }}">
+                                            {{ $item->availability == 1 ? 'Available' : 'Not Available' }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -1,7 +1,7 @@
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
-        {{-- @include('PurchasingManager.PMComponents.Modal-addNewProduct')
-        @include('PurchasingManager.PMComponents.Modal-RequestNewProduct') --}}
+        @include('PurchasingManager.PMComponents.Modal-addNewProduct')
+        @include('PurchasingManager.PMComponents.Modal-RequestNewProduct')
         <br><br>
         <div class="authentication-inner">
 
@@ -40,4 +40,4 @@
         </div>
     </div>
 </div>
-{{-- @include('PurchasingManager.PMComponents.Modal-EditProduct') --}}
+@include('PurchasingManager.PMComponents.Modal-EditProduct')
