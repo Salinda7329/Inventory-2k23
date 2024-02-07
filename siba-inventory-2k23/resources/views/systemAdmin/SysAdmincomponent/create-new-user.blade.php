@@ -227,6 +227,8 @@
                                     $('#all_user_data').DataTable({
 
                                         // Enable horizontal scrolling
+                                        //order by
+                                        order: [[0, 'desc']]
                                     });
                                 }
 
