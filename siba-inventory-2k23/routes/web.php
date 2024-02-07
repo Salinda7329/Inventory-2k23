@@ -164,7 +164,7 @@ Route::post('/pm/Item/update', [ItemsController::class, 'update'])->name('item.u
 // });
 Route::get('/pm/product-limits', [ProductController::class, 'pmProductLimits']);
 //route to fetch all product level data
-Route::get('/systemAdmin/fetchAllProductLevels', [ProductController::class, 'fetchAllProducts'])->name('fetchAllProductLevels');
+Route::get('/pm/ViewItemsUnderProduct/{product_id}', [ProductController::class, 'fetchItemsUnderProduct']);
 
 
 

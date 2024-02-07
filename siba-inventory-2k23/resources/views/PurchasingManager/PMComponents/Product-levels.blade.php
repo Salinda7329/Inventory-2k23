@@ -1,6 +1,6 @@
 @extends('PurchasingManager.PM-layout')
 
-@section('title', 'View Items Under Products | Inventory | SIBA Campus')
+@section('title', 'View Product Levels | Inventory | SIBA Campus')
 
 @section('content')
 

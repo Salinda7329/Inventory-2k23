@@ -143,7 +143,7 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $currentItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
-                ->where('condition',1) // Exclude items with condition 0 (damaged items)
+                ->where('condition', 1) // Exclude items with condition 0 (damaged items)
                 ->count();
             $damagedItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
@@ -160,5 +160,15 @@ class ProductController extends Controller
         }
 
         return view('PurchasingManager.PMComponents.Product-levels', compact('productData'));
+    }
+
+    public function fetchItemsUnderProduct($product_id)
+    {
+
+        // Fetch all items under the specified product ID
+        $items = Item::where('product_id', $product_id)->get();
+
+        // You can pass the fetched items to a view and return it
+        return view('PurchasingManager.PMComponents.view-items-under-product', compact('items'));
     }
 }
