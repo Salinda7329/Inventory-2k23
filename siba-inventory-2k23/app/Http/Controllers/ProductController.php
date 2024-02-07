@@ -159,6 +159,6 @@ class ProductController extends Controller
             ];
         }
 
-        return view('PurchasingManager.PM-product-limits', compact('productData'));
+        return view('PurchasingManager.PMComponents.Product-levels', compact('productData'));
     }
 }

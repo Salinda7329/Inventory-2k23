@@ -1,8 +1,11 @@
+@extends('PurchasingManager.PM-layout')
+
+@section('title', 'View Items Under Products | Inventory | SIBA Campus')
+
+@section('content')
+
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
-        {{-- @include('PurchasingManager.PMComponents.Modal-addNewProduct')
-        @include('PurchasingManager.PMComponents.Modal-RequestNewProduct') --}}
-        <br><br>
         <div class="authentication-inner">
 
             <div class="card">
@@ -52,4 +55,4 @@
         </div>
     </div>
 </div>
-{{-- @include('PurchasingManager.PMComponents.Modal-EditProduct') --}}
+@endsection
