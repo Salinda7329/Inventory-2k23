@@ -23,7 +23,7 @@
                         <input type="text" class="form-control" id="product_name1" name="product_name"
                             placeholder="Enter your Product Name" :value="old('product_name')" required autofocus
                             autocomplete="product_name" />
-                              <div class="input-error text-danger" style="display: none"></div>
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -46,6 +46,7 @@
                         <input type="text" class="form-control" id="lower_limit1" name="lower_limit"
                             placeholder="Enter your Product Limit" :value="old('lower_limit')" required autofocus
                             autocomplete="lower_limit" />
+                        <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
 
@@ -66,8 +67,12 @@
                 </form>
 
                 <script>
-
                     $(document).ready(function() {
+
+                         // Attach the input event handler to the form inputs
+                         $('#UpdateProductDetailsForm').find('input, select').on('input', function() {
+                    $(this).next('.input-error').hide();
+                });
 
                         // Add an event listener to the modal close button
                         $('.btn-close').on('click', function() {
@@ -93,11 +98,6 @@
                                     _token: '{{ csrf_token() }}'
                                 },
                                 success: function(response) {
-                                    // Set id value to the hidden field
-                                    $('#product_Id_hidden').val(response.id);
-                                    $('#product_name1').val(response.product_name);
-                                    $('#lower_limit1').val(response.lower_limit);
-                                    $('#status1').val(response.isActive);
 
                                     // Populate the category dropdown with category names
                                     $.ajax({
@@ -110,6 +110,12 @@
                                             $('#modaleditproduct').modal('show');
                                         }
                                     });
+
+                                    // Set id value to the hidden field
+                                    $('#product_Id_hidden').val(response.id);
+                                    $('#product_name1').val(response.product_name);
+                                    $('#lower_limit1').val(response.lower_limit);
+                                    $('#status1').val(response.isActive);
                                 }
                             });
                         });
@@ -151,6 +157,16 @@
 
                                         // fetch product data from the database
                                         fetchAllProductData();
+                                    } else if (response.status === 422) {
+                                        // Handle validation errors
+                                        var errors = response.errors;
+
+                                        for (var key in errors) {
+                                            // Find the form field
+                                            var field = $('[name="' + key + '"]');
+                                            // Display the error message
+                                            field.next('.input-error').text(errors[key][0]).show();
+                                        }
                                     }
                                 }
                             });
