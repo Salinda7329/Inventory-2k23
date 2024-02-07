@@ -219,6 +219,7 @@ class ProductController extends Controller
 
             $productData[] = [
                 'product_id' => $product->id,
+                'lower_limit' => $product->lower_limit,
                 'product_name' => $product->product_name,
                 'category' => $product->categoryData->category_name,
                 'current_item_count' => $currentItemCount,

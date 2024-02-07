@@ -15,7 +15,7 @@
                     {{-- {{ dd($productData) }} --}}
 
                     <div class="card-body">
-                        <table id="all_data">
+                        <table id="all_data" class="data-table">
                             <thead>
                                 <tr>
                                     <th>Item ID</th>
