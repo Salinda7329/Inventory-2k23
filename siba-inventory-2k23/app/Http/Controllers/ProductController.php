@@ -205,7 +205,8 @@ class ProductController extends Controller
 
     public function pmProductLimits()
     {
-        $products = Product::with('categoryData')->get(); // Assuming you have a relationship between products and categories
+        $products = Product::with('categoryData')->where('isActive', [1, 2])
+            ->get(); // Assuming you have a relationship between products and categories
         $productData = [];
         foreach ($products as $product) {
             $currentItemCount = Item::where('product_id', $product->id)
@@ -217,13 +218,26 @@ class ProductController extends Controller
                 ->where('condition', 2) // Only include items with condition 1 (damaged items)
                 ->count();
 
+            $lowerLimit = $product->lower_limit;
+
+            // Determine if the current item count minus the damaged item count equals the lower limit
+            $balance = ($currentItemCount - $damagedItemCount);
+
+            if ($balance > $lowerLimit) {
+                $over = 0;
+            }
+
+            // $isAtLowerLimit = ($balance == $lowerLimit);
+
             $productData[] = [
                 'product_id' => $product->id,
-                'lower_limit' => $product->lower_limit,
+                'lower_limit' => $lowerLimit,
+                'balance' => $balance,
                 'product_name' => $product->product_name,
                 'category' => $product->categoryData->category_name,
                 'current_item_count' => $currentItemCount,
                 'damaged_item_count' => $damagedItemCount,
+                'is_at_lower_limit' => $balance <= $lowerLimit, // Add a flag indicating if the row is at the lower limit
             ];
         }
 
@@ -232,11 +246,13 @@ class ProductController extends Controller
 
     public function fetchItemsUnderProduct($product_id)
     {
+        // Fetch the product based on the provided product ID
+        $product = Product::find($product_id);
 
         // Fetch all items under the specified product ID
         $items = Item::where('product_id', $product_id)->get();
 
-        // You can pass the fetched items to a view and return it
-        return view('PurchasingManager.PMComponents.view-items-under-product', compact('items'));
+        // Pass the fetched product and items to the view
+        return view('PurchasingManager.PMComponents.view-items-under-product', compact('product', 'items'));
     }
 }

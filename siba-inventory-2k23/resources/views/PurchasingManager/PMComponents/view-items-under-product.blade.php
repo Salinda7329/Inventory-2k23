@@ -10,8 +10,14 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Products and Levels
+                        <div style="color: blue">
+                            Product Name - {{ $product->product_name }}
+                        </div>
+                        <div style="color: blue">
+                            Product ID - {{ $product->id }}
+                        </div>
                     </div>
+
                     {{-- {{ dd($productData) }} --}}
 
                     <div class="card-body">
@@ -22,6 +28,7 @@
                                     <th>Item Name</th>
                                     <th>Condition</th>
                                     <th>Availability</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,11 +36,26 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->item_name }}</td>
-                                        <td style="color: {{ $item->condition ==1 ? 'green' : 'red' }}">
-                                            {{ $item->condition ==1 ? 'Working' : 'Damaged' }}
+                                        <td style="color: {{ $item->condition == 1 ? 'green' : 'red' }}">
+                                            {{ $item->condition == 1 ? 'Working' : 'Damaged' }}
                                         </td>
                                         <td style="color: {{ $item->availability == 1 ? 'green' : 'red' }}">
                                             {{ $item->availability == 1 ? 'Available' : 'Not Available' }}
+                                        </td>
+                                        <td
+                                            style="color:
+                                            @if ($item->isActive == 1) green
+                                            @elseif($item->isActive == 2)
+                                                red
+                                            @elseif($item->isActive == 3)
+                                                gray @endif">
+                                            @if ($item->isActive == 1)
+                                                Active
+                                            @elseif($item->isActive == 2)
+                                                Deactivated
+                                            @elseif($item->status == 3)
+                                                Deleted
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
