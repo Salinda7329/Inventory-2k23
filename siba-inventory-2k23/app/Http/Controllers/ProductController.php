@@ -11,6 +11,7 @@ use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\Item;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ProductController extends Controller
@@ -31,7 +32,7 @@ class ProductController extends Controller
                 ]);
 
                 // Return the success response after the user is created
-                return response()->json(['message' => 'New product created successfully.','status' => 200]);
+                return response()->json(['message' => 'New product created successfully.', 'status' => 200]);
             });
         } catch (ValidationException $e) {
             // Handle validation errors
@@ -93,7 +94,8 @@ class ProductController extends Controller
         }
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $product_Id = $request->product_Id;
         //find data of id using Student model
         $product = Product::find($product_Id);
@@ -134,4 +136,29 @@ class ProductController extends Controller
         ]);
     }
 
+    public function pmProductLimits()
+    {
+        $products = Product::with('categoryData')->get(); // Assuming you have a relationship between products and categories
+        $productData = [];
+        foreach ($products as $product) {
+            $currentItemCount = Item::where('product_id', $product->id)
+                ->where('isActive', 1)
+                ->where('condition',1) // Exclude items with condition 0 (damaged items)
+                ->count();
+            $damagedItemCount = Item::where('product_id', $product->id)
+                ->where('isActive', 1)
+                ->where('condition', 2) // Only include items with condition 1 (damaged items)
+                ->count();
+
+            $productData[] = [
+                'product_id' => $product->id,
+                'product_name' => $product->product_name,
+                'category' => $product->categoryData->category_name,
+                'current_item_count' => $currentItemCount,
+                'damaged_item_count' => $damagedItemCount,
+            ];
+        }
+
+        return view('PurchasingManager.PM-product-limits', compact('productData'));
+    }
 }

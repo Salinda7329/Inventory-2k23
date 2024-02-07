@@ -106,6 +106,14 @@
             </a>
           </li>
         </ul>
+
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="/pm/product-limits" class="menu-link">
+              <div data-i18n="Without menu">Check Product Limits</div>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <li class="menu-item">

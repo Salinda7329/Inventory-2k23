@@ -155,9 +155,18 @@ Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit')
 //route to update item data
 Route::post('/pm/Item/update', [ItemsController::class, 'update'])->name('item.update');
 
-// Route::get('/pm/addNewProduct', function () {
-//     return view('PurchasingManager.add-new-product');
+
+
+
+//route to the view product levels
+// Route::get('/pm/product-limits', function () {
+//     return view('PurchasingManager.PM-product-limits');
 // });
+Route::get('/pm/product-limits', [ProductController::class, 'pmProductLimits']);
+//route to fetch all product level data
+Route::get('/systemAdmin/fetchAllProductLevels', [ProductController::class, 'fetchAllProducts'])->name('fetchAllProductLevels');
+
+
 
 Route::get('/pm/ViewRequestedItems', function () {
     return view('PurchasingManager.Requested-Items');
