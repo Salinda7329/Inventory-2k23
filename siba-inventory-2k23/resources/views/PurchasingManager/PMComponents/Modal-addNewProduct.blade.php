@@ -40,6 +40,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="limit">Lower Limit</label>
+                        <input type="text" class="form-control" id="lower_limit" name="lower_limit"
+                            placeholder="Enter Product Lower Limit" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             id="btnClose">Close</button>
                         <button type="submit" id="createNewProduct" class="btn btn-primary">Add New Product

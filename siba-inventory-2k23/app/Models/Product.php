@@ -11,6 +11,7 @@ class Product extends Model
     protected $fillable = [
         'po_no',
         'category_id',
+        'lower_limit',
         'product_name',
         'created_by',
         'isActive',

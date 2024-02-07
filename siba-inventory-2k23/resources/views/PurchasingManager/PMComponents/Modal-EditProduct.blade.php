@@ -23,8 +23,8 @@
                         <input type="text" class="form-control" id="product_name1" name="product_name"
                             placeholder="Enter your Product Name" :value="old('product_name')" required autofocus
                             autocomplete="product_name" />
+                              <div class="input-error text-danger" style="display: none"></div>
                     </div>
-
 
                     <div class="mb-3">
                         <label class="form-label" for="category_id">Catagory</label>
@@ -40,6 +40,16 @@
                         <label class="form-label" for="category_id">Catagory</label>
                         <input type="text" name="category_id" id="category_id2">
                     </div> --}}
+
+                    <div class="mb-3">
+                        <label for="product_name" class="form-label">Product Lower Limit</label>
+                        <input type="text" class="form-control" id="lower_limit1" name="lower_limit"
+                            placeholder="Enter your Product Limit" :value="old('lower_limit')" required autofocus
+                            autocomplete="lower_limit" />
+                    </div>
+
+
+
 
                     <div class="mb-3">
                         <label for="status" class="form-label">Select Status</label>
@@ -86,6 +96,7 @@
                                     // Set id value to the hidden field
                                     $('#product_Id_hidden').val(response.id);
                                     $('#product_name1').val(response.product_name);
+                                    $('#lower_limit1').val(response.lower_limit);
                                     $('#status1').val(response.isActive);
 
                                     // Populate the category dropdown with category names
