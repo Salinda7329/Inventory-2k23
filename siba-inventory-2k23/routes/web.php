@@ -273,9 +273,6 @@ Route::get('/HR-AddNewEMP' , function(){
     return view('HumanResource.AddNewEMP');
 });
 
-///////////////////
-
-///////////////////
 
 
 
