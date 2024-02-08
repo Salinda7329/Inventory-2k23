@@ -15,7 +15,7 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item active">
+      <li class="menu-item active" id="1">
         <a href="/home" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
@@ -29,21 +29,21 @@
       </li>
 
 
-      <li class="menu-item">
+      <li class="menu-item" id="2">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Store</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="3">
             <a href="/pm/viewProducts" class="menu-link">
               <div data-i18n="Without menu">View Store</div>
             </a>
           </li>
         </ul>
         <ul class="menu-sub">
-            <li class="menu-item">
+            <li class="menu-item" id="4">
               <a href="/pm/chech/storeRecords" class="menu-link">
                 <div data-i18n="Without menu">Check Records</div>
               </a>
@@ -52,24 +52,24 @@
       </li>
 
 
-      <li class="menu-item">
+      <li class="menu-item" id="5">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Manage Requests</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="6">
             <a href="/pm/ViewRequestedItems" class="menu-link">
               <div data-i18n="Without menu">View Inventory Request</div>
             </a>
           </li>
-          <li class="menu-item">
+          <li class="menu-item" id="7">
             <a href="layouts-without-navbar.html" class="menu-link">
               <div data-i18n="Without navbar">View My Request</div>
             </a>
           </li>
-          <li class="menu-item">
+          <li class="menu-item" id="8">
             <a href="layouts-container.html" class="menu-link">
               <div data-i18n="Container">View Request History</div>
             </a>
@@ -78,14 +78,14 @@
       </li>
 
 
-      <li class="menu-item">
+      <li class="menu-item" id="9">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Manage Items</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="10">
             <a href="/pm/addNewItem" class="menu-link">
               <div data-i18n="Without menu">Add New Item</div>
             </a>
@@ -93,14 +93,14 @@
         </ul>
       </li>
 
-      <li class="menu-item">
+      <li class="menu-item" id="11">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Manage Products</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="12">
             <a href="/pm/home" class="menu-link">
               <div data-i18n="Without menu">Add New Product</div>
             </a>
@@ -108,7 +108,7 @@
         </ul>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="13">
             <a href="/pm/product-limits" class="menu-link">
               <div data-i18n="Without menu">Check Product Limits</div>
             </a>
@@ -116,14 +116,14 @@
         </ul>
       </li>
 
-      <li class="menu-item">
+      <li class="menu-item" id="14">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Manage Brands</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="15">
             <a href="/pm/addNewBrand" class="menu-link">
               <div data-i18n="Without menu">Add New Brand</div>
             </a>
@@ -131,14 +131,14 @@
         </ul>
       </li>
 
-      <li class="menu-item">
+      <li class="menu-item" id="16">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Manage Categories</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item" id="17">
             <a href="/pm/addNewCategory" class="menu-link">
               <div data-i18n="Without menu">Add New Category</div>
             </a>
@@ -157,7 +157,7 @@
       <!-- Forms & Tables -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Human Resource</span></li>
       <!-- Forms -->
-      <li class="menu-item">
+      <li class="menu-item" id="18">
         <a href="/store/low-quentity" class="menu-link">
           <i class="menu-icon tf-icons bx bx-detail"></i>
           <div data-i18n="Form Elements">Low Quentity</div>
@@ -168,7 +168,7 @@
 
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Finance</span></li>
       <!-- Forms -->
-      <li class="menu-item">
+      <li class="menu-item" id="19">
         <a href="/view-requested-items" class="menu-link">
           <i class="menu-icon tf-icons bx bx-detail"></i>
           <div data-i18n="Form Elements">View Request</div>
@@ -176,7 +176,7 @@
 
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Examination</span></li>
         <!-- Forms -->
-        <li class="menu-item">
+        <li class="menu-item" id="20">
           <a href="/store/History" class="menu-link">
             <i class="menu-icon tf-icons bx bx-detail"></i>
             <div data-i18n="Form Elements">Check History</div>
