@@ -11,53 +11,82 @@
 
             <div class="card">
                 <div class="card-header">
-                    <H3>Requested Items</H3>
+                    Request History
                 </div>
-                <br><br>
                 <div class="card-body">
-
-                    <div class="row">
-                        <!-- Left side -->
-                        <div class="col-md-6">
-
-                        </div>
-                        <!-- Right side -->
-                        <div class="col-md-6">
+                    <div id="show_my_request_data"></div>
+                </div>
             </div>
 
-            <table id="example" class="hover" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Item No</th>
-                        <th>Item Name</th>
-                        <th>Quentity</th>
-                        <th>Requested Date</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>************</td>
-                        <td>************</td>
-                        <td>************</td>
-                        <td>************</td>
-                        <td>Pending</td>
+            <script>
+                $(document).ready(function() {
+                    // get the current user id
+                    var authenticatedUserId = {{ auth()->id() }};
 
-                        <td>
-                            @include('DepartmentUser.DUComponent.Modal-editRequestitem')
-                           @include('DepartmentUser.DUComponent.Modal-cancelRequest')
-                        </td>
-
-                    </tr>
+                        fetchMyRequestData();
 
 
-            </table>
-                <script>
-                    $(document).ready( function () {
-                        $('#example').DataTable();
-                    });
-                </script>
+                    function fetchMyRequestData() {
+
+                        $.ajax({
+                            url: '{{ route('fetchMyRequestData') }}',
+                            method: 'post',
+                            data: {
+                                user_id: authenticatedUserId, // Include the user ID in the data
+                                _token: '{{ csrf_token() }}' // Include the CSRF token
+                            },
+                            success: function(response) {
+                                // console.log(response);
+                                $('#show_my_request_data').html(response);
+                                // //Make table a data table
+                                $('#all_request_data').DataTable({
+                                    // Enable horizontal scrolling
+                                    // "scrollX": true,
+                                });
+
+                            }
+                        });
+                    }
+
+                    // Add event listeners for process buttons
+                    // $(document).on("click", ".processRequestButton", function(e) {
+                    //     e.preventDefault();
+
+                    //     const itemUser = this.id;
+
+                    //     // Store a reference to the button
+                    //     var clickedButton = $(this);
+
+                    //     // Send AJAX request to the backend using jQuery
+                    //     $.ajax({
+                    //         url: '/storeManager/RequestAction',
+                    //         type: 'POST',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    //         },
+                    //         data: JSON.stringify({
+                    //             itemUser: itemUser
+                    //         }),
+                    //         dataType: 'json',
+                    //         success: function(data) {
+                    //             fetchAllRequestData();
+                    //             // Use the stored reference to update the clicked button's class
+                    //             // if (data.message === 0) {
+                    //             //     clickedButton.removeClass('btn-outline-danger').addClass(
+                    //             //         'btn-outline-secondary');
+                    //             // } else {
+                    //             //     clickedButton.removeClass('btn-outline-secondary').addClass(
+                    //             //         'btn-outline-danger');
+                    //             // }
+                    //         },
+                    //         error: function(error) {
+                    //             console.error('Error performing request action:', error);
+                    //         }
+                    //     });
+                    // });
+                });
+            </script>
+
         </div>
     </div>
-</div>

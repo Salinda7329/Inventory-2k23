@@ -17,6 +17,8 @@
 
                     {{-- hidden id input field --}}
                     <input type="hidden" id="item_Id_hidden2" name="item_Id_hidden">
+                    {{-- hidden current user id input field --}}
+                    <input type="hidden" id="user_id_hidden2" name="user_id_hidden2" value="{{ Auth::user()->id }}">
 
                     <div class="mb-3">
                         <label for="po_no" class="form-label">PO Number</label>
@@ -78,15 +80,27 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Select Status</label>
-                        <select class="form-control" id="status2" name="isActive">
-                            <option disabled selected hidden>Select a Status</option>
-                            <option value="1">Active</option>
-                            <option value="2">Deactive</option>
-                            <option value="3">Delete</option>
-                        </select>
-                    </div>
+                    @if (Auth::user()->role == 3)
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Select Status</label>
+                            <select class="form-control" id="status2" name="isActive">
+                                <option disabled selected hidden>Select a Status</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                                <option value="3">Delete</option>
+                            </select>
+                        </div>
+                    @else
+                        <div class="mb-3" style="display:none">
+                            <label for="status" class="form-label">Select Status</label>
+                            <select class="form-control" id="status2" name="isActive">
+                                <option disabled selected hidden>Select a Status</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                                <option value="3">Delete</option>
+                            </select>
+                        </div>
+                    @endif
 
                     <button class="btn btn-primary d-grid w-100" id="Update_item_button">Update</button>
                 </form>

@@ -33,9 +33,9 @@ class AdminDashboardController extends Controller
                         <tr>
                         <th>User_ID</th>
                         <th>Email</th>
-                        <th>Epf</th>
                         <th>Name</th>
                         <th>Role</th>
+                        <th>Epf</th>
                         <th>Department</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -48,8 +48,6 @@ class AdminDashboardController extends Controller
                     "<tr>
                             <td>" . $user->id . "</td>
                             <td>" . $user->email . "</td>
-                            <td>" . $user->epf . "</td>
-                            <td>" . $user->name . "</td>
                             <td>";
                             if (Auth::check() && Auth::id() == $user->id) {
                                 $response .= "<span style='color: green;'>{$user->name}</span>";
@@ -59,8 +57,16 @@ class AdminDashboardController extends Controller
 
                 $response .=
                             "</td>
-                            <td>" . $user->getDepartmentNameAttribute() . "</td>
-                            <td>" . $user->getIsActiveNameAttribute() . "</td>
+                            <td>" . $user->getRoleNameAttribute() . "</td>
+                            <td>" . $user->epf . "</td>
+                           <td>" . $user->getDepartmentNameAttribute() . "</td>
+                            <td>";
+                            if ($user->isActive == 1) $response .= "<span style='color: green;'>Active</span>";
+                            else if ($user->isActive == 2) $response .= "<span style='color: red;'>Deactivated</span>";
+                            else $response .= "<span style='color: gray;'>Deleted</span>";
+
+                $response .=
+                            "</td>
                             <td><a href='#' id='" . $user->id . "'  data-bs-toggle='modal'
                             data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
                             </td>

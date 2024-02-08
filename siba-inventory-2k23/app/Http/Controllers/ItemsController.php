@@ -16,6 +16,7 @@ class ItemsController extends Controller
         try {
             $input = $request->validate([
                 'user_id_hidden' => ['required'],
+                'owner_hidden' => ['required'],
                 'po_no' => ['required'],
                 'product_id' => ['required'],
                 'brand_id' => ['required'],
@@ -30,6 +31,7 @@ class ItemsController extends Controller
                 $currentTimestamp = now();
                 Item::create([
                     'created_by' => $input['user_id_hidden'],
+                    'owner' => $input['owner_hidden'],
                     'po_no' => $input['po_no'],
                     'product_id' => $input['product_id'],
                     'brand_id' => $input['brand_id'],
@@ -76,6 +78,8 @@ class ItemsController extends Controller
                         <th>Brand Name</th>
                         <th>PO No</th>
                         <th>Item Name</th>
+                        <th>Availability</th>
+                        <th>Owner</th>
                         <th>Condition</th>
                         <th>Condition Updated By</th>
                         <th>Condition Updated TimeStamp</th>
@@ -98,6 +102,8 @@ class ItemsController extends Controller
                                         <td>" . $item->brandData->brand_name . "</td>
                                         <td>" . $item->po_no . "</td>
                                         <td>" . $item->item_name . "</td>
+                                        <td>" . $item->getIsAvailabilityAttribute() . "</td>
+                                        <td>" . ($item->ownerUser && $item->ownerUser->name ? $item->ownerUser->name : 'N/A') . "</td>
                                         <td>" . $item->getIsCondtionItemAttribute() . "</td>
                                         <td>" . $item->conditionUpdatedByUser->name . "</td>
                                         <td>" . $item->condition_updated_timestamp . "</td>
@@ -131,7 +137,7 @@ class ItemsController extends Controller
 
         // $items = Item::all();
         // Retrieve only active items
-        $items = Item::where('isActive', 1)->get();
+        $items = Item::where('isActive', 1)->where('condition', 1)->where('availability', 1)->get();
 
 
         //returning data inside the table
@@ -200,6 +206,7 @@ class ItemsController extends Controller
             'brand_id' => $request->brand_id,
             'item_name' => $request->item_name,
             'condition' => $request->condition,
+            'condition_updated_by' => $request->user_id_hidden2,
             'items_remaining' => $request->items_remaining,
             'lower_limit' => $request->lower_limit,
             'isActive' => $request->isActive,

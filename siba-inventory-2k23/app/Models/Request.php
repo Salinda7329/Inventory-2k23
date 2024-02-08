@@ -46,6 +46,16 @@ class Request extends Model
         return $this->belongsTo(Item::class, 'item_user', 'id');
     }
 
+    public function getItemNameById()
+    {
+        return $this->belongsTo(Item::class, 'item_id', 'id');
+    }
+
+    public function storeManagerAttributes()
+    {
+        return $this->belongsTo(User::class, 'store_manager', 'id');
+    }
+
     public function getStatusRequestAttribute()
     {
         $status = [
@@ -58,11 +68,13 @@ class Request extends Model
 
         return $status[$this->attributes['status']] ?? 'Unknown Status';
     }
-    public function getStatusRequestAttribute2()
+    public function getRequestProcessAttribute()
     {
         $status = [
             0 =>'Process',
             1 => 'Processing',
+            2 => 'Processed',
+            3 => 'Processed',
             // Add more roles as needed
         ];
 

@@ -16,8 +16,12 @@
                 <form id="createItemsForm" class="mb-3" method="POST" action="#">
                     @csrf
 
-                    {{-- hiidden field to store user_id --}}
+                    {{-- hidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
+                        hidden>
+
+                    {{-- hidden field to store owner --}}
+                    <input type="text" value="{{ Auth::user()->id }}" name="owner_hidden" id="owner_hidden"
                         hidden>
 
                     <div class="mb-3">
@@ -196,6 +200,7 @@
                             $('#all_item_data').DataTable({
                                 // Enable horizontal scrolling
                                 "scrollX": true,
+                                order: [[0, 'desc']]
                             });
                         }
 

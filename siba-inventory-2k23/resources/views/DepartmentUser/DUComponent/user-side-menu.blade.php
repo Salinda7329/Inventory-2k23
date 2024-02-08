@@ -42,7 +42,12 @@
           </li>
           <li class="menu-item">
             <a href="/dUser/RequestItemTableView" class="menu-link">
-              <div data-i18n="requestitem">Requested Item</div>
+              <div data-i18n="requestitem">Request History</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="/dUser/user-myItems" class="menu-link">
+              <div data-i18n="requestitem">My Items</div>
             </a>
           </li>
         </ul>

@@ -10,7 +10,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Enter New User Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="modal-close" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
@@ -93,14 +94,14 @@
 
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <button class="btn btn-primary">Create New User</button>
-                            </div>
-                            <div class="col-sm-12 col-md-6 text-md-end">
-                                <button class="btn btn-danger" id="clear-btn">Clear</button>
-                            </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary d-grid w-100">Create New User</button>
                         </div>
+                        <div class="mb-3">
+                            <button class="btn btn-danger d-grid w-100" id="clear-btn">Clear</button>
+                        </div>
+
+
 
 
 
@@ -200,17 +201,18 @@
                         });
 
                         // Add an event listener to the modal close button
-                        $('.btn-close').on('click', function() {
+                        $('#modal-close').on('click', function() {
                             // Reset the form when the close button is clicked
-                            $('#userCreationForm')[0].reset();
+                            // $('#userCreationForm')[0].reset();
                             $('#password-error').hide();
                             $('.input-error').hide();
                             //change submit button to adding
                             $('#createNewUser').text('Create New User');
                         });
 
-                        $('#clear-btn').on('click', function(){
+                        $('#clear-btn').on('click', function() {
                             $('#userCreationForm')[0].reset();
+                            $('.input-error').hide();
                         });
 
 
@@ -225,6 +227,8 @@
                                     $('#all_user_data').DataTable({
 
                                         // Enable horizontal scrolling
+                                        //order by
+                                        order: [[0, 'desc']]
                                     });
                                 }
 

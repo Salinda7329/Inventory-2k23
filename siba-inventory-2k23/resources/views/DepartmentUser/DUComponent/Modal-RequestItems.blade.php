@@ -105,7 +105,7 @@ auto watenn dann --}}
                             },
                             success: function(response) {
 
-                                console.log(response.po_no);
+                                // console.log(response);
                                 // Set id value to the hidden field
                                 $('#item_id').val(response.id);
                                 $('#item_name').val(response.item_name);
@@ -166,7 +166,7 @@ auto watenn dann --}}
                                     // You can update the UI or perform other actions here
 
                                     //fetch product data from database function
-                                    fetchAllProductData();
+                                    fetchAllItemDataUser();
                                 } else if (response.status === 422) {
                                     // Handle validation errors
                                     var errors = response.errors;

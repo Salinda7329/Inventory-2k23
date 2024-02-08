@@ -1,74 +1,228 @@
-{{--
-mekedi wenn oni bosa apita balagann plwn wennn oni store aken aliyata dunn awa , aluthin store akat genth dunn awa , etapasse
-store aken kuru hari aliyat badu aran gya awa awa ayeth genath dunn awa hama akkm timestamp akk anuwa wen wenm penn vdiyata
-hadan oni --}}
-
-{{-- thaw deyak me table aka only view kisi deyak wens krann ba --}}
-
+{{-- mekedi penn oni usersla request krpu items tk awa issue krann issue button aka abuwam ana modal ake a userge epf num aka , nama , departmnt aka ,
+item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
+        <br><br>
         <div class="authentication-inner">
+
             <div class="card">
-                <h5 class="card-header">View History</h5>
+                <div class="card-header">
+                    Returns by Users
+                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <!-- Left side -->
-                        <div class="col-md-6">
-                            <div class="container mt-4"></div>
-                            <label class="form-check-label" for="inlineCheckbox1">Sort by Date</label>
-                            <div class="container mt-4"></div>
-                            <div class="mb-3 row">
-                                <label for="html5-date-input" class="col-md-2 col-form-label">Start Date</label>
-                                <div class="col-md-6">
-                                    <input class="form-control" type="date" value="2021-06-18"
-                                        id="html5-date-input" />
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="html5-month-input" class="col-md-2 col-form-label">End Date</label>
-                                <div class="col-md-6">
-                                    <input class="form-control" type="month" value="2021-06" id="html5-month-input" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Right side -->
-                        <div class="col-md-6">
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="table-responsive text-nowrap">
-                        <table class="table">
-                            <thead>
-                                <tr class="text-nowrap">
-                                    <th>NO</th>
-                                    <th>Issue Date</th>
-                                    <th>Issued time</th>
-                                    <th>Item Name</th>
-                                    <th>Item code</th>
-                                    <th>Issued by</th>
-                                    <th>Department</th>
-                                    <th> Status </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>
-                                        Not Received {{-- methana status akk update krapn me baduwa genall deelad nadd kyala balagnn --}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div id="show_all_returns_data"></div>
                 </div>
             </div>
+
+            <script>
+                $(document).ready(function() {
+
+                    // get the current user id
+                    var authenticatedSMId = {{ auth()->id() }};
+
+                    fetchAllReturnsData();
+
+                    // function fetchAllRequestData() {
+
+                    //     $.ajax({
+                    //         url: '{{ route('fetchAllRequestData') }}',
+                    //         type: 'get',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    //         },
+                    //         data: JSON.stringify({
+                    //             sm_id: authenticatedSMId,
+                    //         }),
+                    //         dataType: 'json',
+                    //         success: function(response) {
+                    //             $('#show_all_requests_data').html(response);
+                    //             $('#show_all_requests_data').innerText(response);
+                    //             //Make table a data table
+                    //             $('#all_request_data').DataTable({
+                    //                 // Enable horizontal scrolling
+                    //                 // "scrollX": true,
+                    //             });
+
+                    //             // $('.processRequestButton').each(function() {
+                    //             //     var status = $(this).attr('data-status');
+                    //             //     if (status == "1") {
+                    //             //         $(this).removeClass('btn btn-primary').addClass(
+                    //             //             'btn btn-danger');
+                    //             //         $(this).closest('#requestButtonContainer').find(
+                    //             //             '.requestActionButton').show();
+                    //             //     } else if (status == "0") {
+                    //             //         $(this).removeClass('btn btn-danger').addClass(
+                    //             //             'btn btn-primary');
+                    //             //         $(this).closest('#requestButtonContainer').find(
+                    //             //             '.requestActionButton').hide();
+                    //             //     } else {
+                    //             //         $(this).removeClass('btn btn-danger').addClass(
+                    //             //             'btn btn-success');
+                    //             //         $(this).addAttribute('disabled');
+                    //             //         $(this).closest('#requestButtonContainer').find(
+                    //             //             '.requestActionButton').hide();
+                    //             //     }
+                    //             // });
+
+
+                    //         }
+                    //     });
+                    // }
+
+                    // function fetchAllRequestData() {
+                    //     $.ajax({
+                    //         url: '{{ route('fetchAllRequestData') }}',
+                    //         type: 'get',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    //         },
+                    //         data: JSON.stringify({
+                    //             sm_id: authenticatedSMId,
+                    //         }),
+                    //         dataType: 'json',
+                    //         success: function(response) {
+                    //             // Parse the JSON response and extract the HTML table
+                    //             const tableHtml = $('<div>').append(response.html).find('#all_request_data')
+                    //                 .html();
+
+                    //             // Update the show_all_requests_data div's content with the extracted HTML table
+                    //             $('#show_all_requests_data').html(tableHtml);
+
+                    //             // Make the table a data table
+                    //             $('#all_request_data').DataTable({
+                    //                 // Enable horizontal scrolling
+                    //                 // "scrollX": true,
+                    //             });
+
+                    //             // Add event listeners for process buttons
+                    //             $(document).on("click", ".processRequestButton", function(e) {
+                    //                 // ...
+                    //             });
+                    //         },
+                    //         error: function(error) {
+                    //             console.error('Error fetching request data:', error);
+                    //         }
+                    //     });
+                    // }
+
+                    function fetchAllReturnsData() {
+                        $.ajax({
+                            url: '{{ route('fetchAllReturnsData') }}',
+                            type: 'post',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                            data: JSON.stringify({
+                                sm_id: authenticatedSMId,
+                            }),
+                            success: function(html) {
+                                // Update the show_all_requests_data div's content with the HTML table
+                                $('#show_all_returns_data').html(html);
+
+                                // Make the table a data table
+                                $('#all_returns_data').DataTable({
+                                    // Enable horizontal scrolling
+                                    // "scrollX": true,
+                                });
+
+                                // Add event listeners for process buttons
+                                $(document).on("click", ".processRequestButton", function(e) {
+                                    e.preventDefault();
+
+                                    const id = this.id;
+                                    const parts = id.split('.');
+                                    const itemUser = parts[1]; // Get the part after the dot
+
+                                    // Store a reference to the button
+                                    var clickedButton = $(this);
+
+                                    // Send AJAX request to the backend using jQuery
+                                    $.ajax({
+                                        url: '/storeManager/RequestAction',
+                                        type: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        },
+                                        data: JSON.stringify({
+                                            itemUser: itemUser,
+                                            sm_id: authenticatedSMId,
+                                        }),
+                                        dataType: 'json',
+                                        success: function(data) {
+                                            // fetchAllRequestData();
+                                            // Use the stored reference to update the clicked button's class
+                                            if (data.message === 0) {
+                                                clickedButton.removeClass('btn-outline-danger').addClass(
+                                                    'btn-outline-secondary');
+                                            } else {
+                                                clickedButton.removeClass('btn-outline-secondary').addClass(
+                                                    'btn-outline-danger');
+                                            }
+                                        },
+                                        error: function(error) {
+                                            console.error(
+                                                'Error performing request action:',
+                                                error);
+                                        }
+                                    });
+                                });
+                            },
+                            error: function(error) {
+                                console.error('Error fetching request data:', error);
+                            }
+                        });
+                    }
+
+                    // Add event listeners for process buttons
+                    // $(document).on("click", ".processRequestButton", function(e) {
+
+                    //     e.preventDefault();
+
+                    //     const id = this.id;
+                    //     const parts = id.split('.');
+                    //     const itemUser = parts[1]; // Get the part after the dot
+
+                    //     // Store a reference to the button
+                    //     var clickedButton = $(this);
+
+                    //     // Send AJAX request to the backend using jQuery
+                    //     $.ajax({
+                    //         url: '/storeManager/RequestAction',
+                    //         type: 'POST',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    //         },
+                    //         data: JSON.stringify({
+                    //             itemUser: itemUser,
+                    //             sm_id: authenticatedSMId,
+                    //         }),
+                    //         dataType: 'json',
+                    //         success: function(data) {
+                    //             fetchAllRequestData();
+                    //             // Use the stored reference to update the clicked button's class
+                    //             // if (data.message === 0) {
+                    //             //     clickedButton.removeClass('btn-outline-danger').addClass(
+                    //             //         'btn-outline-secondary');
+                    //             // } else {
+                    //             //     clickedButton.removeClass('btn-outline-secondary').addClass(
+                    //             //         'btn-outline-danger');
+                    //             // }
+                    //         },
+                    //         error: function(error) {
+                    //             console.error('Error performing request action:', error);
+                    //         }
+                    //     });
+                    // });
+                });
+            </script>
+
         </div>
     </div>
 </div>
+@include('storeManager.SMcomponent.action-item-buttonModal-requestedtable')

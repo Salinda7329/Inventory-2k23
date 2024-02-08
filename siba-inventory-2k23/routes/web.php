@@ -94,10 +94,35 @@ Route::get('/products/fetchProductDetails', [ProductController::class, 'fetchPro
 
 
 //category view
+Route::get('/pm/addNewCategory', function () {
+    return view('PurchasingManager.add-new-category');
+})->name('pm.category');
 //category create
-// category edit PENDING
-// route to get all category details
+Route::post('/pm/newCategory', [CategoryController::class, 'create'])->name('pm.newCategory');
+// category edit
+Route::get('/pm/Category/edit', [CategoryController::class, 'edit'])->name('category.edit');
+//route to update category data
+Route::post('/pm/Category/update', [CategoryController::class, 'update'])->name('category.update');
+// route to get all category details table
+Route::get('/categories/fetchAllCategoryData', [CategoryController::class, 'fetchAllCategoryData'])->name('fetchAllCategoryData');
+
+
+
+//view to add new brand
+Route::get('/pm/addNewBrand', function () {
+    return view('PurchasingManager.add-new-brand');
+})->name('pm.brand');
 Route::get('/categories/fetch', [CategoryController::class, 'fetchCategories'])->name('categories.fetch');
+// create new brand
+Route::post('/pm/newBrand', [BrandController::class, 'create'])->name('pm.newBrand');
+//route to fetch all brand data
+Route::get('/pm/home/fetchAllBrandData', [BrandController::class, 'fetchAllBrandData'])->name('fetchAllBrandData');
+//route to edit brand data
+Route::get('/pm/Brand/edit', [BrandController::class, 'edit'])->name('brand.edit');
+//route to update brand data
+Route::post('/pm/Brand/update', [BrandController::class, 'update'])->name('brand.update');
+// route to get all brand details
+Route::get('/brands/fetch', [BrandController::class, 'fetchBrands'])->name('brands.fetch');
 
 
 //view to add new brand
@@ -130,9 +155,18 @@ Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit')
 //route to update item data
 Route::post('/pm/Item/update', [ItemsController::class, 'update'])->name('item.update');
 
-// Route::get('/pm/addNewProduct', function () {
-//     return view('PurchasingManager.add-new-product');
+
+
+
+//route to the view product levels
+// Route::get('/pm/product-limits', function () {
+//     return view('PurchasingManager.PM-product-limits');
 // });
+Route::get('/pm/product-limits', [ProductController::class, 'pmProductLimits']);
+//route to fetch all product level data
+Route::get('/pm/ViewItemsUnderProduct/{product_id}', [ProductController::class, 'fetchItemsUnderProduct']);
+
+
 
 Route::get('/pm/ViewRequestedItems', function () {
     return view('PurchasingManager.Requested-Items');
@@ -163,22 +197,87 @@ Route::middleware([
 //home route
 Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-//view requested items by users
+
+
+//view to see items with users
+Route::get('/storeManager/view-user-items', function () {
+    return view('storeManager.view-all-user-items');
+});
+//route to fetch all items at users
+Route::get('/storeManager/fetchItemsAtUsers', [RequestsController::class, 'fetchItemsAtUsers'])->name('fetchItemsAtUsers');
+
+
+
+//view requests by users
 Route::get('/storeManager/view-requested-items', function () {
     return view('storeManager.view-rquest-item');
 })->name('storeManager.requests');
-//route to fetch all request data
-Route::get('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
-//route to change the status of a request
-Route::post('/storeManager/processRequest', [RequestsController::class, 'RequestAction'])->name('RequestAction');
+//route to fetch all requests data
+Route::post('/storeManager/fetchAllRequestData', [RequestsController::class, 'fetchAllRequestData'])->name('fetchAllRequestData');
 
+//view-processing-requests
+Route::get('/storeManager/view-processing-requests', function () {
+    return view('storeManager.view-processing-requests');
+})->name('storeManager.processing-requests');
+//route to fetch all processing requests data
+Route::post('/storeManager/fetchAllProcessingRequestData', [RequestsController::class, 'fetchAllProcessingRequestData'])->name('fetchAllProcessingRequestData');
+
+//view issued items history
+Route::get('/storeManager/view-issued-items-history', function () {
+    return view('storeManager.view-issued-items-history');
+})->name('storeManager.requests');
+//route to fetch all requests history data ( issued items history)
+Route::post('/storeManager/fetchAllRequestsHistory', [RequestsController::class, 'fetchAllRequestsHistory'])->name('fetchAllRequestsHistory');
+
+
+//view rejected requests history
+Route::get('/storeManager/view-rejected-history', function () {
+    return view('storeManager.view-rejected-history');
+})->name('storeManager.rejected');
+//route to fetch all rejected requests history
+Route::post('/storeManager/fetchAllRejectedHistory', [RequestsController::class, 'fetchAllRejectedHistory'])->name('fetchAllRejectedHistory');
+
+
+
+//view returns by users
+Route::get('/storeManager/view-return-items', function () {
+    return view('storeManager.view-return-item');
+})->name('storeManager.returns');
+//route to fetch all returns data
+Route::post('/storeManager/fetchAllReturnData', [RequestsController::class, 'fetchAllReturnData'])->name('fetchAllReturnData');
+
+//view-processing-returns
+Route::get('/storeManager/view-processing-returns', function () {
+    return view('storeManager.view-processing-returns');
+})->name('storeManager.processing-returns');
+//route to fetch all processing returns data
+Route::post('/storeManager/fetchAllProcessingReturnData', [RequestsController::class, 'fetchAllProcessingReturnData'])->name('fetchAllProcessingReturnData');
+
+//view accepted items history
+Route::get('/storeManager/view-accepted-items-history', function () {
+    return view('storeManager.view-accepted-items-history');
+})->name('storeManager.requests');
+//route to fetch all returns history data
+Route::post('/storeManager/fetchAllReturnsHistory', [RequestsController::class, 'fetchAllReturnsHistory'])->name('fetchAllReturnsHistory');
+
+
+
+
+//route to change the status of a request
+Route::post('/storeManager/RequestAction', [RequestsController::class, 'RequestAction'])->name('RequestAction');
+//route to get data for request process modal
+Route::get('/storeManager/dataForProcessModal', [RequestsController::class, 'dataForProcessModal'])->name('dataForProcessModal');
+//route to send process reqeust modal data to request controller
+Route::post('/storeManager/processRequest', [RequestsController::class, 'processRequest'])->name('processRequest');
+//route to make a request to return an item
+Route::get('/user/request-return', [RequestsController::class, 'makeRequestReturn'])->name('makeRequest.return');
 
 
 
 
 
 //store visit route
-Route::get('/visit-store', function () {
+Route::get('/storeManager/store', function () {
     return view('storeManager.store');
 });
 
@@ -244,6 +343,14 @@ Route::get('/dUser/RequestItemTableView', function(){
 
 //route to make request
 Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
+//route to view user my request history
+Route::post('/user/fetchMyRequestData', [RequestsController::class, 'fetchMyRequestData'])->name('fetchMyRequestData');
+//route to view current items user have
+Route::get('/dUser/user-myItems', function(){
+    return view('DepartmentUser.user-myItems');
+});
+//route to view items user has currently
+Route::post('/user/fetchMyItems', [RequestsController::class, 'fetchMyItems'])->name('fetchMyItems');
 //-------------------------------------------------End Department user------------------------------------------------
 
 

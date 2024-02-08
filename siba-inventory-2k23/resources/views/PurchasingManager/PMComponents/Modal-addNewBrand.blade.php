@@ -139,7 +139,7 @@
                             $('#show_all_brand_data').html(response);
                             // //Make table a data table
                             $('#all_brand_data').DataTable({
-
+                                order: [[0, 'desc']]
                                 // Enable horizontal scrolling
                             });
                         }

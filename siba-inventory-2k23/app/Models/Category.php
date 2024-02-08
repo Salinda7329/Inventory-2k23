@@ -13,6 +13,23 @@ class Category extends Model
         'created_by',
         'created_at',
         'updated_at',
-        'isactive',
+        'isActive',
     ];
+
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function getIsActiveCategoryAttribute()
+    {
+        $status = [
+            1 =>'Active',
+            2 => 'Deactivated',
+            3 => 'Deleted',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['isActive']] ?? 'Unknown Status';
+    }
 }
