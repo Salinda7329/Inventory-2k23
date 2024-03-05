@@ -205,13 +205,17 @@ class ProductController extends Controller
 
     public function pmProductLimits()
     {
-        $products = Product::with('categoryData')->where('isActive', [1, 2])
+        $products = Product::with('categoryData')->where('isActive', 1)
             ->get(); // Assuming you have a relationship between products and categories
         $productData = [];
         foreach ($products as $product) {
             $currentItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
-                ->where('condition', 1) // Exclude items with condition 0 (damaged items)
+                ->count();
+            $availableItemCount = Item::where('product_id', $product->id)
+                ->where('isActive', 1)
+                ->where('condition', 1)
+                ->where('availability', 1)
                 ->count();
             $damagedItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
@@ -233,6 +237,7 @@ class ProductController extends Controller
                 'product_id' => $product->id,
                 'lower_limit' => $lowerLimit,
                 'balance' => $balance,
+                'availableItemCount' => $availableItemCount,
                 'product_name' => $product->product_name,
                 'category' => $product->categoryData->category_name,
                 'current_item_count' => $currentItemCount,
@@ -245,13 +250,17 @@ class ProductController extends Controller
     }
     public function smProductLimits()
     {
-        $products = Product::with('categoryData')->where('isActive', [1, 2])
+        $products = Product::with('categoryData')->where('isActive', 1)
             ->get(); // Assuming you have a relationship between products and categories
         $productData = [];
         foreach ($products as $product) {
             $currentItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
-                ->where('condition', 1) // Exclude items with condition 0 (damaged items)
+                ->count();
+            $availableItemCount = Item::where('product_id', $product->id)
+                ->where('isActive', 1)
+                ->where('condition', 1)
+                ->where('availability', 1)
                 ->count();
             $damagedItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
@@ -273,6 +282,7 @@ class ProductController extends Controller
                 'product_id' => $product->id,
                 'lower_limit' => $lowerLimit,
                 'balance' => $balance,
+                'availableItemCount' => $availableItemCount,
                 'product_name' => $product->product_name,
                 'category' => $product->categoryData->category_name,
                 'current_item_count' => $currentItemCount,
@@ -309,7 +319,7 @@ class ProductController extends Controller
 
     public function fetchItemsAndUsers()
     {
-        $items = Item::all()->where('availability',0);
+        $items = Item::all()->where('availability', 0);
 
         return view('PurchasingManager.view-items-and-users', compact('items'));
     }

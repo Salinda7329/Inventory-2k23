@@ -20,9 +20,9 @@
                                     <th>Product ID</th>
                                     <th>Product Name</th>
                                     <th>Category</th>
-                                    <th>Current Item Count</th>
+                                    <th>Available item Count</th>
+                                    <th>Working item Count</th>
                                     <th>Damaged Item Count</th>
-                                    <th>Balance</th>
                                     <th>Lower Limit</th>
                                     <th>View Items Under Product</th>
                                 </tr>
@@ -33,9 +33,9 @@
                                         <td>{{ $data['product_id'] }}</td>
                                         <td>{{ $data['product_name'] }}</td>
                                         <td>{{ $data['category'] }}</td>
-                                        <td>{{ $data['current_item_count'] }}</td>
-                                        <td>{{ $data['damaged_item_count'] }}</td>
+                                        <td>{{ $data['availableItemCount'] }}</td>
                                         <td>{{ $data['balance'] }}</td>
+                                        <td>{{ $data['damaged_item_count'] }}</td>
                                         <td>{{ $data['lower_limit'] }}</td>
                                         <td><a href="/pm/ViewItemsUnderProduct/{{ $data['product_id'] }}">View</a></td>
                                     </tr>
