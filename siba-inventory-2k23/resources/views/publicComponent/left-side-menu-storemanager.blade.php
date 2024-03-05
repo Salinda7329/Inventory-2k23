@@ -36,7 +36,7 @@
             </a>
             <a href="/storeManager/view-user-items" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="User interface">View Not Returned Items</div>
+                <div data-i18n="User interface">Items with Users</div>
             </a>
         </li>
 

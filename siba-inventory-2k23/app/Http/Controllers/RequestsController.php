@@ -916,6 +916,7 @@ class RequestsController extends Controller
                                 <th>Item_Id</th>
                                 <th>Item_name</th>
                                 <th>Quantity</th>
+                                <th>Owner Id</th>
                                 <th>Owner</th>
                                 <th>Sm Remark</th>
                                 <th>Issued_by</th>
@@ -933,6 +934,7 @@ class RequestsController extends Controller
                             <td>" . $request->item_id . "</td>
                             <td>" . $itemName . "</td>
                             <td>" . $request->quantity . "</td>
+                            <td>" . $request->request_by . "</td>
                             <td>" . $request->requestedByUser->name . "</td>
                             <td>" . $request->sm_remark . "</td>
                             <td>" . $request->storeManagerAttributes->name . "</td>
