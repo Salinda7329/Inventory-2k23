@@ -77,6 +77,10 @@ Route::middleware([
     //     return view('PurchasingManager.PM-home');
     // })->name('pm.addNewProduct');
 
+    //add new products page
+    Route::get('/pm/addNewProduct', function () {
+        return view('PurchasingManager.add-new-product');
+    });
     // create new product
     Route::post('/pm/newProduct', [ProductController::class, 'create'])->name('pm.newProduct');
     //route to fetch all product data
