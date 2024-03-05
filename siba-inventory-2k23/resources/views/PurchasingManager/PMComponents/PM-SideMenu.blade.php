@@ -56,6 +56,12 @@
         </li>
 
 
+        <li class="menu-item" id="3">
+            <a href="/pm/items-with-users" class="menu-link">
+                <div data-i18n="Without menu">Items with Users</div>
+            </a>
+        </li>
+
         {{-- <li class="menu-item" id="5">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
