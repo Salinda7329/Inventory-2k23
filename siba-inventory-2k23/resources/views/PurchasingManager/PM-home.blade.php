@@ -67,7 +67,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    @include('PurchasingManager.PMComponents.addNewProduct')
+                    {{-- @include('PurchasingManager.PMComponents.addNewProduct') --}}
 
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
                     <script src="../assets/vendor/js/bootstrap.js"></script>
