@@ -26,7 +26,7 @@
 
       <!-- Layouts -->
 
-      <li class="menu-header small text-uppercase">
+      {{-- <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Store</span>
       </li>
       <li class="menu-item">
@@ -76,6 +76,6 @@
 
       <!-- Misc -->
 
-      </li>
+      </li> --}}
     </ul>
 </aside>
