@@ -164,11 +164,8 @@ Route::middleware([
     //route to fetch all product level data
     Route::get('/pm/ViewItemsUnderProduct/{product_id}', [ProductController::class, 'fetchItemsUnderProduct']);
 
-
-
-    Route::get('/pm/ViewRequestedItems', function () {
-        return view('PurchasingManager.Requested-Items');
-    });
+    //Items and users who have them
+    Route::get('/pm/items-with-users', [ProductController::class, 'fetchItemsAndUsers']);
 
     Route::get('/pm/viewProducts', function () {
         return view('PurchasingManager.View-products');

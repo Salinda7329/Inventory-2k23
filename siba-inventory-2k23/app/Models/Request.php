@@ -28,7 +28,7 @@ class Request extends Model
     public function getTypeRequestAttribute()
     {
         $status = [
-            1 =>'Request',
+            1 => 'Request',
             2 => 'Return',
             // Add more roles as needed
         ];
@@ -51,6 +51,7 @@ class Request extends Model
         return $this->belongsTo(Item::class, 'item_id', 'id');
     }
 
+
     public function storeManagerAttributes()
     {
         return $this->belongsTo(User::class, 'store_manager', 'id');
@@ -59,7 +60,7 @@ class Request extends Model
     public function getStatusRequestAttribute()
     {
         $status = [
-            0 =>'user_request',
+            0 => 'user_request',
             1 => 'sm_processing',
             2 => 'sm_accepted',
             3 => 'sm_rejected',
@@ -71,7 +72,7 @@ class Request extends Model
     public function getRequestProcessAttribute()
     {
         $status = [
-            0 =>'Process',
+            0 => 'Process',
             1 => 'Processing',
             2 => 'Processed',
             3 => 'Processed',
@@ -80,5 +81,4 @@ class Request extends Model
 
         return $status[$this->attributes['status']] ?? 'Unknown Status';
     }
-
 }

@@ -255,4 +255,11 @@ class ProductController extends Controller
         // Pass the fetched product and items to the view
         return view('PurchasingManager.PMComponents.view-items-under-product', compact('product', 'items'));
     }
+
+    public function fetchItemsAndUsers()
+    {
+        $items = Item::all()->where('availability',0);
+
+        return view('PurchasingManager.view-items-and-users', compact('items'));
+    }
 }
