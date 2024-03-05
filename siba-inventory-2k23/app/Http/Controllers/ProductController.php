@@ -243,6 +243,46 @@ class ProductController extends Controller
 
         return view('PurchasingManager.PMComponents.Product-levels', compact('productData'));
     }
+    public function smProductLimits()
+    {
+        $products = Product::with('categoryData')->where('isActive', [1, 2])
+            ->get(); // Assuming you have a relationship between products and categories
+        $productData = [];
+        foreach ($products as $product) {
+            $currentItemCount = Item::where('product_id', $product->id)
+                ->where('isActive', 1)
+                ->where('condition', 1) // Exclude items with condition 0 (damaged items)
+                ->count();
+            $damagedItemCount = Item::where('product_id', $product->id)
+                ->where('isActive', 1)
+                ->where('condition', 2) // Only include items with condition 1 (damaged items)
+                ->count();
+
+            $lowerLimit = $product->lower_limit;
+
+            // Determine if the current item count minus the damaged item count equals the lower limit
+            $balance = ($currentItemCount - $damagedItemCount);
+
+            if ($balance > $lowerLimit) {
+                $over = 0;
+            }
+
+            // $isAtLowerLimit = ($balance == $lowerLimit);
+
+            $productData[] = [
+                'product_id' => $product->id,
+                'lower_limit' => $lowerLimit,
+                'balance' => $balance,
+                'product_name' => $product->product_name,
+                'category' => $product->categoryData->category_name,
+                'current_item_count' => $currentItemCount,
+                'damaged_item_count' => $damagedItemCount,
+                'is_at_lower_limit' => $balance <= $lowerLimit, // Add a flag indicating if the row is at the lower limit
+            ];
+        }
+
+        return view('storeManager.product-levels', compact('productData'));
+    }
 
     public function fetchItemsUnderProduct($product_id)
     {
@@ -254,6 +294,17 @@ class ProductController extends Controller
 
         // Pass the fetched product and items to the view
         return view('PurchasingManager.PMComponents.view-items-under-product', compact('product', 'items'));
+    }
+    public function fetchItemsUnderProductSM($product_id)
+    {
+        // Fetch the product based on the provided product ID
+        $product = Product::find($product_id);
+
+        // Fetch all items under the specified product ID
+        $items = Item::where('product_id', $product_id)->get();
+
+        // Pass the fetched product and items to the view
+        return view('storeManager.view-items-under-product', compact('product', 'items'));
     }
 
     public function fetchItemsAndUsers()

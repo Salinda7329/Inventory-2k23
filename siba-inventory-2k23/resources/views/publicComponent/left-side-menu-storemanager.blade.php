@@ -98,9 +98,9 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Store Quentity</span></li>
         <!-- Forms -->
         <li class="menu-item">
-            <a href="/store/low-quentity" class="menu-link">
+            <a href="/storeManager/product-limits" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Low Quentity</div>
+                <div data-i18n="Form Elements">Low Quantity</div>
             </a>
 
 
