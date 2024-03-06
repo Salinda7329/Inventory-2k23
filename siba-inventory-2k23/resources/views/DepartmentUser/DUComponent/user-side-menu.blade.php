@@ -1,58 +1,61 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="/home" class="app-brand-link">
+        <a href="/home" class="app-brand-link">
 
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
-        <br>
-        {{-- <span class="app-brand-text demo menu-text fw-bolder ms-2">{{ Auth::user()->getRoleNameAttribute()}}</span> --}}
-      </a>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
+            <br>
+            {{-- <span class="app-brand-text demo menu-text fw-bolder ms-2">{{ Auth::user()->getRoleNameAttribute()}}</span> --}}
+        </a>
 
-      <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-        <i class="bx bx-chevron-left bx-sm align-middle"></i>
-      </a>
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
     </div>
 
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-      <!-- Dashboard -->
-      <li class="menu-item">
-        <a href="/home/department-users" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-home-circle"></i>
-          <div data-i18n="Analytics">Dashboard</div>
-        </a>
-      </li>
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="/home/department-users" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
 
-      <!-- Layouts -->
+        <!-- Layouts -->
 
 
-      <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Store</span>
-      </li>
-      <li class="menu-item">
-        <a href="" class="menu-link menu-toggle">
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Store</span>
+        </li>
+        <li class="menu-item">
+            {{-- <a href="" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">View store</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/user/view-store" class="menu-link">
-              <div data-i18n="visitstore">Visit Store</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/dUser/RequestItemTableView" class="menu-link">
-              <div data-i18n="requestitem">Request History</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/dUser/user-myItems" class="menu-link">
-              <div data-i18n="requestitem">My Items</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class="menu-item">
+        </a> --}}
+            <ul>
+                <li class="menu-item">
+                    <a href="/user/view-store" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="visitstore">Visit Store</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/dUser/RequestItemTableView" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="requestitem">Request History</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/dUser/user-myItems" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="requestitem">My Items</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {{-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-cube-alt"></i>
           <div data-i18n="return">Return</div>
@@ -150,7 +153,7 @@
           <i class="menu-icon tf-icons bx bx-table"></i>
           <div data-i18n="Tables">*************</div>
         </a>
-      </li>
+      </li> --}}
 
     </ul>
-  </aside>
+</aside>

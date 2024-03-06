@@ -164,6 +164,7 @@ class RequestsController extends Controller
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
 
+
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
                                         <td>" . $request->getTypeRequestAttribute() . "</td>
@@ -274,42 +275,42 @@ class RequestsController extends Controller
     }
 
 
-     //to return issued items history
-     public function fetchAllRequestsHistory(Request $request)
-     {
-         $store_manager = $request->sm_id;
+    //to return issued items history
+    public function fetchAllRequestsHistory(Request $request)
+    {
+        $store_manager = $request->sm_id;
 
-         // // Retrieve only active items
-         // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
+        // // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
 
-         // $requests = ModelsRequest::where('type', 1)
-         //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
-         //         $query->where('status',2)
-         //             ->orWhere('status',3);
-         //     })
-         //     ->get();
+        // $requests = ModelsRequest::where('type', 1)
+        //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
+        //         $query->where('status',2)
+        //             ->orWhere('status',3);
+        //     })
+        //     ->get();
 
-         $requests = ModelsRequest::where('type', 1)
-             ->where('isActive', 1)
-             ->where(function ($query) use ($store_manager) {
-                 $query->where('store_manager', $store_manager)
-                     ->where(function ($query) {
-                         $query->where('status', 2);
-                     });
-             })
-             ->get();
+        $requests = ModelsRequest::where('type', 1)
+            ->where('isActive', 1)
+            ->where(function ($query) use ($store_manager) {
+                $query->where('store_manager', $store_manager)
+                    ->where(function ($query) {
+                        $query->where('status', 2);
+                    });
+            })
+            ->get();
 
 
-         // Retrieve only active items
-         // $requests = ModelsRequest::where('isActive', 1)->get();
+        // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->get();
 
-         //returning data inside the table
-         $response = '';
+        //returning data inside the table
+        $response = '';
 
-         if ($requests->count() > 0) {
+        if ($requests->count() > 0) {
 
-             $response .=
-                 "<table id='all_issued_items_data' class='display'>
+            $response .=
+                "<table id='all_issued_items_data' class='display'>
                      <thead>
                          <tr>
                          <th>Request ID</th>
@@ -327,10 +328,10 @@ class RequestsController extends Controller
                      </thead>
                      <tbody>";
 
-             foreach ($requests as $request) {
-                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
 
-                 $response .= "<tr>
+                $response .= "<tr>
                                          <td>" . $request->id . "</td>
                                          <td>" . $request->getTypeRequestAttribute() . "</td>
                                          <td>" . $request->item_user . "</td>
@@ -343,19 +344,19 @@ class RequestsController extends Controller
                                          <td>" . $request->getStatusRequestAttribute() . "</td>
                                          <td>" . $request->updated_at . "</td>
                               </tr>";
-             }
+            }
 
 
 
-             $response .=
-                 "</tbody>
+            $response .=
+                "</tbody>
                  </table>";
 
-             echo $response;
-         } else {
-             echo "<h3 align='center'>No Records in Database</h3>";
-         }
-     }
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 
     //for store manager. returns all return requests by users
     public function fetchAllReturnData(Request $request)
@@ -822,8 +823,8 @@ class RequestsController extends Controller
         // Retrieve the latest requests for each item that match the specified conditions
         $latestRequests = ModelsRequest::whereIn('item_id', $item_ids_with_owner)
             ->where('isActive', 1)
-            ->whereIn('type',[1,2])
-            ->whereIn('status', [2,3])
+            ->whereIn('type', [1, 2])
+            ->whereIn('status', [2, 3])
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('requests')
@@ -893,8 +894,8 @@ class RequestsController extends Controller
         // Retrieve the latest requests for each item that match the specified conditions
         $latestRequests = ModelsRequest::whereIn('item_id', $item_ids_with_owner)
             ->where('isActive', 1)
-            ->whereIn('type',[1,2])
-            ->whereIn('status', [2,3])
+            ->whereIn('type', [1, 2])
+            ->whereIn('status', [2, 3])
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('requests')
@@ -915,6 +916,7 @@ class RequestsController extends Controller
                                 <th>Item_Id</th>
                                 <th>Item_name</th>
                                 <th>Quantity</th>
+                                <th>Owner Id</th>
                                 <th>Owner</th>
                                 <th>Sm Remark</th>
                                 <th>Issued_by</th>
@@ -932,6 +934,7 @@ class RequestsController extends Controller
                             <td>" . $request->item_id . "</td>
                             <td>" . $itemName . "</td>
                             <td>" . $request->quantity . "</td>
+                            <td>" . $request->request_by . "</td>
                             <td>" . $request->requestedByUser->name . "</td>
                             <td>" . $request->sm_remark . "</td>
                             <td>" . $request->storeManagerAttributes->name . "</td>

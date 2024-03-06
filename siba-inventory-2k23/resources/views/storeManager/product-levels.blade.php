@@ -1,4 +1,4 @@
-@extends('PurchasingManager.PM-layout')
+@extends('storeManager.sm-layout')
 
 @section('title', 'View Product Levels | Inventory | SIBA Campus')
 
