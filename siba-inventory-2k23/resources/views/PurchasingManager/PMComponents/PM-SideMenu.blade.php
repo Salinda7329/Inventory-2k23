@@ -150,9 +150,54 @@
         </li>
 
 
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Requests</span>
+        </li>
+        <!-- Forms -->
+        <li class="menu-item">
+            <a href="/pm/view-all-requests" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">View All Requests</div>
+            </a>
+            <a href="/storeManager/view-return-items" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="User interface">View All Returns</div>
+            </a>
+            <!-- Components -->
+        </li>
 
 
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Processing</span></li>
+        <!-- Forms -->
+        <li class="menu-item">
+            <a href="/storeManager/view-processing-requests" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">View Processing Requests</div>
+            </a>
+            <a href="/storeManager/view-processing-returns" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="User interface">View Processing Returns</div>
+            </a>
+            <!-- Components -->
+        </li>
 
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
+        <!-- Forms -->
+        <li class="menu-item">
+            <a href="/storeManager/view-issued-items-history" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Issued Items History</div>
+            </a>
+            <a href="/storeManager/view-accepted-items-history" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Accepted Items History</div>
+            </a>
+            <a href="/storeManager/view-rejected-history" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Rejected History</div>
+            </a>
+        </li>
 
         <!-- Extended components -->
 

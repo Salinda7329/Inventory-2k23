@@ -178,6 +178,10 @@ Route::middleware([
     Route::get('/pm/chech/storeRecords', function () {
         return view('PurchasingManager.Store-Check-Record');
     });
+
+    Route::get('/pm/view-all-requests', function () {
+        return view('PurchasingManager.View-all-user-requests');
+    });
 });
 //--------------End purchasing manager routes-----------------
 
