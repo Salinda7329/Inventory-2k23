@@ -184,7 +184,7 @@ Route::middleware([
         return view('PurchasingManager.View-all-user-requests');
     });
 
-        //route to view all requests users make when returning  items
+    //route to view all requests users make when returning  items
     Route::get('/pm/view-all-returns', function () {
         return view('PurchasingManager.View-all-user-returns');
     });
@@ -196,21 +196,28 @@ Route::middleware([
     //route to fetch all processing requests data
     Route::post('/pm/fetchAllProcessingRequestDataPM', [RequestsController::class, 'fetchAllProcessingRequestDataPM'])->name('fetchAllProcessingRequestDataPM');
 
-     //view-processing-returns
-     Route::get('/pm/view-processing-returns', function () {
+    //view-processing-returns
+    Route::get('/pm/view-processing-returns', function () {
         return view('PurchasingManager.view-all-processing-returns');
     });
     //route to fetch all processing returns data
     Route::post('/pm/fetchAllProcessingReturnDataPM', [RequestsController::class, 'fetchAllProcessingReturnDataPM'])->name('fetchAllProcessingReturnDataPM');
 
 
-     //view issued items history for purchasing manager
-     Route::get('/pm/view-issued-items-history', function () {
+    //view issued items history for purchasing manager
+    Route::get('/pm/view-issued-items-history', function () {
         return view('PurchasingManager.view-issued-items-history');
     });
     //route to fetch all requests history data ( issued items history)
     Route::post('/pm/fetchAllRequestsHistory', [RequestsController::class, 'fetchAllRequestsHistoryPM'])->name('fetchAllRequestsHistoryPM');
 
+
+    //view accepted items history for purchasing manager
+    Route::get('/pm/view-accepted-items-history', function () {
+        return view('PurchasingManager.view-returned-items-history');
+    });
+    //route to fetch all returns history data
+    Route::post('/pm/fetchAllReturnsHistory', [RequestsController::class, 'fetchAllReturnsHistoryPM'])->name('fetchAllReturnsHistoryPM');
 
 });
 //--------------End purchasing manager routes-----------------

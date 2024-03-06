@@ -711,7 +711,7 @@ class RequestsController extends Controller
     }
 
     //to return accepted items history
-    public function fetchAllReturnsHistory(Request $request)
+    public function fetchAllReturnsHistoryPM(Request $request)
     {
         $store_manager = $request->sm_id;
 
@@ -727,12 +727,7 @@ class RequestsController extends Controller
 
         $requests = ModelsRequest::where('type', 2)
             ->where('isActive', 1)
-            ->where(function ($query) use ($store_manager) {
-                $query->where('store_manager', $store_manager)
-                    ->where(function ($query) {
-                        $query->where('status', 2);
-                    });
-            })
+            ->where('status', 2)
             ->get();
 
 
@@ -749,14 +744,16 @@ class RequestsController extends Controller
                      <thead>
                          <tr>
                          <th>Request ID</th>
-                         <th>Type</th>
                          <th>Item_Id</th>
                          <th>Item</th>
                          <th>Quantity</th>
                          <th>Remark</th>
+                         <th>Requested_by Id</th>
                          <th>Requested_by</th>
                          <th>Requested_at</th>
-                         <th>Status</th>
+                         <th>SM Id</th>
+                         <th>SM Name</th>
+                         <th>Issued At</th>
                          </tr>
                      </thead>
                      <tbody>";
@@ -766,14 +763,16 @@ class RequestsController extends Controller
 
                 $response .= "<tr>
                                          <td>" . $request->id . "</td>
-                                         <td>" . $request->getTypeRequestAttribute() . "</td>
                                          <td>" . $request->item_user . "</td>
                                          <td>" . $itemName . "</td>
                                          <td>" . $request->quantity_user . "</td>
                                          <td>" . $request->user_remark . "</td>
+                                         <td>" . $request->request_by . "</td>
                                          <td>" . $request->requestedByUser->name . "</td>
                                          <td>" . $request->requested_timestamp . "</td>
-                                         <td>" . $request->getStatusRequestAttribute() . "</td>
+                                         <td>" . $request->store_manager . "</td>
+                                         <td>" . $request->storeManagerAttributes->name . "</td>
+                                         <td>" . $request->updated_at . "</td>
                               </tr>";
             }
 
