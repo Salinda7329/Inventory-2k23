@@ -1634,6 +1634,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< Updated upstream
             "version": "v10.46.0",
             "source": {
                 "type": "git",
@@ -1644,6 +1645,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/5e95946a8283a8d5c015035793f9c61c297e937f",
                 "reference": "5e95946a8283a8d5c015035793f9c61c297e937f",
+=======
+            "version": "v10.47.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "fce29b8de62733cdecbe12e3bae801f83fff2ea4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/fce29b8de62733cdecbe12e3bae801f83fff2ea4",
+                "reference": "fce29b8de62733cdecbe12e3bae801f83fff2ea4",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -1836,6 +1849,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< Updated upstream
             "time": "2024-02-27T16:46:54+00:00"
         },
         {
@@ -1850,6 +1864,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/jetstream/zipball/c0e19cad88ec5e014746f860bb1559d50474f590",
                 "reference": "c0e19cad88ec5e014746f860bb1559d50474f590",
+=======
+            "time": "2024-03-05T15:18:36+00:00"
+        },
+        {
+            "name": "laravel/jetstream",
+            "version": "v4.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/jetstream.git",
+                "reference": "1cb2b30664d818491b3193ccbdd97758fa5b60fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/1cb2b30664d818491b3193ccbdd97758fa5b60fc",
+                "reference": "1cb2b30664d818491b3193ccbdd97758fa5b60fc",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -1905,7 +1935,11 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
+<<<<<<< Updated upstream
             "time": "2024-02-23T15:35:22+00:00"
+=======
+            "time": "2024-02-29T17:10:06+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "laravel/prompts",
@@ -2552,6 +2586,7 @@
         },
         {
             "name": "livewire/livewire",
+<<<<<<< Updated upstream
             "version": "v3.4.6",
             "source": {
                 "type": "git",
@@ -2562,6 +2597,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/livewire/livewire/zipball/7e7d638183b34fb61621455891869f5abfd55a82",
                 "reference": "7e7d638183b34fb61621455891869f5abfd55a82",
+=======
+            "version": "v3.4.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "05f25dab062cd6a1ec24d8df9e889f890c832cb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/05f25dab062cd6a1ec24d8df9e889f890c832cb0",
+                "reference": "05f25dab062cd6a1ec24d8df9e889f890c832cb0",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -2615,7 +2662,11 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
+<<<<<<< Updated upstream
                 "source": "https://github.com/livewire/livewire/tree/v3.4.6"
+=======
+                "source": "https://github.com/livewire/livewire/tree/v3.4.7"
+>>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -2623,7 +2674,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< Updated upstream
             "time": "2024-02-20T14:04:25+00:00"
+=======
+            "time": "2024-03-05T15:54:03+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -3110,6 +3165,7 @@
         },
         {
             "name": "nikic/php-parser",
+<<<<<<< Updated upstream
             "version": "v5.0.1",
             "source": {
                 "type": "git",
@@ -3120,6 +3176,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/2218c2252c874a4624ab2f613d86ac32d227bc69",
                 "reference": "2218c2252c874a4624ab2f613d86ac32d227bc69",
+=======
+            "version": "v5.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "139676794dc1e9231bf7bcd123cfc0c99182cb13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/139676794dc1e9231bf7bcd123cfc0c99182cb13",
+                "reference": "139676794dc1e9231bf7bcd123cfc0c99182cb13",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -3162,9 +3230,15 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
+<<<<<<< Updated upstream
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.1"
             },
             "time": "2024-02-21T19:24:10+00:00"
+=======
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
+            },
+            "time": "2024-03-05T20:51:40+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "nunomaduro/termwind",
@@ -7409,6 +7483,7 @@
         },
         {
             "name": "laravel/sail",
+<<<<<<< Updated upstream
             "version": "v1.28.1",
             "source": {
                 "type": "git",
@@ -7419,6 +7494,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/f84e444a3dbc1811803cd2a050bdd54ff6f5eef8",
                 "reference": "f84e444a3dbc1811803cd2a050bdd54ff6f5eef8",
+=======
+            "version": "v1.28.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "057777403b8ab79222dcc04983beaab10b6de6a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/057777403b8ab79222dcc04983beaab10b6de6a0",
+                "reference": "057777403b8ab79222dcc04983beaab10b6de6a0",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -7467,7 +7554,11 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< Updated upstream
             "time": "2024-02-23T00:24:47+00:00"
+=======
+            "time": "2024-03-04T14:58:29+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "mockery/mockery",
