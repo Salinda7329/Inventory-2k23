@@ -188,6 +188,22 @@ Route::middleware([
     Route::get('/pm/view-all-returns', function () {
         return view('PurchasingManager.View-all-user-returns');
     });
+
+    //view all processing-requests
+    Route::get('/pm/view-processing-requests', function () {
+        return view('PurchasingManager.view-all-processing-requests');
+    });
+    //route to fetch all processing requests data
+    Route::post('/pm/fetchAllProcessingRequestDataPM', [RequestsController::class, 'fetchAllProcessingRequestDataPM'])->name('fetchAllProcessingRequestDataPM');
+
+     //view-processing-returns
+     Route::get('/pm/view-processing-returns', function () {
+        return view('PurchasingManager.view-all-processing-returns');
+    });
+    //route to fetch all processing returns data
+    Route::post('/pm/fetchAllProcessingReturnDataPM', [RequestsController::class, 'fetchAllProcessingReturnDataPM'])->name('fetchAllProcessingReturnDataPM');
+
+
 });
 //--------------End purchasing manager routes-----------------
 

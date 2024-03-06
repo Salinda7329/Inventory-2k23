@@ -15,7 +15,7 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active" id="1">
+        <li class="menu-item active">
             <a href="/home" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -29,7 +29,7 @@
         </li>
 
 
-        <li class="menu-item" id="2">
+        <li class="menu-item">
 
             <a href="/pm/product-limits" class="menu-link">
                 <div data-i18n="Without menu">Check Product Limits</div>
@@ -56,7 +56,7 @@
         </li>
 
 
-        <li class="menu-item" id="3">
+        <li class="menu-item">
             <a href="/pm/items-with-users" class="menu-link">
                 <div data-i18n="Without menu">Items with Users</div>
             </a>
@@ -88,14 +88,14 @@
       </li> --}}
 
 
-        <li class="menu-item" id="9">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Items</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item" id="10">
+                <li class="menu-item">
                     <a href="/pm/addNewItem" class="menu-link">
                         <div data-i18n="Without menu">Manage Items</div>
                     </a>
@@ -103,14 +103,14 @@
             </ul>
         </li>
 
-        <li class="menu-item" id="11">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Products</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item" id="12">
+                <li class="menu-item">
                     <a href="/pm/addNewProduct" class="menu-link">
                         <div data-i18n="Without menu">Manage Products</div>
                     </a>
@@ -119,14 +119,14 @@
 
         </li>
 
-        <li class="menu-item" id="14">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Brands</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item" id="15">
+                <li class="menu-item">
                     <a href="/pm/addNewBrand" class="menu-link">
                         <div data-i18n="Without menu">Manage Brands</div>
                     </a>
@@ -134,14 +134,14 @@
             </ul>
         </li>
 
-        <li class="menu-item" id="16">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Categories</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item" id="17">
+                <li class="menu-item">
                     <a href="/pm/addNewCategory" class="menu-link">
                         <div data-i18n="Without menu">Manage Categories</div>
                     </a>
@@ -170,16 +170,18 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Processing</span></li>
         <!-- Forms -->
         <li class="menu-item">
-            <a href="/storeManager/view-processing-requests" class="menu-link">
+            <a href="/pm/view-processing-requests" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">View Processing Requests</div>
             </a>
-            <a href="/storeManager/view-processing-returns" class="menu-link">
+            <a href="/pm/view-processing-returns" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View Processing Returns</div>
             </a>
             <!-- Components -->
         </li>
+
+
 
 
         <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
