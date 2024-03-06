@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Add New Product | Inventory | SIBA Campus</title>
+    <title>Purchasing Manager Home | Inventory | SIBA Campus</title>
 
     <meta name="description" content="" />
 
