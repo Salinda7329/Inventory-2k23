@@ -187,7 +187,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
         <!-- Forms -->
         <li class="menu-item">
-            <a href="/storeManager/view-issued-items-history" class="menu-link">
+            <a href="/pm/view-issued-items-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Issued Items History</div>
             </a>

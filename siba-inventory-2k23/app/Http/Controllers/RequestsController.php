@@ -425,6 +425,82 @@ class RequestsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
+    public function fetchAllRequestsHistoryPM(Request $request)
+    {
+        $store_manager = $request->sm_id;
+
+        // // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
+
+        // $requests = ModelsRequest::where('type', 1)
+        //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
+        //         $query->where('status',2)
+        //             ->orWhere('status',3);
+        //     })
+        //     ->get();
+
+        $requests = ModelsRequest::where('type', 1)
+            ->where('isActive', 1)
+            ->where('status', 2)
+            ->get();
+
+
+        // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->get();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='all_issued_items_data' class='display'>
+                     <thead>
+                         <tr>
+                         <th>Request ID</th>
+                         <th>Item_Id</th>
+                         <th>Item</th>
+                         <th>Quantity</th>
+                         <th>Remark</th>
+                         <th>Requested_by Id</th>
+                         <th>Requested_by</th>
+                         <th>Requested_at</th>
+                         <th>SM_Id</th>
+                         <th>SM Name</th>
+                         <th>Issued_at</th>
+                         </tr>
+                     </thead>
+                     <tbody>";
+
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+
+                $response .= "<tr>
+                                         <td>" . $request->id . "</td>
+                                         <td>" . $request->item_user . "</td>
+                                         <td>" . $itemName . "</td>
+                                         <td>" . $request->quantity_user . "</td>
+                                         <td>" . $request->user_remark . "</td>
+                                         <td>" . $request->request_by . "</td>
+                                         <td>" . $request->requestedByUser->name . "</td>
+                                         <td>" . $request->requested_timestamp . "</td>
+                                         <td>" . $request->store_manager . "</td>
+                                         <td>" . $request->storeManagerAttributes->name . "</td>
+                                         <td>" . $request->updated_at . "</td>
+                              </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                 </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 
     //for store manager. returns all return requests by users
     public function fetchAllReturnData(Request $request)

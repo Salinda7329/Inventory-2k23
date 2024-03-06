@@ -204,6 +204,14 @@ Route::middleware([
     Route::post('/pm/fetchAllProcessingReturnDataPM', [RequestsController::class, 'fetchAllProcessingReturnDataPM'])->name('fetchAllProcessingReturnDataPM');
 
 
+     //view issued items history for purchasing manager
+     Route::get('/pm/view-issued-items-history', function () {
+        return view('PurchasingManager.view-issued-items-history');
+    });
+    //route to fetch all requests history data ( issued items history)
+    Route::post('/pm/fetchAllRequestsHistory', [RequestsController::class, 'fetchAllRequestsHistoryPM'])->name('fetchAllRequestsHistoryPM');
+
+
 });
 //--------------End purchasing manager routes-----------------
 
