@@ -32,6 +32,8 @@ class ItemsController extends Controller
                 Item::create([
                     'created_by' => $input['user_id_hidden'],
                     'owner' => $input['owner_hidden'],
+                    'flag_request' => 2,
+                    'flag_return' => 2,
                     'po_no' => $input['po_no'],
                     'product_id' => $input['product_id'],
                     'brand_id' => $input['brand_id'],

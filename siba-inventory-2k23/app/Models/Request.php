@@ -18,6 +18,8 @@ class Request extends Model
         'type',
         'status',
         'item_id',
+        'flag_request',
+        'flag_return',
         'quantity',
         'sm_remark',
         'store_manager',
