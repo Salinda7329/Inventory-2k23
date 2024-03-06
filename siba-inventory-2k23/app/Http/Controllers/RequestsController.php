@@ -849,6 +849,7 @@ class RequestsController extends Controller
             $updated = Item::where('id', $item_id)->update([
                 'availability' => 0,
                 'owner' => $requesting_user,
+                'flag_request' => NULL,
             ]);
 
             // if ($updated) {
@@ -861,6 +862,7 @@ class RequestsController extends Controller
             $updated = Item::where('id', $item_id)->update([
                 'availability' => 1,
                 'owner' => NULL,
+                'flag_return' => NULL,
             ]);
         }
 

@@ -105,8 +105,6 @@ auto watenn dann --}}
                             },
                             success: function(response) {
 
-                                console.log(response.po_no);
-                                console.log('thats it');
                                 // Set id value to the hidden field
                                 $('#item_id').val(response.id);
                                 $('#item_name').val(response.item_name);

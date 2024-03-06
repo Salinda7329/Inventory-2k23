@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('items_remaining')->nullable()->default(null);
             $table->string('lower_limit')->nullable()->default(null);
             $table->boolean('availability')->default(1);
+            $table->foreignId('flag_request')->constrained('users')->nullable()->default(null);
+            $table->foreignId('flag_return')->constrained('users')->nullable()->default(null);
             $table->foreignId('owner')->constrained('users')->nullable()->default(null);
             $table->foreignId('created_by')->constrained('users')->nullable()->default(null);
             $table->boolean('isActive')->default(1);
