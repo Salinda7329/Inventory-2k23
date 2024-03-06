@@ -159,7 +159,7 @@
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">View All Requests</div>
             </a>
-            <a href="/storeManager/view-return-items" class="menu-link">
+            <a href="/pm/view-all-returns" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View All Returns</div>
             </a>

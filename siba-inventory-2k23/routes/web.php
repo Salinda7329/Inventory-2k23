@@ -179,8 +179,14 @@ Route::middleware([
         return view('PurchasingManager.Store-Check-Record');
     });
 
+    //route to view all requests users make to get items
     Route::get('/pm/view-all-requests', function () {
         return view('PurchasingManager.View-all-user-requests');
+    });
+
+        //route to view all requests users make when returning  items
+    Route::get('/pm/view-all-returns', function () {
+        return view('PurchasingManager.View-all-user-returns');
     });
 });
 //--------------End purchasing manager routes-----------------
