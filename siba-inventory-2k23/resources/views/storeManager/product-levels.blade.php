@@ -37,7 +37,7 @@
                                         <td>{{ $data['balance'] }}</td>
                                         <td>{{ $data['damaged_item_count'] }}</td>
                                         <td>{{ $data['lower_limit'] }}</td>
-                                        <td><a href="/pm/ViewItemsUnderProduct/{{ $data['product_id'] }}">View</a></td>
+                                        <td><a href="/storeManager/ViewItemsUnderProduct/{{ $data['product_id'] }}">View</a></td>
                                     </tr>
                                 @endforeach
 

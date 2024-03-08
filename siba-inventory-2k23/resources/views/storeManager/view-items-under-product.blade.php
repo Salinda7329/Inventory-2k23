@@ -28,6 +28,8 @@
                                     <th>Item Name</th>
                                     <th>Condition</th>
                                     <th>Availability</th>
+                                    <th>Inserted_at</th>
+                                    <th>Updated_at</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -42,6 +44,8 @@
                                         <td style="color: {{ $item->availability == 1 ? 'green' : 'red' }}">
                                             {{ $item->availability == 1 ? 'Available' : 'Not Available' }}
                                         </td>
+                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->updated_at }}</td>
                                         <td
                                             style="color:
                                             @if ($item->isActive == 1) green
@@ -67,7 +71,7 @@
                             $(document).ready(function() {
                                 // //Make table a data table
                                 $('#all_data').DataTable({
-
+                                    order: [[0, 'desc']]
                                     // Enable horizontal scrolling
                                 });
                             });

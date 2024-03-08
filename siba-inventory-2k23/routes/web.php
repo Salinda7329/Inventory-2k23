@@ -330,6 +330,7 @@ Route::middleware([
     Route::get('/storeManager/product-limits', [ProductController::class, 'smProductLimits']);
     //route to fetch all product level data for sm
     Route::get('/storeManager/ViewItemsUnderProduct/{product_id}', [ProductController::class, 'fetchItemsUnderProductSM']);
+    
 
     // store history view
     Route::get('/store/History', function () {
