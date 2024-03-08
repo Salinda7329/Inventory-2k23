@@ -156,6 +156,7 @@ class RequestsController extends Controller
                         <th>Requested_by</th>
                         <th>Requested_at</th>
                         <th>Status</th>
+                        <th>Processed_at</th>
                         <th>Action</th>
                         </tr>
                     </thead>
@@ -173,8 +174,9 @@ class RequestsController extends Controller
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
-                                        <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $request->created_at . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td>" . $request->updated_at . "</td>
                                         <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
                             </td>
                                     </tr>";
@@ -979,7 +981,6 @@ class RequestsController extends Controller
                     <thead>
                         <tr>
                         <th>Request ID</th>
-                        <th>Type</th>
                         <th>Item_Id</th>
                         <th>Item</th>
                         <th>Quantity</th>
@@ -987,6 +988,7 @@ class RequestsController extends Controller
                         <th>Requested_at</th>
                         <th>SM</th>
                         <th>SM_Remark</th>
+                        <th>Processed_at</th>
                         <th>Status</th>
                         </tr>
                     </thead>
@@ -998,14 +1000,14 @@ class RequestsController extends Controller
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
-                                        <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $request->created_at . "</td>
                                         <td>" . $smName . "</td>
                                         <td>" . $request->sm_remark . "</td>
+                                        <td>" . $request->updated_at . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                     </tr>";
             }
