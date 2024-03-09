@@ -101,7 +101,7 @@ auto watenn dann --}}
                             url: '/checkExistingRequest',
                             method: 'post',
                             data: {
-                                request_by: item_Id,
+                                request_by: request_by,
                                 item_user: item_Id,
                                 _token: '{{ csrf_token() }}'
                             },

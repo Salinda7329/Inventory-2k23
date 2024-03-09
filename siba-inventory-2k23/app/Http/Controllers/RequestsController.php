@@ -58,6 +58,7 @@ class RequestsController extends Controller
 
             // Check if a request with the same item_user and status=0 exists
             $existingRequest = ModelsRequest::where('item_user', $input['item_user'])
+                ->where('request_by', $input['request_by'])
                 ->where('status', 0)
                 ->first();
 
