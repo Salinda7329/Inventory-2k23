@@ -330,7 +330,7 @@ Route::middleware([
     Route::get('/storeManager/product-limits', [ProductController::class, 'smProductLimits']);
     //route to fetch all product level data for sm
     Route::get('/storeManager/ViewItemsUnderProduct/{product_id}', [ProductController::class, 'fetchItemsUnderProductSM']);
-    
+
 
     // store history view
     Route::get('/store/History', function () {
@@ -394,6 +394,9 @@ Route::middleware([
 
     //route to make request
     Route::post('/user/newRequest', [RequestsController::class, 'create'])->name('request.create');
+    //route to check if an existing request is their
+    Route::post('/checkExistingRequest', [RequestsController::class, 'checkExistingRequest'])->name('checkExistingRequest');
+
     //route to view user my request history
     Route::post('/user/fetchMyRequestData', [RequestsController::class, 'fetchMyRequestData'])->name('fetchMyRequestData');
     //route to view current items user have

@@ -94,28 +94,46 @@ auto watenn dann --}}
                     $(document).on('click', '.requestItemButton', function(e) {
                         e.preventDefault();
                         let item_Id = $(this).attr('id');
-                        // alert(id);
+                        let request_by = $('#request_by').val();
+
 
                         $.ajax({
-                            url: '{{ route('item.edit') }}',
-                            method: 'get',
+                            url: '/checkExistingRequest',
+                            method: 'post',
                             data: {
-                                item_Id: item_Id,
+                                request_by: item_Id,
+                                item_user: item_Id,
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
+                                if (response.status === 200) {
+                                    $.ajax({
+                                        url: '{{ route('item.edit') }}',
+                                        method: 'get',
+                                        data: {
+                                            item_Id: item_Id,
+                                            _token: '{{ csrf_token() }}'
+                                        },
+                                        success: function(response) {
 
-                                // console.log(response);
-                                // Set id value to the hidden field
-                                $('#item_id').val(response.id);
-                                $('#item_name').val(response.item_name);
-                                // Fetch product name using product_id
-                                fetchProductName(response.product_id);
+                                            $('#modalrequestitem').modal('show');
+
+                                            // console.log(response);
+                                            // Set id value to the hidden field
+                                            $('#item_id').val(response.id);
+                                            $('#item_name').val(response.item_name);
+                                            // Fetch product name using product_id
+                                            fetchProductName(response.product_id);
+                                        }
+
+                                    });
+
+                                }else if(response.status === 300){
+                                    alert("You have already requested this item!");
+                                }
                             }
 
-
                         });
-
 
                     })
 

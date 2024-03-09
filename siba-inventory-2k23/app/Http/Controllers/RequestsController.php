@@ -48,6 +48,36 @@ class RequestsController extends Controller
             return response()->json(['error' => 'Failed to create request.', 'status' => 500]);
         }
     }
+    public function checkExistingRequest(Request $request)
+    {
+        try {
+            $input = $request->validate([
+                'request_by' => ['required'],
+                'item_user' => ['required'],
+            ]);
+
+            // Check if a request with the same item_user and status=0 exists
+            $existingRequest = ModelsRequest::where('item_user', $input['item_user'])
+                ->where('status', 0)
+                ->first();
+
+            if ($existingRequest) {
+                // Return error message if a request with the same item_user and status=0 exists
+                return response()->json(['error' => 'You have already performed this action.', 'status' => 300]);
+            } else {
+                // Return success response if no existing request found
+                return response()->json(['message' => 'No existing request found.', 'status' => 200]);
+            }
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json(['errors' => $e->errors(), 'status' => 422]);
+        } catch (QueryException $e) {
+            // Log the error if needed: \Log::error($e);
+
+            return response()->json(['error' => 'Failed to create request.', 'status' => 500]);
+        }
+    }
+
 
     //for store manager. returns all request data of users
     public function fetchAllRequestData(Request $request)
@@ -721,9 +751,9 @@ class RequestsController extends Controller
         // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
 
         $requests = ModelsRequest::where('type', 2)
-            ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
-                $query->where('status',2)
-                    ->orWhere('status',3);
+            ->where('isActive', 1)->where('store_manager', $store_manager)->where(function ($query) use ($store_manager) {
+                $query->where('status', 2)
+                    ->orWhere('status', 3);
             })
             ->get();
 
