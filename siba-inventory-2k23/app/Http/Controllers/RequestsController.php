@@ -180,13 +180,13 @@ class RequestsController extends Controller
                     <thead>
                         <tr>
                         <th>Request ID</th>
-                        <th>Type</th>
                         <th>Item_Id</th>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>Department</th>
                         <th>Status</th>
                         <th>Processed_at</th>
                         <th>Action</th>
@@ -196,17 +196,18 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->created_at . "</td>
+                                        <td>" . $department . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td>" . $request->updated_at . "</td>
                                         <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton  btn-sm btn btn-primary requestActionButton requestButtons'>Action</a>
@@ -253,13 +254,13 @@ class RequestsController extends Controller
                     <thead>
                         <tr>
                         <th>Request ID</th>
-                        <th>Type</th>
                         <th>Item_Id</th>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>Department</th>
                         <th>Status</th>
                         </tr>
                     </thead>
@@ -267,17 +268,18 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $department . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                     </tr>";
             }
@@ -421,9 +423,9 @@ class RequestsController extends Controller
                          <th>Quantity</th>
                          <th>Remark</th>
                          <th>Requested_by</th>
+                         <th>Department</th>
                          <th>Requested_at</th>
                          <th>Sm Remark</th>
-                         <th>Status</th>
                          <th>Issued_at</th>
                          </tr>
                      </thead>
@@ -431,6 +433,7 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
                 $response .= "<tr>
                                          <td>" . $request->id . "</td>
@@ -439,9 +442,9 @@ class RequestsController extends Controller
                                          <td>" . $request->quantity_user . "</td>
                                          <td>" . $request->user_remark . "</td>
                                          <td>" . $request->requestedByUser->name . "</td>
+                                         <td>" . $department . "</td>
                                          <td>" . $request->created_at . "</td>
                                          <td>" . $request->sm_remark . "</td>
-                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                          <td>" . $request->updated_at . "</td>
                               </tr>";
             }
@@ -499,6 +502,7 @@ class RequestsController extends Controller
                          <th>Requested_at</th>
                          <th>SM_Id</th>
                          <th>SM Name</th>
+                         <th>SM_Remark</th>
                          <th>Issued_at</th>
                          </tr>
                      </thead>
@@ -518,6 +522,7 @@ class RequestsController extends Controller
                                          <td>" . $request->requested_timestamp . "</td>
                                          <td>" . $request->store_manager . "</td>
                                          <td>" . $request->storeManagerAttributes->name . "</td>
+                                         <td>" . $request->sm_remark . "</td>
                                          <td>" . $request->updated_at . "</td>
                               </tr>";
             }
@@ -562,13 +567,13 @@ class RequestsController extends Controller
                     <thead>
                         <tr>
                         <th>Request ID</th>
-                        <th>Type</th>
                         <th>Item_Id</th>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>Department</th>
                         <th>Status</th>
                         <th>Action</th>
                         </tr>
@@ -577,16 +582,17 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $department ."</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm btn btn-primary' >Process</a>
                             </td>
@@ -633,13 +639,13 @@ class RequestsController extends Controller
                     <thead>
                         <tr>
                         <th>Request ID</th>
-                        <th>Type</th>
                         <th>Item_Id</th>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>Department</th>
                         <th>Status</th>
                         <th>Processed_at</th>
                         <th>Action</th>
@@ -649,16 +655,17 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->created_at . "</td>
+                                        <td>" . $department ."</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td>" . $request->updated_at . "</td>
                                         <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn btn-primary requestActionButton requestButtons'>Action</a>
@@ -784,6 +791,7 @@ class RequestsController extends Controller
                          <th>Remark</th>
                          <th>Requested_by Id</th>
                          <th>Requested_by</th>
+                         <th>Department</th>
                          <th>Requested_at</th>
                          <th>SM Id</th>
                          <th>SM Name</th>
@@ -794,6 +802,7 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
                 $response .= "<tr>
                                          <td>" . $request->id . "</td>
@@ -803,6 +812,7 @@ class RequestsController extends Controller
                                          <td>" . $request->user_remark . "</td>
                                          <td>" . $request->request_by . "</td>
                                          <td>" . $request->requestedByUser->name . "</td>
+                                         <td>" . $department . "</td>
                                          <td>" . $request->created_at . "</td>
                                          <td>" . $request->store_manager . "</td>
                                          <td>" . $request->storeManagerAttributes->name . "</td>
@@ -864,6 +874,7 @@ class RequestsController extends Controller
                          <th>Requested_at</th>
                          <th>SM Id</th>
                          <th>SM Name</th>
+                         <th>SM_Remark</th>
                          <th>Issued At</th>
                          </tr>
                      </thead>
@@ -883,6 +894,7 @@ class RequestsController extends Controller
                                          <td>" . $request->requested_timestamp . "</td>
                                          <td>" . $request->store_manager . "</td>
                                          <td>" . $request->storeManagerAttributes->name . "</td>
+                                         <td>" . $request->sm_remark . "</td>
                                          <td>" . $request->updated_at . "</td>
                               </tr>";
             }

@@ -42,7 +42,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                 // Make the table a data table
                                 $('#all_issued_items_data').DataTable({
                                     // Enable horizontal scrolling
-                                    // "scrollX": true,
+                                    "scrollX": true,
                                     order: [[0, 'desc']]
                                 });
 

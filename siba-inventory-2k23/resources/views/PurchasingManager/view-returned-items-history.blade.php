@@ -45,7 +45,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                     // Make the table a data table
                                     $('#all_accepted_items_data').DataTable({
                                         // Enable horizontal scrolling
-                                        // "scrollX": true,
+                                        "scrollX": true,
                                     });
 
                                     // Add event listeners for process buttons
