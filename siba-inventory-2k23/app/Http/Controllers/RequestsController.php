@@ -332,7 +332,7 @@ class RequestsController extends Controller
                         <th>Request ID</th>
                         <th>Item_Id</th>
                         <th>Item</th>
-                        <th>Quantity"."<br>"."_User</th>
+                        <th>Quantity" . "<br>" . "_User</th>
                         <th>Remark</th>
                         <th>Requested_by ID</th>
                         <th>Requested_by</th>
@@ -360,6 +360,90 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->created_at . "</td>
                                         <td>" . $request->sm_remark . "</td>
+                                        <td>" . $request->quantity . "</td>
+                                        <td>" . $request->updated_at . "</td>
+                             </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
+    public function fetchAllRejectsHistoryPM(Request $request)
+    {
+        $store_manager = $request->sm_id;
+
+        // // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
+
+        // $requests = ModelsRequest::where('type', 1)
+        //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
+        //         $query->where('status',2)
+        //             ->orWhere('status',3);
+        //     })
+        //     ->get();
+
+        $requests = ModelsRequest::where('isActive', 1)
+            ->where(function ($query) use ($store_manager) {
+                $query->where(function ($query) {
+                        $query->where('status', 3);
+                    });
+            })
+            ->get();
+
+
+        // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->get();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='show_rejected_items' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Item_Id</th>
+                        <th>Item</th>
+                        <th>Quantity" . "<br>" . "_User</th>
+                        <th>Remark</th>
+                        <th>Requested_by ID</th>
+                        <th>Requested_by</th>
+                        <th>Department</th>
+                        <th>Requested_at</th>
+                        <th>Sm Remark</th>
+                        <th>Sm ID</th>
+                        <th>Quantity</th>
+                        <th>Rejected_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
+
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->item_user . "</td>
+                                        <td>" . $itemName . "</td>
+                                        <td>" . $request->quantity_user . "</td>
+                                        <td>" . $request->user_remark . "</td>
+                                        <td>" . $request->request_by . "</td>
+                                        <td>" . $department . "</td>
+                                        <td>" . $request->requestedByUser->name . "</td>
+                                        <td>" . $request->created_at . "</td>
+                                        <td>" . $request->sm_remark . "</td>
+                                        <td>" . $request->store_manager . "</td>
                                         <td>" . $request->quantity . "</td>
                                         <td>" . $request->updated_at . "</td>
                              </tr>";
@@ -419,7 +503,7 @@ class RequestsController extends Controller
                          <th>Request ID</th>
                          <th>Item_Id</th>
                          <th>Item</th>
-                         <th>Quantity"."<br>"."_user</th>
+                         <th>Quantity" . "<br>" . "_user</th>
                          <th>Remark</th>
                          <th>Requested_by ID</th>
                          <th>Requested_by</th>
@@ -500,7 +584,7 @@ class RequestsController extends Controller
                          <th>Item</th>
                          <th>Quantity</th>
                          <th>Remark</th>
-                         <th>Requested"."<br>"."_by Id</th>
+                         <th>Requested" . "<br>" . "_by Id</th>
                          <th>Requested_by</th>
                          <th>Requested_at</th>
                          <th>SM_Id</th>
@@ -790,7 +874,7 @@ class RequestsController extends Controller
                          <th>Request ID</th>
                          <th>Item_Id</th>
                          <th>Item</th>
-                         <th>Quantity"."<br>"."_User</th>
+                         <th>Quantity" . "<br>" . "_User</th>
                          <th>Remark</th>
                          <th>Requested_by Id</th>
                          <th>Requested_by</th>
@@ -872,7 +956,7 @@ class RequestsController extends Controller
                          <th>Item</th>
                          <th>Quantity</th>
                          <th>Remark</th>
-                         <th>Requested_by"."<br>"."Id</th>
+                         <th>Requested_by" . "<br>" . "Id</th>
                          <th>Requested_by</th>
                          <th>Requested_at</th>
                          <th>SM Id</th>
@@ -1032,7 +1116,7 @@ class RequestsController extends Controller
                         <th>Request ID</th>
                         <th>Item_Id</th>
                         <th>Item</th>
-                        <th>Quantity"."<br>"."_User</th>
+                        <th>Quantity" . "<br>" . "_User</th>
                         <th>Remark</th>
                         <th>Requested_at</th>
                         <th>SM</th>
@@ -1095,7 +1179,7 @@ class RequestsController extends Controller
                         <th>Request ID</th>
                         <th>Item_Id</th>
                         <th>Item</th>
-                        <th>Quantity"."<br>"."_User</th>
+                        <th>Quantity" . "<br>" . "_User</th>
                         <th>Remark</th>
                         <th>Requested_at</th>
                         <th>SM</th>

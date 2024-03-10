@@ -195,7 +195,7 @@
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Accepted Items History</div>
             </a>
-            <a href="/storeManager/view-rejected-history" class="menu-link">
+            <a href="/pm/view-rejected-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Rejected History</div>
             </a>
