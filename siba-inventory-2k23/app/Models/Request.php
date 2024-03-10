@@ -83,4 +83,5 @@ class Request extends Model
 
         return $status[$this->attributes['status']] ?? 'Unknown Status';
     }
+
 }

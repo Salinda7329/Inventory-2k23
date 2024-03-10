@@ -46,9 +46,14 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                 $('#all_request_data').DataTable({
                                     // Enable horizontal scrolling
                                     // "scrollX": true,
+                                    order: [
+                                        [0, 'desc']
+                                    ]
                                 });
-                                //hide process button
-                                $('.processRequestButton').hide();
+                                // Hide the Action column header and data cells
+                                $('#all_request_data tbody td:nth-child(10), #all_request_data thead th:nth-child(10)')
+                                    .hide();
+
                             },
                             error: function(error) {
                                 console.error('Error fetching request data:', error);

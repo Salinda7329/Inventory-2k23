@@ -51,8 +51,9 @@
                                 <option value="4">English & Modern Language</option>
                                 <option value="5">Global Studies</option>
                                 <option value="6">Aesthetic Department</option>
-                                <option value="7">management Studies</option>
-                                <option value="8">Admin Department</option>
+                                <option value="7">Management Studies</option>
+                                <option value="8">Kandyan Dancing</option>
+                                <option value="9">Admin Department</option>
                             </select>
                             <div class="input-error text-danger" style="display: none"></div>
                         </div>

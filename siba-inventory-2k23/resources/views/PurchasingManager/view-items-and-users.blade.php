@@ -10,46 +10,46 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Users and Items
+                        Items With Users
                     </div>
-
                     <div class="card-body">
-                        <table id="items_with_users" class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Item ID</th>
-                                    <th>Item Name</th>
-                                    <th>Current Owner</th>
-                                    <th>Current Owner Name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($items as $item)
-                                    <tr>
-                                        <td>{{ $item['id'] }}</td>
-                                        <td>{{ $item['item_name'] }}</td>
-                                        <td>{{ $item['id'] }}</td>
-                                        <td>{{ $item->ownerUser->name ?? 'Unknown' }}</td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
+                        <div id="show_all_requests_data"></div>
                     </div>
-
-                    <script>
-                        $(document).ready(function() {
-                            // //Make table a data table
-                            $('#items_with_users').DataTable({
-
-                                // Enable horizontal scrolling
-                                // scrollX: true
-                            });
-
-                        });
-                    </script>
-
                 </div>
+
+                <script>
+                    $(document).ready(function() {
+                        fetchItemsAtUsers();
+
+                        function fetchItemsAtUsers() {
+                            $.ajax({
+                                url: '{{ route('fetchItemsAtUsers') }}',
+                                type: 'get',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                },
+                                success: function(html) {
+                                    // Update the show_all_requests_data div's content with the HTML table
+                                    $('#show_all_requests_data').html(html);
+
+                                    // Make the table a data table
+                                    $('#all_myItem_data').DataTable({
+                                        // Enable horizontal scrolling
+                                        // "scrollX": true,
+                                        order: [
+                                            [0, 'desc']
+                                        ]
+                                    });
+                                },
+                                error: function(error) {
+                                    console.error('Error fetching request data:', error);
+                                }
+                            });
+                        }
+                    });
+                </script>
+
             </div>
         </div>
     </div>

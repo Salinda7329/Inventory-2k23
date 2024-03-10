@@ -108,13 +108,13 @@ class RequestsController extends Controller
                     <thead>
                         <tr>
                         <th>Request ID</th>
-                        <th>Type</th>
                         <th>Item_Id</th>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
+                        <th>Department</th>
                         <th>Status</th>
                         <th>Action</th>
                         </tr>
@@ -123,16 +123,17 @@ class RequestsController extends Controller
 
             foreach ($requests as $request) {
                 $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
                 $response .= "<tr>
                                         <td>" . $request->id . "</td>
-                                        <td>" . $request->getTypeRequestAttribute() . "</td>
                                         <td>" . $request->item_user . "</td>
                                         <td>" . $itemName . "</td>
                                         <td>" . $request->quantity_user . "</td>
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
+                                        <td>" . $department ."</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm btn btn-primary' >Process</a>
                             </td>
@@ -1233,12 +1234,12 @@ class RequestsController extends Controller
                         <thead>
                             <tr>
                                 <th>Request ID</th>
-                                <th>Type</th>
                                 <th>Item_Id</th>
                                 <th>Item_name</th>
                                 <th>Quantity</th>
                                 <th>Owner Id</th>
                                 <th>Owner</th>
+                                <th>Department</th>
                                 <th>Sm Remark</th>
                                 <th>Issued_by</th>
                                 <th>Issued_at</th>
@@ -1248,15 +1249,16 @@ class RequestsController extends Controller
 
             foreach ($latestRequests as $request) {
                 $itemName = $request->getItemNameById ? $request->getItemNameById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
 
                 $response .= "<tr>
                             <td>" . $request->id . "</td>
-                            <td>" . $request->getTypeRequestAttribute() . "</td>
                             <td>" . $request->item_id . "</td>
                             <td>" . $itemName . "</td>
                             <td>" . $request->quantity . "</td>
                             <td>" . $request->request_by . "</td>
                             <td>" . $request->requestedByUser->name . "</td>
+                            <td>" . $department . "</td>
                             <td>" . $request->sm_remark . "</td>
                             <td>" . $request->storeManagerAttributes->name . "</td>
                             <td>" . $request->updated_at . "</td>
