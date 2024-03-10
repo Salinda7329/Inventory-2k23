@@ -172,7 +172,7 @@ class ItemsController extends Controller
                                         <td>" . $item->item_name . "</td>
                                         <td>" . $item->created_at . "</td>
                                         <td>" . $item->updated_at . "</td>
-                                        <td><a href='#' id='" . $item->id . "'  class='requestItemButton'>Request Item</a>
+                                        <td><a href='#' id='" . $item->id . "'  class='requestItemButton btn-sm btn btn-primary' >Request Item</a>
                                         </td>
                                     </tr>";
             }
