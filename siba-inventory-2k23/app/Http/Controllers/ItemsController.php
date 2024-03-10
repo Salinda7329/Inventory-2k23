@@ -60,6 +60,78 @@ class ItemsController extends Controller
     }
 
     //Not for users
+    // public function fetchAllItemData()
+    // {
+
+    //     $items = Item::all();
+
+    //     //returning data inside the table
+    //     $response = '';
+
+    //     if ($items->count() > 0) {
+
+    //         $response .=
+    //             "<table id='all_item_data' class='display'>
+    //                 <thead>
+    //                     <tr>
+    //                     <th>Item ID</th>
+    //                     <th>Category</th>
+    //                     <th>Product Name</th>
+    //                     <th>Brand Name</th>
+    //                     <th>PO No</th>
+    //                     <th>Item Name</th>
+    //                     <th>Availability</th>
+    //                     <th>Owner</th>
+    //                     <th>Condition</th>
+    //                     <th>Condition Updated By</th>
+    //                     <th>Condition Updated TimeStamp</th>
+    //                     <th>Items remaining</th>
+    //                     <th>Lower limit</th>
+    //                     <th>Input TimeStamp</th>
+    //                     <th>Created By</th>
+    //                     <th>Updated TimeStamp</th>
+    //                     <th>Status</th>
+    //                     <th>Action</th>
+    //                     </tr>
+    //                 </thead>
+    //                 <tbody>";
+
+    //         foreach ($items as $item) {
+    //             $response .= "<tr>
+    //                                     <td>" . $item->id . "</td>
+    //                                     <td>" . $item->productData->categoryData->category_name . "</td>
+    //                                     <td>" . $item->productData->product_name . "</td>
+    //                                     <td>" . $item->brandData->brand_name . "</td>
+    //                                     <td>" . $item->po_no . "</td>
+    //                                     <td>" . $item->item_name . "</td>
+    //                                     <td>" . $item->getIsAvailabilityAttribute() . "</td>
+    //                                     <td>" . ($item->ownerUser && $item->ownerUser->name ? $item->ownerUser->name : 'N/A') . "</td>
+    //                                     <td>" . $item->getIsCondtionItemAttribute() . "</td>
+    //                                     <td>" . $item->conditionUpdatedByUser->name . "</td>
+    //                                     <td>" . $item->condition_updated_timestamp . "</td>
+    //                                     <td>" . $item->items_remaining . "</td>
+    //                                     <td>" . $item->lower_limit . "</td>
+    //                                     <td>" . $item->created_at . "</td>
+    //                                     <td>" . $item->createdByUser->name . "</td>
+    //                                     <td>" . $item->updated_at . "</td>
+    //                                     <td>" . $item->getIsActiveItemAttribute() . "</td>
+    //                                     <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
+    //                                     data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
+    //                                     </td>
+    //                                 </tr>";
+    //         }
+
+
+
+    //         $response .=
+    //             "</tbody>
+    //             </table>";
+
+    //         echo $response;
+    //     } else {
+    //         echo "<h3 align='center'>No Records in Database</h3>";
+    //     }
+    // }
     public function fetchAllItemData()
     {
 

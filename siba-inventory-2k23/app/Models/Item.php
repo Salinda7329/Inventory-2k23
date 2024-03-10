@@ -51,22 +51,24 @@ class Item extends Model
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 
+
     public function getIsCondtionItemAttribute()
     {
         $status = [
-            1 => 'Working',
-            2 => 'Damaged',
-            // Add more roles as needed
+            1 => '<span style="color: green;">Working</span>',
+            2 => '<span style="color: red;">Damaged</span>',
+            // Add more styles as needed
         ];
 
-        return $status[$this->attributes['condition']] ?? 'Unknown Status';
+        return $status[$this->attributes['condition']] ?? '<span style="color: gray;">Unknown Status</span>';
     }
+
 
     public function getIsAvailabilityAttribute()
     {
         $status = [
-            0 => 'Not-Available',
-            1 => 'Available',
+            0 => '<span style="color: red;">Not-Available</span>',
+            1 => '<span style="color: green;">Available</span>',
             // Add more roles as needed
         ];
 
@@ -76,9 +78,9 @@ class Item extends Model
     public function getIsActiveItemAttribute()
     {
         $status = [
-            1 => 'Active',
-            2 => 'Deactivated',
-            3 => 'Deleted',
+            1 => '<span style="color: green;">Active</span>',
+            2 => '<span style="color: red;">Deactivated</span>',
+            3 => '<span style="color: red;">Deleted</span>',
             // Add more roles as needed
         ];
 
