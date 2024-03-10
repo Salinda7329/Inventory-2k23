@@ -38,6 +38,10 @@
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">Items with Users</div>
             </a>
+            <a href="/storeManager/product-limits" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Form Elements">Low Quantity</div>
+            </a>
         </li>
 
         <!-- Forms -->
@@ -89,23 +93,5 @@
         </li>
 
 
-
-
-        <!-- Extended components -->
-
-
-        <!-- Forms & Tables -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Store Quentity</span></li>
-        <!-- Forms -->
-        <li class="menu-item">
-            <a href="/storeManager/product-limits" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Low Quantity</div>
-            </a>
-
-
-            <!-- Misc -->
-
-        </li>
     </ul>
 </aside>
