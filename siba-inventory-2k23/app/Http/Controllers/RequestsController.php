@@ -660,7 +660,7 @@ class RequestsController extends Controller
                                         <td>" . $request->created_at . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td>" . $request->updated_at . "</td>
-                                        <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn-outline-primary requestActionButton requestButtons'>Action</a>
+                                        <td id='requestButtonContainer'><a href='#' id='" . $request->id . "'  data-bs-toggle='modal' data-bs-target='#actionModal' class='actionRequestButton btn-sm btn btn-primary requestActionButton requestButtons'>Action</a>
                             </td>
                                     </tr>";
             }
@@ -1190,7 +1190,7 @@ class RequestsController extends Controller
                             <td>" . $request->sm_remark . "</td>
                             <td>" . $request->storeManagerAttributes->name . "</td>
                             <td>" . $request->updated_at . "</td>
-                            <td><a href='#' id='" . $request->item_id . "'  data-bs-toggle='modal' data-bs-target='#returnModal' class='returnRequestButton  btn-sm btn btn-primary returnActionButton returnButtons'>Return</a></td>
+                            <td><a href='#' id='" . $request->item_id . "'  class='returnRequestButton  btn-sm btn btn-primary returnActionButton returnButtons'>Return</a></td>
                         </tr>";
             }
 
