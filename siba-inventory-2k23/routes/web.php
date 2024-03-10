@@ -291,6 +291,13 @@ Route::middleware([
     //route to fetch all rejected requests history
     Route::post('/storeManager/fetchAllRejectedHistory', [RequestsController::class, 'fetchAllRejectedHistory'])->name('fetchAllRejectedHistory');
 
+    //view rejected returns history
+    Route::get('/storeManager/view-rejected-returns-history', function () {
+        return view('storeManager.SMcomponent.rejected-returns-history');
+    });
+    //route to fetch all rejected returns history
+    Route::post('/storeManager/fetchAllRejectedReturnsHistory', [RequestsController::class, 'fetchAllRejectedReturnsHistory'])->name('fetchAllRejectedReturnsHistory');
+
 
 
     //view returns by users

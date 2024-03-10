@@ -1,4 +1,6 @@
+@extends('storeManager.sm-layout')
 
+@section('content')
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <br><br>
@@ -6,7 +8,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Rejected Requests History
+                        Rejected Returns History
                     </div>
                     <div class="card-body">
                         <div id="show_issued_items_data"></div>
@@ -19,12 +21,12 @@
                         // get the current user id
                         var authenticatedSMId = {{ auth()->id() }};
 
-                        fetchAllRejectedHistory();
+                        fetchAllRejectedReturnsHistory();
 
 
-                        function fetchAllRejectedHistory() {
+                        function fetchAllRejectedReturnsHistory() {
                             $.ajax({
-                                url: '{{ route('fetchAllRejectedHistory') }}',
+                                url: '{{ route('fetchAllRejectedReturnsHistory') }}',
                                 type: 'post',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -103,3 +105,4 @@
             </div>
         </div>
     </div>
+@endsection
