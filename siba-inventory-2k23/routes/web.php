@@ -388,8 +388,12 @@ Route::middleware([
         return view('DepartmentUser.visit-store-user');
     });
     //requested item table view
-    Route::get('/dUser/RequestItemTableView', function () {
+    Route::get('/user/RequestItemTableView', function () {
         return view('DepartmentUser.storereqtable');
+    });
+    //returned item table view
+    Route::get('/user/ReturnedItemTableView', function () {
+        return view('DepartmentUser.user-returned-items');
     });
 
     //route to make request
@@ -399,6 +403,8 @@ Route::middleware([
 
     //route to view user my request history
     Route::post('/user/fetchMyRequestData', [RequestsController::class, 'fetchMyRequestData'])->name('fetchMyRequestData');
+    //route to view user my return history
+    Route::post('/user/fetchMyReturnData', [RequestsController::class, 'fetchMyReturnData'])->name('fetchMyReturnData');
     //route to view current items user have
     Route::get('/dUser/user-myItems', function () {
         return view('DepartmentUser.user-myItems');

@@ -62,10 +62,10 @@ class Request extends Model
     public function getStatusRequestAttribute()
     {
         $status = [
-            0 => 'user_request',
-            1 => 'sm_processing',
-            2 => 'sm_accepted',
-            3 => 'sm_rejected',
+            0 => '<span style="color: orange;">user_request</span>',
+            1 => '<span style="color: blue;">sm_processing</span>',
+            2 => '<span style="color: green;">sm_accepted</span>',
+            3 => '<span style="color: red;">sm_rejected</span>',
             // Add more roles as needed
         ];
 

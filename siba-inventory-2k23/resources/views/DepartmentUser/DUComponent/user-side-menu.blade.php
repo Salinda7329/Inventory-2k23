@@ -42,15 +42,21 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/dUser/RequestItemTableView" class="menu-link">
+                    <a href="/user/user-myItems" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="requestitem">My Items</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/user/RequestItemTableView" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
                         <div data-i18n="requestitem">Request History</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/dUser/user-myItems" class="menu-link">
+                    <a href="/user/ReturnedItemTableView" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                        <div data-i18n="requestitem">My Items</div>
+                        <div data-i18n="requestitem">Return history</div>
                     </a>
                 </li>
             </ul>

@@ -133,7 +133,7 @@ class RequestsController extends Controller
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
-                                        <td>" . $department ."</td>
+                                        <td>" . $department . "</td>
                                         <td>" . $request->getStatusRequestAttribute() . "</td>
                                         <td id='requestButtonContainer'><a href='#' id='$request->id.$request->item_user' class='processRequestButton btn-sm btn btn-primary' >Process</a>
                             </td>
@@ -994,13 +994,13 @@ class RequestsController extends Controller
         }
     }
 
-    //to get user's requests history
+    //for user.to get user's requests history
     public function fetchMyRequestData(Request $request)
     {
 
         $user_id = $request->user_id;
         // Retrieve only active items
-        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->get();
+        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 1)->get();
 
 
         //returning data inside the table
@@ -1055,83 +1055,69 @@ class RequestsController extends Controller
             echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
+    //for user. get return history
+    public function fetchMyReturnData(Request $request)
+    {
 
-    //for user. Items now at user
-    // public function fetchMyItems(Request $request)
-    // {
-
-    //     $user_id = $request->user_id;
-
-    //     // // Retrieve requests that match the specified conditions
-    //     $requests = ModelsRequest::where('isActive', 1)
-    //         ->where('request_by', $user_id)
-    //         ->where('type', 1)
-    //         ->where('status', 2)
-    //         ->get();
-
-    //     $item_ids = $requests->pluck('item_id')->toArray();
+        $user_id = $request->user_id;
+        // Retrieve only active items
+        $requests = ModelsRequest::where('isActive', 1)->where('request_by', $user_id)->where('type', 2)->get();
 
 
-    //     // // Retrieve items that match the specified conditions
-    //     $availability = Item::whereIn('id', $item_ids)
-    //         ->where('availability', 0)
-    //         ->where('owner', $user_id)
-    //         ->get();
+        //returning data inside the table
+        $response = '';
 
+        if ($requests->count() > 0) {
 
-    //     //returning data inside the table
-    //     $response = '';
+            $response .=
+                "<table id='all_return_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Item_Id</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Remark</th>
+                        <th>Requested_at</th>
+                        <th>SM</th>
+                        <th>SM_Remark</th>
+                        <th>Processed_at</th>
+                        <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
 
-    //     if ($availability->count() > 0) {
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $smName = $request->storeManagerAttributes ? $request->storeManagerAttributes->name : 'N/A';
 
-    //         $response .=
-    //             "<table id='all_myItem_data' class='display'>
-    //                 <thead>
-    //                     <tr>
-    //                     <th>Request ID</th>
-    //                     <th>Type</th>
-    //                     <th>Status</th>
-    //                     <th>Item_Id</th>
-    //                     <th>Item_name</th>
-    //                     <th>Quantity</th>
-    //                     <th>Sm Remark</th>
-    //                     <th>Issued_by</th>
-    //                     <th>Issued_at</th>
-    //                     <th>Action</th>
-    //                     </tr>
-    //                 </thead>
-    //                 <tbody>";
-
-    //         foreach ($requests as $request) {
-    //             $itemName = $request->getItemNameById ? $request->getItemNameById->item_name : 'N/A';
-
-    //             $response .= "<tr>
-    //                                     <td>" . $request->id . "</td>
-    //                                     <td>" . $request->getTypeRequestAttribute() . "</td>
-    //                                     <td>" . $request->getStatusRequestAttribute() . "</td>
-    //                                     <td>" . $request->item_id . "</td>
-    //                                     <td>" . $itemName . "</td>
-    //                                     <td>" . $request->quantity . "</td>
-    //                                     <td>" . $request->sm_remark . "</td>
-    //                                     <td>" . $request->storeManagerAttributes->name . "</td>
-    //                                     <td>" . $request->updated_at . "</td>
-    //                                     <td id='returnButtonContainer'><a href='#' id='" . $request->item_id . "'  data-bs-toggle='modal' data-bs-target='#returnModal' class='returnRequestButton btn-sm btn-outline-primary returnActionButton returnButtons'>Return</a>
-    //                         </td>
-    //                                 </tr>";
-    //         }
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->item_user . "</td>
+                                        <td>" . $itemName . "</td>
+                                        <td>" . $request->quantity_user . "</td>
+                                        <td>" . $request->user_remark . "</td>
+                                        <td>" . $request->created_at . "</td>
+                                        <td>" . $smName . "</td>
+                                        <td>" . $request->sm_remark . "</td>
+                                        <td>" . $request->updated_at . "</td>
+                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                    </tr>";
+            }
 
 
 
-    //         $response .=
-    //             "</tbody>
-    //             </table>";
+            $response .=
+                "</tbody>
+                </table>";
 
-    //         echo $response;
-    //     } else {
-    //         echo "<h3 align='center'>No Records in Database</h3>";
-    //     }
-    // }
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 
+    //for user. Items at the user
     public function fetchMyItems(Request $request)
     {
         $user_id = $request->user_id;
