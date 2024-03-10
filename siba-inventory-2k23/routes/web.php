@@ -225,6 +225,14 @@ Route::middleware([
     })->name('storeManager.rejected');
     //route to fetch all rejected requests history
     Route::post('/pm/fetchAllRejectsHistoryPM', [RequestsController::class, 'fetchAllRejectsHistoryPM'])->name('fetchAllRejectsHistoryPM');
+
+
+    //view rejected retruns history
+    Route::get('/pm/view-rejected-return-history', function () {
+        return view('PurchasingManager.view-rejected-returns-history');
+    })->name('storeManager.rejected.returns');
+    //route to fetch all rejected requests history
+    Route::post('/pm/fetchAllRejectReturnsHistoryPM', [RequestsController::class, 'fetchAllRejectReturnsHistoryPM'])->name('fetchAllRejectReturnsHistoryPM');
 });
 //--------------End purchasing manager routes-----------------
 

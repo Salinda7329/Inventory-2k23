@@ -257,7 +257,9 @@ class RequestsController extends Controller
                         <th>Requested_by</th>
                         <th>Requested_at</th>
                         <th>Department</th>
-                        <th>Status</th>
+                        <th>SM_ID</th>
+                        <th>SM</th>
+                        <th>Processed_at</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -276,7 +278,9 @@ class RequestsController extends Controller
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
                                         <td>" . $department . "</td>
-                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td>" . $request->store_manager . "</td>
+                                        <td>" . $request->storeManagerAttributes->name . "</td>
+                                        <td>" . $request->updated_at . "</td>
                                     </tr>";
             }
 
@@ -391,6 +395,7 @@ class RequestsController extends Controller
         //     ->get();
 
         $requests = ModelsRequest::where('isActive', 1)
+            ->where('type',1)
             ->where(function ($query) use ($store_manager) {
                 $query->where(function ($query) {
                         $query->where('status', 3);
@@ -408,7 +413,93 @@ class RequestsController extends Controller
         if ($requests->count() > 0) {
 
             $response .=
-                "<table id='show_rejected_items' class='display'>
+                "<table id='show_rejected_requests' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Request ID</th>
+                        <th>Item_Id</th>
+                        <th>Item</th>
+                        <th>Quantity" . "<br>" . "_User</th>
+                        <th>Remark</th>
+                        <th>Requested_by ID</th>
+                        <th>Requested_by</th>
+                        <th>Department</th>
+                        <th>Requested_at</th>
+                        <th>Sm Remark</th>
+                        <th>Sm ID</th>
+                        <th>Quantity</th>
+                        <th>Rejected_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($requests as $request) {
+                $itemName = $request->getItemById ? $request->getItemById->item_name : 'N/A';
+                $department = $request->requestedByUser->departmentName;
+
+                $response .= "<tr>
+                                        <td>" . $request->id . "</td>
+                                        <td>" . $request->item_user . "</td>
+                                        <td>" . $itemName . "</td>
+                                        <td>" . $request->quantity_user . "</td>
+                                        <td>" . $request->user_remark . "</td>
+                                        <td>" . $request->request_by . "</td>
+                                        <td>" . $department . "</td>
+                                        <td>" . $request->requestedByUser->name . "</td>
+                                        <td>" . $request->created_at . "</td>
+                                        <td>" . $request->sm_remark . "</td>
+                                        <td>" . $request->store_manager . "</td>
+                                        <td>" . $request->quantity . "</td>
+                                        <td>" . $request->updated_at . "</td>
+                             </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
+
+    public function fetchAllRejectReturnsHistoryPM(Request $request)
+    {
+        $store_manager = $request->sm_id;
+
+        // // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->where('store_manager', $store_manager)->get();
+
+        // $requests = ModelsRequest::where('type', 1)
+        //     ->where('isActive', 1)->where('store_manager',$store_manager)->where(function ($query) use ($store_manager) {
+        //         $query->where('status',2)
+        //             ->orWhere('status',3);
+        //     })
+        //     ->get();
+
+        $requests = ModelsRequest::where('isActive', 1)
+            ->where('type',2)
+            ->where(function ($query) use ($store_manager) {
+                $query->where(function ($query) {
+                        $query->where('status', 3);
+                    });
+            })
+            ->get();
+
+
+        // Retrieve only active items
+        // $requests = ModelsRequest::where('isActive', 1)->get();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($requests->count() > 0) {
+
+            $response .=
+                "<table id='show_rejected_returns' class='display'>
                     <thead>
                         <tr>
                         <th>Request ID</th>
@@ -805,7 +896,9 @@ class RequestsController extends Controller
                         <th>Remark</th>
                         <th>Requested_by</th>
                         <th>Requested_at</th>
-                        <th>Status</th>
+                        <th>SM_ID</th>
+                        <th>SM</th>
+                        <th>Processed_at</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -822,7 +915,9 @@ class RequestsController extends Controller
                                         <td>" . $request->user_remark . "</td>
                                         <td>" . $request->requestedByUser->name . "</td>
                                         <td>" . $request->requested_timestamp . "</td>
-                                        <td>" . $request->getStatusRequestAttribute() . "</td>
+                                        <td>" . $request->store_manager . "</td>
+                                        <td>" . $request->storeManagerAttributes->name . "</td>
+                                        <td>" . $request->updated_at . "</td>
                                     </tr>";
             }
 

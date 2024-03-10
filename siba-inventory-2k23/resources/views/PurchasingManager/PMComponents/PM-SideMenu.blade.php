@@ -197,7 +197,11 @@
             </a>
             <a href="/pm/view-rejected-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Rejected History</div>
+                <div data-i18n="Form Elements">Rejected Requests History</div>
+            </a>
+            <a href="/pm/view-rejected-return-history" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Rejected Returns History</div>
             </a>
         </li>
 

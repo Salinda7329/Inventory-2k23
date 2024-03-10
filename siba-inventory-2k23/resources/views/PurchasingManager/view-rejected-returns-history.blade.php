@@ -11,10 +11,10 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
 
                 <div class="card">
                     <div class="card-header">
-                        Rejected Requests History
+                        Rejected Returns History
                     </div>
                     <div class="card-body">
-                        <div id="show_rejected_requests_data"></div>
+                        <div id="show_rejected_returns_data"></div>
                     </div>
                 </div>
 
@@ -24,12 +24,12 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                         // get the current user id
                         var authenticatedSMId = {{ auth()->id() }};
 
-                        fetchAllRejectsHistoryPM();
+                        fetchAllRejectReturnsHistoryPM();
 
 
-                        function fetchAllRejectsHistoryPM() {
+                        function fetchAllRejectReturnsHistoryPM() {
                             $.ajax({
-                                url: '/pm/fetchAllRejectsHistoryPM',
+                                url: '{{ route('fetchAllRejectReturnsHistoryPM') }}',
                                 type: 'post',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -40,10 +40,10 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                 }),
                                 success: function(html) {
                                     // Update the show_all_requests_data div's content with the HTML table
-                                    $('#show_rejected_requests_data').html(html);
+                                    $('#show_rejected_returns_data').html(html);
 
                                     // Make the table a data table
-                                    $('#show_rejected_requests').DataTable({
+                                    $('#show_rejected_returns').DataTable({
                                         // Enable horizontal scrolling
                                         "scrollX": true,
                                     });
