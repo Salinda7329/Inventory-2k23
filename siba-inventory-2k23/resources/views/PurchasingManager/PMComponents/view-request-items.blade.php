@@ -51,7 +51,7 @@ item code aka okkm visthara tka auto fill wela thiynn oni. --}}
                                     ]
                                 });
                                 // Hide the Action column header and data cells
-                                $('#all_request_data tbody td:nth-child(10), #all_request_data thead th:nth-child(10)')
+                                $('#all_request_data tbody td:nth-child(9), #all_request_data thead th:nth-child(9)')
                                     .hide();
 
                             },

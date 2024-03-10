@@ -406,7 +406,7 @@ Route::middleware([
     //route to view user my return history
     Route::post('/user/fetchMyReturnData', [RequestsController::class, 'fetchMyReturnData'])->name('fetchMyReturnData');
     //route to view current items user have
-    Route::get('/dUser/user-myItems', function () {
+    Route::get('/user/user-myItems', function () {
         return view('DepartmentUser.user-myItems');
     });
     //route to view items user has currently
