@@ -58,7 +58,7 @@
 
         <li class="menu-item">
             <a href="/pm/items-with-users" class="menu-link">
-                <div data-i18n="Without menu">Items with Users</div>
+                <div data-i18n="Without menu">Items With Users</div>
             </a>
         </li>
 
