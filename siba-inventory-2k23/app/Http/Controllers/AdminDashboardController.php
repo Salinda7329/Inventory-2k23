@@ -13,61 +13,6 @@ class AdminDashboardController extends Controller
         return view('systemAdmin.system-admin-home');
     }
 
-    public function fetchAllUserDataOriginal()
-    {
-
-        $users = User::all();
-
-        // return response()->json([
-        //     'status' => $students,
-        // ]);
-
-        //returning data inside the table
-        $response = '';
-
-        if ($users->count() > 0) {
-
-            $response .=
-                "<table id='all_user_data' class='display'>
-                    <thead>
-                        <tr>
-                        <th>User_ID</th>
-                        <th>Email</th>
-                        <th>Epf</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-
-            foreach ($users as $student) {
-                $response .=
-                    "<tr>
-                            <td>" . $student->id . "</td>
-                            <td>" . $student->email . "</td>
-                            <td>" . $student->epf . "</td>
-                            <td>" . $student->name . "</td>
-                            <td>" . $student->getRoleNameAttribute() . "</td>
-                            <td>" . $student->getDepartmentNameAttribute() . "</td>
-                            <td>" . $student->getIsActiveNameAttribute() . "</td>
-                            <td><a href='#' id='" . $student->id . "'  data-bs-toggle='modal'
-                            data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
-                            </td>
-                        </tr>";
-            }
-
-            $response .=
-                "</tbody>
-                </table>";
-
-            echo $response;
-        } else {
-            echo "<h3 align='center'>No Records in Database</h3>";
-        }
-    }
     public function fetchAllUserData()
     {
 
@@ -88,9 +33,9 @@ class AdminDashboardController extends Controller
                         <tr>
                         <th>User_ID</th>
                         <th>Email</th>
-                        <th>Epf</th>
                         <th>Name</th>
                         <th>Role</th>
+                        <th>Epf</th>
                         <th>Department</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -103,8 +48,6 @@ class AdminDashboardController extends Controller
                     "<tr>
                             <td>" . $user->id . "</td>
                             <td>" . $user->email . "</td>
-                            <td>" . $user->epf . "</td>
-                            <td>" . $user->name . "</td>
                             <td>";
                             if (Auth::check() && Auth::id() == $user->id) {
                                 $response .= "<span style='color: green;'>{$user->name}</span>";
@@ -114,8 +57,16 @@ class AdminDashboardController extends Controller
 
                 $response .=
                             "</td>
-                            <td>" . $user->getDepartmentNameAttribute() . "</td>
-                            <td>" . $user->getIsActiveNameAttribute() . "</td>
+                            <td>" . $user->getRoleNameAttribute() . "</td>
+                            <td>" . $user->epf . "</td>
+                           <td>" . $user->getDepartmentNameAttribute() . "</td>
+                            <td>";
+                            if ($user->isActive == 1) $response .= "<span style='color: green;'>Active</span>";
+                            else if ($user->isActive == 2) $response .= "<span style='color: red;'>Deactivated</span>";
+                            else $response .= "<span style='color: gray;'>Deleted</span>";
+
+                $response .=
+                            "</td>
                             <td><a href='#' id='" . $user->id . "'  data-bs-toggle='modal'
                             data-bs-target='#editUserDataModal' class='editUserButton'>Edit</a>
                             </td>

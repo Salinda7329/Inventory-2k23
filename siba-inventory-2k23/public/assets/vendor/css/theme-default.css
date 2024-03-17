@@ -204,7 +204,23 @@ button.list-group-item-primary.active {
 .table-primary .btn-icon {
   color: #435971;
 }
+/* -- style to highlights rows in data table when not working -- */
+.data-table tbody tr:nth-child(even) {
+    background-color: rgb(255, 255, 255); /* Example gradient for even rows */
+}
 
+.data-table tbody tr:nth-child(odd) {
+    background-color: rgba(143, 134, 134, 0.1); /* Example gradient for odd rows */
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Darker gradient on hover */
+}
+
+.data-table tbody tr:last-child {
+    border-bottom: none; /* Remove border from last row */
+}
+/* /-- style to highlights rows in data table when not working -- */
 .btn-primary {
   color: #fff;
   background-color: #696cff;

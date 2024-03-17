@@ -24,18 +24,20 @@ class RouteServiceProvider extends ServiceProvider
         $role = Auth::user()->role;
 
         switch ($role) {
+            // System admin
             case 5:
-                return route('systemAdmin.home');
+                return 'systemAdmin.home';
+            // head of administration
             case 4:
-                // head of administration
-                break;
+            // purchasing manager
             case 3:
-                // purchasing manager
-                break;
+                return 'pm.home';
+            // store manager
             case 2:
-                return route('storeManager.home');
+                return 'storeManager.home';
+            // user
             case 1:
-                return route('user.home');
+                return 'user.home';
         }
     }
 

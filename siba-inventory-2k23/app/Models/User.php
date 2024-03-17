@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -88,8 +88,9 @@ class User extends Authenticatable
             4 => 'English & Modern Language',
             5 => 'Global Studies',
             6 => 'Aesthetic Department',
-            7 => 'management Studies',
-            8 => 'Admin Department',
+            7 => 'Management Studies',
+            8 => 'Kandyan Dancing',
+            9 => 'Admin Department',
             // Add more departments as needed
         ];
 

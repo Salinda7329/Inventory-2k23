@@ -5,7 +5,7 @@
 
         <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
         <br>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">{{ Auth::user()->getRoleNameAttribute()}}</span>
+        {{-- <span class="app-brand-text demo menu-text fw-bolder ms-2">{{ Auth::user()->getRoleNameAttribute()}}</span> --}}
       </a>
 
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -26,7 +26,7 @@
 
       <!-- Layouts -->
 
-      <li class="menu-header small text-uppercase">
+      {{-- <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Store</span>
       </li>
       <li class="menu-item">
@@ -76,6 +76,6 @@
 
       <!-- Misc -->
 
-      </li>
+      </li> --}}
     </ul>
 </aside>

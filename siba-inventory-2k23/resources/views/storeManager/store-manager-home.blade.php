@@ -69,7 +69,7 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-@include('storeManager.SMcomponent.issue-items')
+{{-- @include('storeManager.SMcomponent.issue-items') --}}
 
 
 <script src="../assets/vendor/libs/jquery/jquery.js"></script>
